@@ -1,0 +1,77 @@
+/* Login */
+
+.login-banner-wrapper {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../../assets/images/banner.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.login-banner-wrapper:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.login-banner-wrapper .login-banner-content {
+    color: #fff;
+}
+
+.login-form .form-control {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    ;
+    border-radius: 0;
+    height: 60px;
+}
+
+.login-form button {
+    height: 60px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-left: -2px;
+    margin-bottom: -2px;
+    width: calc(100% + 4px);
+}
+
+.login-form form {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.login-form .form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.login-terms small {
+    opacity: .6;
+}
+
+.login-form input::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fff;
+    opacity: 1;
+    /* Firefox */
+}
+
+.login-form input:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #fff;
+}
+
+.login-form input::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #fff;
+}

@@ -1,0 +1,51 @@
+<section class="services py-5 bg-gray">
+    <div class="section-title text-center mb-5">
+        <h3>Services</h3>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-12 mb-3" *ngFor="let service of services">
+                <div class="service-item px-4 py-5">
+                    <div class="s-icon">
+                        <span class="material-icons-round m-auto">{{service.icon}}</span>
+                    </div>
+                    <h4>{{service.name}}</h4>
+                    <p>{{service.desc}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="services2 py-3">
+    <div class="p-4 container">
+        <div class="row">
+            <div class="col-10 offset-1">
+                <div class="row serives2-list">
+                    <div class="col-sm-4 mb-2" *ngFor="let service of services2">
+                        <div class="service2-item px-4 py-2">
+                            <span class="material-icons-round">{{service.icon}}</span>
+                            <h5>{{service.name}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="events py-5 bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="section-title text-left mb-5">
+                    <h3 class="m-0 d-flex"> <span class="material-icons-round">calendar_month</span>Events</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="section-title text-left mb-5">
+                    <h3 class="m-0 d-flex"><span class="material-icons-round">campaign</span> Announcements</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

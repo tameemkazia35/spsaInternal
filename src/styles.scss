@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'material-icons/iconfont/material-icons.scss';
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+$primary: #851825;
+$secondary: #357342;
+
+$theme-colors: ( "primary": $primary, "secondary": $secondary );
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+:root {
+    --bs-primary: #851825 !important;
+    --bs-secondary: #357342 !important;
+    --bs-primary-rgb: 133, 24, 37 !important;
+}
+
+.bg-gray{
+    background: #EAEAE6;
+}

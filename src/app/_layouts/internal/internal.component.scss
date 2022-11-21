@@ -1,0 +1,17 @@
+nav{
+    li{
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.home-banner{
+    background: url('./../../../assets/images/hero-bg.svg');
+    height: 120px;
+    width: 100%;
+    background-size: cover;
+    background-position: top ;
+}
