@@ -5,12 +5,12 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError, map } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable()
 export class ServerErrorInterceptor implements HttpInterceptor {
 
-    constructor(private toastr: ToastrService) {
+    constructor() {
 
     }
 

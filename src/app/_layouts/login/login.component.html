@@ -2,31 +2,42 @@
         <div class="login-banner-content">
             <div class="container">
                 <div class="row align-items-end">
-                    <div class="col-md-6 col-sm-6 mb-5">
-                        <img width="220" src="/assets/img/logo-white.svg" />
-                        <div class="section-title">
-                            <h2>Welcome To Sharjah Prevention and Safety Authority</h2>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-6 ml-auto">
+                    <div class="col-md-12 col-sm-12 ml-auto">
                         <div class="login-form">
-                            <h2>Login now</h2>
+                            <h2><span class="material-icons-round me-2">lock_person</span>Login</h2>
+                            <div id="emailHelp" class="form-text mb-3">Your active directory username and password</div>
                             <form class="login-form" [formGroup]="loginForm" (ngSubmit)="submit()" autocomplete="off">
-                                <div class="form-group mb-0">
-                                    <input type="text" class="form-control" placeholder="Username" name="username" formControlName="username" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-                                    <div *ngIf="submitted && f.username.invalid" class="invalid-feedback">
-                                        <div *ngIf="f.username.errors?.required">This field is required</div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="form-group mb-0">
-                                    <input type="password" class="form-control" placeholder="Password" name="password" formControlName="password" autocomplete="new-password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                <label>Domain</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text material-icons-round">vpn_lock</span>
+                                    <select class="form-control form-control-lg" formControlName="domain">
+                                        <option *ngFor="let domain of domains" value="domain">{{domain}}</option>
+                                    </select>    
                                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                         <div *ngIf="f.password.errors.required">This field is required</div>
                                         <div *ngIf="f.password.errors.minlength">Your password must be min of 6 character aand must contain at least one uppercase, one lowercase, and one number</div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-theme-green btn-block">Login</button>
+                                <label>Username</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text material-icons-round">assignment_ind</span>
+                                    <input type="text" class="form-control form-control-lg" placeholder="Username" name="username" formControlName="username" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                                    <div *ngIf="submitted && f.username.invalid" class="invalid-feedback">
+                                        <div *ngIf="f.username.errors?.required">This field is required</div>
+                                        <div *ngIf="f.username.errors?.pattern">Invalid email</div>
+                                    </div>
+                                </div>
+                                <label>Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text material-icons-round">vpn_key</span>
+                                    <input type="password" class="form-control form-control-lg" placeholder="Password" name="password" formControlName="password" autocomplete="new-password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">This field is required</div>
+                                        <div *ngIf="f.password.errors.minlength">Your password must be min of 6 character aand must contain at least one uppercase, one lowercase, and one number</div>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-secondary btn-lg mt-4">Login</button>
                             </form>
                         </div>
                     </div>

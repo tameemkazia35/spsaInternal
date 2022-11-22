@@ -1,11 +1,11 @@
+<ngx-spinner bdColor="rgba(255,255,255)" color="#fff" type="">
+  <img alt="Image placeholder" src="/assets/images/logo-black.svg" style="height: 60px;" />
+  <p style="font-size: 10px; margin-top:20px; color: black; text-align: center"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></p>
+</ngx-spinner>
 <router-outlet></router-outlet>
 
-<p-dialog [(visible)]="display">
-  <ng-template pTemplate="header">
-    Header content here
-</ng-template>
-Content
-<ng-template pTemplate="footer">
-    //buttons
-</ng-template>
+<p-dialog class="login-modal" [(visible)]="display" [closeOnEscape]="false" [closable]="false" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" [style]="{width: '500px', padding: '0'}">
+<app-login></app-login>
 </p-dialog>
+
+<p-toast position="top-center"></p-toast>

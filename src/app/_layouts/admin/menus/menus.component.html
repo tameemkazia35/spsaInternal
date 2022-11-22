@@ -1,0 +1,191 @@
+<div class="container mt-5">
+<div class="row">
+    <div class="col-sm-4">
+      <div class="page-list-wrapper">
+        <div class="page-list">
+          <p-accordion>
+            <p-accordionTab header="Pages" [selected]="true">
+              <div>
+                <div class="form-group">
+                  <input class="form-control" placeholder="Search..." [(ngModel)]="searchTerm" />
+                </div>
+                <ul class="list-unstyled">
+                  <li *ngFor="let item of pageList; let i = index;">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="item.checked" value=""
+                        id="page{{i}}">
+                      <label class="form-check-label" for="page{{i}}">
+                        {{item.title}}
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <div>
+                  <button class="btn btn-secondary px-5" (click)="addPages()">Add</button>
+                </div>
+              </div>
+            </p-accordionTab>
+            <p-accordionTab header="Custom Links">
+              <form name="banner-form" [formGroup]="externalForm" (ngSubmit)="submit()" novalidate>
+                <div class="row">
+                  <div class=" col-sm-12 mb-3">
+                    <div class="form-group">
+                      <label>Link Text</label>
+                      <input type="text" name="text" class="form-control" formControlName="text"
+                        [ngClass]="{ 'is-invalid': submitted && f.text.errors }" />
+                      <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
+                        <div *ngIf="f.text.errors?.required">This field is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class=" col-sm-12 mb-3">
+                    <div class="form-group">
+                      <label>Link Text Arabic</label>
+                      <input dir="rtl" type="text" name="text_ar" class="form-control" formControlName="text_ar"
+                        [ngClass]="{ 'is-invalid': submitted && f.text_ar.errors }" />
+                      <div *ngIf="submitted && f.text_ar.invalid" class="invalid-feedback">
+                        <div *ngIf="f.text_ar.errors?.required">This field is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class=" col-sm-12 mb-3">
+                    <div class="form-group">
+                      <label>Link Url</label>
+                      <input type="url" name="url" class="form-control" formControlName="url"
+                        [ngClass]="{ 'is-invalid': submitted && f.url.errors }" />
+                      <div *ngIf="submitted && f.url.invalid" class="invalid-feedback">
+                        <div *ngIf="f.url.errors?.required">This field is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 mb-3">
+                    <div class="form-group">
+                      <label>Target</label>
+                      <select formControlName="target" name="target" class="form-control">
+                        <option value="_blank" selected>_blank</option>
+                        <option value="_self">_self</option>
+                        <option value="_parent">_parent</option>
+                        <option value="_top">_top</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <label>Icon</label><br>
+                    <p-dropdown [options]="iconList" formControlName="icon" optionLabel="name" filterBy="iconName"  [filter]="true" [showClear]="false" placeholder="Select a Icon">
+                      <ng-template pTemplate="filter" let-options="options">
+                          <div class="d-flex align-items-center">
+                              <div class="input-group" (click)="$event.stopPropagation()">
+                                  <span class="input-group-text"><i class="pi pi-search"></i></span>
+                                  <input class="form-control" type="text" pInputText placeholder="Filter" (keyup)="options.filter($event)">
+                              </div>
+                              <!-- <button pButton icon="pi pi-times" class="ml-3" (click)="resetFunction(options)"></button> -->
+                          </div>
+                      </ng-template>
+                      <ng-template pTemplate="selectedItem">
+                          <div class="country-item country-item-value" *ngIf="externalForm.value.icon">
+                              <div class="d-flex align-items-center"><span class="material-icons me-2">{{externalForm.value.icon.iconName}}</span> {{externalForm.value.icon.iconName}}</div>
+                          </div>
+                      </ng-template>
+                      <ng-template let-icon pTemplate="item">
+                          <div class="country-item">
+                              <!-- <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" /> -->
+                              <div class="d-flex align-items-center"> <span class="material-icons me-2">{{icon.iconName}}</span> {{icon.iconName}}</div>
+                          </div>
+                      </ng-template>
+                  </p-dropdown>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 text-right">
+                    <button type="submit" class="btn btn-secondary px-5 mt-2">Add</button>
+                  </div>
+                </div>
+              </form>
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="menu-sortable">
+        <div>
+          <h4>Add Menu List</h4>
+        </div>
+        <ngx-nestable [(list)]="selectedList" [options]="options" [template]="$any(itemTemplate1)"></ngx-nestable>
+        <ng-template #itemTemplate1 let-row>
+          <div class="d-flex align-items-center justify-content-between main-nest">
+            <div class="d-flex align-items-center">
+              <button class="btn btn-light" [ngxNestableDragHandle]="row">
+                <span class="material-icons">drag_handle</span>
+                <!-- <i class="fa fa-bars"></i> -->
+              </button>
+              <button class="btn btn-light arrows"
+                *ngIf="row.item.children && row.item.children.length; else empty_item"
+                [ngxNestableExpandCollapse]="row">
+                <!-- <i class="fa {{row.item.$$expanded ? 'fa-angle-down' : 'fa-angle-right'}}"></i> -->
+                <span class="material-icons">{{row.item.$$expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_right'}} </span>
+              </button>
+              <div class="ml-2">{{row.item.text == undefined ? row.item.name : row.item.text }}</div>
+            </div>
+            <div class="d-flex mx-3">
+              <div class="delete text-success mx-2" (click)="editItem(row.item)">
+                <span class="material-icons">edit</span>
+              </div>
+              <div class="delete text-danger mx-2" (click)="deleteItem(row.item)">
+                <span class="material-icons">delete</span>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #empty_item> <span style="width: 40px"></span> </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" [style]="{width: '500px', padding: '0'}">
+    <ng-template pTemplate="header">
+        <h3>Edit</h3>
+    </ng-template>
+    <div class="modal-content">
+    <form>
+        <div class="form-group mb-3">
+            <label>Name</label>
+            <input type="text" name="LinkText" [(ngModel)]="selectedItem.text" class="form-control" />
+          </div>
+          <div class="form-group mb-3">
+            <label>Arabic Name</label>
+            <input type="text" name="LinkText_ar" [(ngModel)]="selectedItem.text_ar" class="form-control" />
+          </div>
+          <div class="form-group mb-3" *ngIf="selectedItem.isExternal">
+            <label>Link Url</label>
+            <input type="text" name="LinkUrl" [(ngModel)]="selectedItem.LinkUrl" class="form-control" />
+          </div>
+          <label>Icon</label>
+          <p-dropdown [options]="iconList" [(ngModel)]="selectedItem.iconName" optionLabel="name" filterBy="iconName" [showClear]="true" placeholder="Select a Icon">
+            <ng-template pTemplate="filter" let-options="options">
+                <div class="flex p-3">
+                    <div class="p-inputgroup" (click)="$event.stopPropagation()">
+                        <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+                        <input type="text" pInputText placeholder="Filter" [(ngModel)]="filterValue" (keyup)="options.filter($event)">
+                    </div>
+                    <button pButton icon="pi pi-times" class="ml-3" (click)="resetFunction(options)"></button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="selectedItem">
+                <div class="country-item country-item-value" *ngIf="selectedItem.iconName">
+                   
+                    <div>{{selectedItem.iconName}}</div>
+                </div>
+            </ng-template>
+            <ng-template let-icon pTemplate="item">
+                <div class="country-item">
+                    <!-- <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" /> -->
+                    <span class="material-icons">{{icon.iconName}}</span>
+                    <div>{{icon.iconName}}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+    </form>
+</div>
+</p-dialog>

@@ -1,0 +1,28 @@
+nav{
+    li{
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+::ng-deep .p-menubar{
+    padding: 0 !important;
+}
+
+::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover, ::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover, ::ng-deep .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link{
+    background: #336A3E !important;
+}
+::ng-deep .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-icon, .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link .p-submenu-icon, ::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, ::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, ::ng-deep .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-text{
+color: #fff !important;
+}
+
+::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:focus{
+    box-shadow: none !important;
+}
+
+::ng-deep .p-toast{
+    opacity: 1 !important;
+}

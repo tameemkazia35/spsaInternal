@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { UtilService } from './_services/util.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -21,10 +23,19 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class AppComponent {
   title = 'spsaInternal';
   isMenuOpen = false;
-  display = true;
+  display = false;
 
-  constructor() { 
-    
+  constructor(private util: UtilService,  private spinner: NgxSpinnerService) { 
+    if(localStorage.getItem('currentUser')){
+      this.display = false;
+    }else{
+      this.display = true;
+    }
+      this.util.observlogin().subscribe((_res :any)=>{
+        console.log('login _res', _res);
+        this.spinner.hide();
+        this.display = false;
+      })
   }
   
   toggleMenuOpen(){

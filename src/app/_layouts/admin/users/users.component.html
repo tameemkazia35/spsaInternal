@@ -1,0 +1,40 @@
+<div class="container my-5">
+    <div class="section-title text-center mb-5">
+        <h3>Users</h3>
+    </div> 
+    <p-table [value]="users" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" dataKey="id" editMode="row">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>#</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>createdOn</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-editing="editing"  let-index="rowIndex">
+            <tr [pEditableRow]="user">
+                <td>{{index + 1}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown [options]="roles" optionLabel="name" appendTo="body" [(ngModel)]="user.roles" [style]="{'width':'100%'}"></p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{user.roles?.name}}
+                    </ng-template>
+                </p-cellEditor>
+                </td>
+                <td>{{user.createdOn | date: 'dd/MM/YYYY'}}</td>
+                <td>
+                    <div class="flex align-items-center justify-content-center gap-2">
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(user)" class="p-button-rounded p-button-text p-button-secondary"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(user)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(user, index)" class="p-button-rounded p-button-text p-button-danger"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>     
+</div>

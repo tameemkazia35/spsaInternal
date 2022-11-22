@@ -1,0 +1,33 @@
+.arrows{
+    margin-left: 8px;
+}
+
+:ng-deep ul li .nestable-item-container{
+    background: #f8f9fa;
+}
+
+::ng-deep.p-dropdown{
+    width: 100% !important;
+}
+
+::ng-deep .p-dropdown .p-dropdown-label.p-placeholder{
+    padding: 6px !important;
+}
+.main-nest{
+    background: #f8f9fa;
+    width: 100%;
+}
+
+.btn-light{
+    background: transparent !important;
+    border: transparent !important;
+    display: flex
+}
+.btn-light:hover{
+    background: transparent !important;
+    border: transparent !important;
+}
+ul{
+    max-height: 300px;
+    overflow-y: auto;
+}

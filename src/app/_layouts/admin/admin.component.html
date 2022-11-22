@@ -1,1 +1,48 @@
-<p>admin works!</p>
+<header>
+    <div class="top-header">
+        <div class="container">
+          <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-6">
+              <img src="./assets/images/logo-black.svg" alt="SPSA" height="64">
+            </div>
+            <div class="col-6">
+              <div class="ms-auto">
+              <iframe src="https://timesprayer.com/widgets.php?frame=1&amp;lang=en&amp;sound=false&amp;name=sharijah&amp;avachang=true&amp;time=0&amp;fcolor=357342&amp;tcolor=357342&amp;frcolor=357342" style="border: none; overflow: hidden; height: 80px;max-width: 280px; float: right;"></iframe>
+            </div>
+            </div>
+          </div>
+        </div>
+    </div>  
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="container">
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 me-auto">
+            <li>
+                <a class="nav-link text-white ps-0" routerLink="/admin/menu"><span class="material-icons-round me-2">menu_open</span>Menu</a>
+            </li>
+            <li>
+                <a class="nav-link text-white" routerLink="/admin/sections"><span class="material-icons-round me-2">view_agenda</span>Sections</a>
+            </li>    
+            <li>
+                <a class="nav-link text-white" routerLink="/admin/pages"><span class="material-icons-round me-2">description</span>Pages</a>
+            </li>
+            <li>
+                <a class="nav-link text-white" routerLink="/admin/events"><span class="material-icons-round me-2">event</span>Events</a>
+            </li>
+            <li>
+                <a class="nav-link text-white" routerLink="/admin/announcements"><span class="material-icons-round me-2">campaign</span>Announcements</a>
+            </li>
+            <li>
+                <a class="nav-link text-white" routerLink="/admin/directory"><span class="material-icons-round me-2">folder_shared</span>Directory</a>
+            </li>
+            <li>
+                <a class="nav-link text-white" routerLink="/admin/users"><span class="material-icons-round me-2">groups</span>Users</a>
+            </li>
+               
+          </ul>
+          <p-menubar [model]="items">
+        </p-menubar>
+        </div>
+      </nav>
+</header>
+ 
+<router-outlet></router-outlet>
