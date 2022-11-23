@@ -1,0 +1,49 @@
+<div class="container my-5">
+    <div class="section-title text-center mb-5">
+        <h3>Announcements</h3>
+    </div>
+    <div class="search-wrapper mb-3">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="form-group">
+                    <input class="form-control" placeholder="Search"/>
+                </div>
+             </div>
+             <div class="col-auto ms-auto">
+                 <button class="btn btn-secondary" routerLink="/admin/announcement">Add New</button>
+             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 mb-4" *ngFor="let news of allnews; let i = index">
+            <div class="card admin-event-card">
+                <div class="card-title text-end pt-2">
+                    <a class="btn btn-sm btn-light bnt-default me-2" (click)="editNews(news.slug)"> <span class="material-icons">edit</span></a>
+                    <button type="button" class="btn btn-sm btn-light bnt-default me-2" (click)="confirm(news.id)"> <span class="material-icons">delete</span></button>
+                    <!-- <button type="button" class="btn btn-sm btn-light bnt-default me-2" (click)="toggleEventStatus(news.id, event)">
+                            <span *ngIf="news.status" class="material-icons-round">visibility</span>
+                            <span *ngIf="!news.status" class="material-icons-round">visibility_off</span>
+                        </button> -->
+                </div>
+                <div class="publications-icon">
+                        <img onerror="this.src='/assets/images/noimageavailable.png'" src="http://internal-spsa.eovstg.com/uploads/{{news.banner}}" class="card-img-top" alt="publications">
+                </div>
+                <div class="card-body pb-5">
+                    <div class="mb-2">
+                        <h6 class="mb-0">{{news.title}}</h6>
+                        <small class="datetime">{{news?.createdOn | date:'dd/MM/yyyy hh:mm a'}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<p-confirmDialog #cd>
+    <ng-template pTemplate="header">
+        <h3>Delete Confirmation</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button class="btn btn-light px-4" type="button" icon="pi pi-times" label="No" (click)="cd.reject()">Cancel</button>
+        <button class="btn btn-danger px-4" type="button" icon="pi pi-check" label="Yes" (click)="cd.accept()">Delete</button>
+    </ng-template>
+</p-confirmDialog>

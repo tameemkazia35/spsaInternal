@@ -18,25 +18,34 @@
         <div class="col-sm-4 mb-4" *ngFor="let event of allevents; let i = index">
             <div class="card admin-event-card">
                 <div class="card-title text-end pt-2">
-                    <a class="btn btn-sm btn-light bnt-default me-2" [routerLink]="['/event/edit/', event.id]"> <span class="material-icons">edit</span></a>
-                    <button type="button" class="btn btn-sm btn-light bnt-default me-2" (click)="removeEvent(event.id)"> <span class="material-icons">delete</span></button>
+                    <a class="btn btn-sm btn-light bnt-default me-2" (click)="editEvent(event.slug)"> <span class="material-icons">edit</span></a>
+                    <button type="button" class="btn btn-sm btn-light bnt-default me-2" (click)="confirm(event.id)"> <span class="material-icons">delete</span></button>
                     <button type="button" class="btn btn-sm btn-light bnt-default me-2" (click)="toggleEventStatus(event.id, event)">
                             <span *ngIf="event.status" class="material-icons-round">visibility</span>
                             <span *ngIf="!event.status" class="material-icons-round">visibility_off</span>
                         </button>
                 </div>
                 <div class="publications-icon">
-                        <img onerror="this.src='/assets/images/noimageavailable.png'" src="{{event.banner}}" class="card-img-top" alt="publications">
-                    
+                        <img onerror="this.src='/assets/images/noimageavailable.png'" src="http://internal-spsa.eovstg.com/uploads/{{event.banner}}" class="card-img-top" alt="publications">
                 </div>
                 <div class="card-body pb-5">
                     <div class="mb-2">
                         <h6 class="mb-0">{{event.title}}</h6>
-                        <h6 dir="rtl" class="mb-0">{{event.title_ar}}</h6>
-                        <small class="datetime">{{event.startDateTime}} {{event.endDateTime}}</small>
+                        <!-- <h6 dir="rtl" class="mb-0">{{event.title_ar}}</h6> -->
+                        <small class="datetime">{{event?.eventdatetime}}</small>
                     </div>
                     <p class="card-text">{{event.metaDescription}}</p>
                 </div>
             </div>
         </div>
 </div>
+
+<p-confirmDialog #cd>
+    <ng-template pTemplate="header">
+        <h3>Delete Confirmation</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button class="btn btn-light px-4" type="button" icon="pi pi-times" label="No" (click)="cd.reject()">Cancel</button>
+        <button class="btn btn-danger px-4" type="button" icon="pi pi-check" label="Yes" (click)="cd.accept()">Delete</button>
+    </ng-template>
+</p-confirmDialog>

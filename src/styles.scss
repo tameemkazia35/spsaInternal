@@ -1,10 +1,36 @@
 @import 'material-icons/iconfont/material-icons.scss';
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
+$blue:    #0d6efd;
+$indigo:  #6610f2;
+$purple:  #6f42c1;
+$pink:    #d63384;
+$red:     #dc3545;
+$orange:  #fd7e14;
+$yellow:  #ffc107;
+$green:   #198754;
+$teal:    #20c997;
+$cyan:    #0dcaf0;
+
 $primary: #851825;
 $secondary: #357342;
+$success:       $green;
+$info:          $cyan;
+$warning:       $yellow;
+$danger:        $red;
+$light:         $gray-100;
+$dark:          $gray-900;
 
-$theme-colors: ( "primary": $primary, "secondary": $secondary );
+
+$theme-colors: ( 
+"primary": $primary, 
+"secondary": $secondary,
+"success":    $success,
+"info":       $info,
+"warning":    $warning,
+"danger":     $danger,
+"light":      $light,
+"dark":       $dark );
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
@@ -16,4 +42,55 @@ $theme-colors: ( "primary": $primary, "secondary": $secondary );
 
 .bg-gray{
     background: #EAEAE6;
+}
+
+.p-breadcrumb{
+    border: none !important;
+}
+
+.action-card{
+    min-height: 240px;
+    .btn-block{
+        
+    }
+}
+
+.arabic{
+    .ql-editor{
+        text-align: right !important;
+    }
+}
+
+.ql-image, .ql-code-block{
+    display: none !important;
+}
+
+.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg{
+    right: inherit !important;
+}
+
+
+.p-fieldset .p-fieldset-legend{
+    float: inherit !important;
+    width: auto !important;
+    padding: inherit !important;
+    font-size: 16px !important;
+}
+
+.p-fieldset{
+    padding-inline-start: 0.75em !important;
+    padding-inline-end: 0.75em !important;
+    background: #f1f1f1 !important;
+    margin-bottom: 30px;
+    a{
+        text-decoration: none;
+    }
+}
+
+.p-fieldset.p-fieldset-toggleable .p-fieldset-legend a{
+    padding: 0.75rem !important;
+}
+
+.p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:focus{
+    box-shadow: none !important;
 }

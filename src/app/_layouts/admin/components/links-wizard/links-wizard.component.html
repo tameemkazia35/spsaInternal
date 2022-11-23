@@ -1,0 +1,101 @@
+<div class="mb-5">
+    <div class="row">
+        <div class="col-md-3"></div>
+    </div>
+    <div class="card p-4">
+        <div class="row mb-4">
+            <div class="col-md-3" *ngFor="let link of quickLinks.schema.links">
+               
+                <div class="card">
+                    <div class="remove-contact">
+                        <button class="rounded-circle btn btn-sm btn-light mr-2" (click)="edit(link)"><span class="material-icons-round">edit_rounded</span></button>
+                        <button class="rounded-circle btn btn-sm btn-light" (click)="removeConfirm(link)"><span class="material-icons-round">clear_rounded</span></button>
+                    </div>
+                    <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="link.icon" class="card-img-top img-fluid" [alt]="link.text"/>
+                    <div class="card-body text-center">
+                        <h5 class="mb-3">{{link.text}}</h5>
+                        <p>{{link.desc}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-sm-3 text-center m-auto">
+            <button class="btn btn-primary" (click)="addLinks()">Add Links</button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [style]="{width: '500px', padding: '0'}">
+    <ng-template pTemplate="header">
+        <h3>Add Link</h3>
+    </ng-template>
+    <form class="quick-form" name="quick-form" [formGroup]="quickLinkForm">
+        <div class="modal-content">
+            <img class="img-fluid m-auto" [src]="quickLinkForm.value.icon"/>
+            <div class="form-group mb-3">
+                <label>Image</label>
+                <input type="file" name="image" class="form-control" required formControlName="raw" (change)="handleFileSelect($event)"/>
+                <div id="emailHelp" class="form-text">Image size(px): 180W x 100H</div>
+            </div>
+            <div class="form-group mb-3">
+                <label>Name</label>
+                <input type="text" name="test" class="form-control" required formControlName="text" required [ngClass]="{ 'is-invalid': submitted && f.text.errors }"/>
+                <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
+                    <div *ngIf="f.text.errors?.required">This field is required</div>
+                </div>
+            </div>
+            <div class="form-group mb-3" dir="rtl">
+                <label>Arabic Name</label>
+                <input type="text" name="textAr" class="form-control" required formControlName="text_ar" required [ngClass]="{ 'is-invalid': submitted && f.text_ar.errors }"/>
+                <div *ngIf="submitted && f.text_ar.invalid" class="invalid-feedback">
+                <div *ngIf="f.text_ar.errors?.required">This field is required</div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label>Description</label>
+                <textarea type="text" name="desc" class="form-control" required formControlName="desc"></textarea>
+            </div>
+            <div class="form-group mb-3" dir="rtl">
+                <label>Arabic Description</label>
+                <textarea type="text" name="descAr" class="form-control" required formControlName="desc_ar"></textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label>Link Url</label>
+                <input type="url" name="LinkUrl" class="form-control" required formControlName="url" required [ngClass]="{ 'is-invalid': submitted && f.url.errors }"/>
+                <div *ngIf="submitted && f.url.invalid" class="invalid-feedback">
+                    <div *ngIf="f.url.errors?.required">This field is required</div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label>Target</label>
+                <select name="target" class="form-control" formControlName="target">
+                    <option value="_blank" selected>_blank</option>
+                    <option value="_self">_self</option>
+                    <option value="_parent">_parent</option>
+                    <option value="_top">_top</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="text-end">
+            <button type="submit" class="btn btn-secondary px-5" (click)="Add()">Add</button>
+        </div>
+
+    </form>
+</p-dialog>
+
+<p-confirmDialog #cd>
+    <ng-template pTemplate="header">
+        <h3>Delete Confirmation</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button class="btn btn-light px-4" type="button" icon="pi pi-times" label="No"
+            (click)="cd.reject()">Cancel</button>
+        <button class="btn btn-danger px-4" type="button" icon="pi pi-check" label="Yes"
+            (click)="cd.accept()">Delete</button>
+    </ng-template>
+</p-confirmDialog>

@@ -1,0 +1,193 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+          <div class="page-list-wrapper">
+            <div class="page-list">
+              <p-accordion>
+                <p-accordionTab header="Quick Links"  [selected]="true">
+                  <form name="quick-form" [formGroup]="quickLinkForm" (ngSubmit)="submit()" novalidate>
+                    <div class="row">
+                      <div class=" col-sm-12 mb-3">
+                        <div class="form-group">
+                          <label>Link Text</label>
+                          <input type="text" name="text" class="form-control" formControlName="text"
+                            [ngClass]="{ 'is-invalid': submitted && f.text.errors }" />
+                          <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
+                            <div *ngIf="f.text.errors?.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class=" col-sm-12 mb-3">
+                        <div class="form-group">
+                          <label>Link Text Arabic</label>
+                          <input dir="rtl" type="text" name="text_ar" class="form-control" formControlName="text_ar"
+                            [ngClass]="{ 'is-invalid': submitted && f.text_ar.errors }" />
+                          <div *ngIf="submitted && f.text_ar.invalid" class="invalid-feedback">
+                            <div *ngIf="f.text_ar.errors?.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class=" col-sm-12 mb-3">
+                        <div class="form-group">
+                          <label>Link Url</label>
+                          <input type="url" name="url" class="form-control" formControlName="url"
+                            [ngClass]="{ 'is-invalid': submitted && f.url.errors }" />
+                          <div *ngIf="submitted && f.url.invalid" class="invalid-feedback">
+                            <div *ngIf="f.url.errors?.required">This field is required</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 mb-3">
+                        <div class="form-group">
+                          <label>Target</label>
+                          <select formControlName="target" name="target" class="form-control">
+                            <option value="_blank" selected>_blank</option>
+                            <option value="_self">_self</option>
+                            <option value="_parent">_parent</option>
+                            <option value="_top">_top</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <label>Icon</label><br>
+                        <p-dropdown [options]="iconList" formControlName="icon" optionLabel="name" filterBy="iconName"  [filter]="true" [showClear]="false" placeholder="Select a Icon">
+                          <ng-template pTemplate="filter" let-options="options">
+                              <div class="d-flex align-items-center">
+                                  <div class="input-group" (click)="$event.stopPropagation()">
+                                      <span class="input-group-text"><i class="pi pi-search"></i></span>
+                                      <input class="form-control" type="text" pInputText placeholder="Filter" (keyup)="options.filter($event)">
+                                  </div>
+                                  <!-- <button pButton icon="pi pi-times" class="ml-3" (click)="resetFunction(options)"></button> -->
+                              </div>
+                          </ng-template>
+                          <ng-template pTemplate="selectedItem">
+                              <div class="country-item country-item-value" *ngIf="quickLinkForm.value.icon">
+                                  <div class="d-flex align-items-center"><span class="material-icons me-2">{{quickLinkForm.value.icon.iconName}}</span> {{quickLinkForm.value.icon.iconName}}</div>
+                              </div>
+                          </ng-template>
+                          <ng-template let-icon pTemplate="item">
+                              <div class="country-item">
+                                  <!-- <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" /> -->
+                                  <div class="d-flex align-items-center"> <span class="material-icons me-2">{{icon.iconName}}</span> {{icon.iconName}}</div>
+                              </div>
+                          </ng-template>
+                      </p-dropdown>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12 text-right">
+                        <button type="submit" class="btn btn-secondary px-5 mt-2">Add</button>
+                      </div>
+                    </div>
+                  </form>
+                </p-accordionTab>
+              </p-accordion>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="menu-sortable">
+            <div>
+              <h4>Quick link List</h4>
+            </div>
+            <ngx-nestable [(list)]="quickLinks" [options]="options" [template]="$any(itemTemplate1)"></ngx-nestable>
+            <ng-template #itemTemplate1 let-row>
+              <div class="d-flex align-items-center justify-content-between main-nest">
+                <div class="d-flex align-items-center">
+                  <div class="ml-2">{{row.item.text == undefined ? row.item.name : row.item.text }}</div>
+                </div>
+                <div class="d-flex mx-3">
+                  <div class="delete text-success mx-2" (click)="editItem(row.item)">
+                    <span class="material-icons">edit</span>
+                  </div>
+                  <div class="delete text-danger mx-2" (click)="confirm(row.item)">
+                    <span class="material-icons">delete</span>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template #empty_item> <span style="width: 40px"></span> </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" [style]="{width: '500px', padding: '0'}">
+        <ng-template pTemplate="header">
+            <h3>Edit</h3>
+        </ng-template>
+        <form class="quick-form needs-validation" name="quick-form">      
+        <div class="modal-content">
+            <label>Icon</label>
+            <div class=" mb-3">
+            <p-dropdown [options]="iconList" name="icons" [(ngModel)]="selectedItem.logo" optionLabel="name" filterBy="iconName" [filter]="true" [showClear]="false" placeholder="Select a Icon">
+              <ng-template pTemplate="filter" let-options="options">
+                  <div class="d-flex align-items-center">
+                      <div class="input-group" (click)="$event.stopPropagation()">
+                          <span class="input-group-text"><i class="pi pi-search"></i></span>
+                          <input class="form-control" type="text" pInputText placeholder="Filter" (keyup)="options.filter($event)">
+                      </div>
+                  </div>
+              </ng-template>
+              <ng-template pTemplate="selectedItem">
+                  <div class="country-item country-item-value" *ngIf="selectedItem.logo">
+                    <div class="d-flex align-items-center"><span class="material-icons me-2">{{selectedItem.logo.iconName}}</span> {{selectedItem.logo.iconName}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-icon pTemplate="item">
+                  <div class="country-item d-flex align-items-center">
+                      <span class="material-icons me-2">{{icon.iconName}}</span>
+                      <div>{{icon.iconName}}</div>
+                  </div>
+              </ng-template>
+          </p-dropdown>
+        </div>
+                <div class="form-group mb-3 has-validation">
+                <label>Name</label>
+                <input type="text" name="LinkText" [(ngModel)]="selectedItem.text" class="form-control" required #LinkText="ngModel"/>
+                <div class="text-danger" *ngIf="LinkText.invalid && (LinkText.dirty || LinkText.touched)">
+                    <small>This field is required</small>
+                  </div>
+                </div>
+                <div class="form-group mb-3 has-validation">
+                <label>Arabic Name</label>
+                <input type="text" name="LinkTextAr" [(ngModel)]="selectedItem.text_ar" class="form-control" required #LinkTextAr="ngModel"/>
+                <div class="text-danger" *ngIf="LinkTextAr.invalid && (LinkTextAr.dirty || LinkTextAr.touched)">
+                    <small>This field is required</small>
+                  </div>
+                </div>
+                <div class="form-group mb-3 has-validation">
+                <label>Link Url</label>
+                <input type="text" name="LinkUrl" [(ngModel)]="selectedItem.slug" class="form-control" required #LinkUrl="ngModel"/>
+                <div class="text-danger" *ngIf="LinkUrl.invalid && (LinkUrl.dirty || LinkUrl.touched)">
+                    <small>This field is required</small>
+                  </div>
+                </div>
+                <div class="form-group mb-3 has-validation">
+                <label>Target</label>
+                <select [(ngModel)]="selectedItem.target" name="target" class="form-control">
+                  <option value="_blank" selected>_blank</option>
+                  <option value="_self">_self</option>
+                  <option value="_parent">_parent</option>
+                  <option value="_top">_top</option>
+                </select>
+                </div>
+    </div>
+  
+        <div class="text-end">
+            <button type="submit" class="btn btn-secondary px-5" (click)="update()">Update</button>
+        </div>
+  
+</form>
+    </p-dialog>
+
+    <p-confirmDialog #cd>
+      <ng-template pTemplate="header">
+          <h3>Delete Confirmation</h3>
+      </ng-template>
+      <ng-template pTemplate="footer">
+          <button class="btn btn-light px-4" type="button" icon="pi pi-times" label="No" (click)="cd.reject()">Cancel</button>
+          <button class="btn btn-danger px-4" type="button" icon="pi pi-check" label="Yes" (click)="cd.accept()">Delete</button>
+      </ng-template>
+  </p-confirmDialog>
+  

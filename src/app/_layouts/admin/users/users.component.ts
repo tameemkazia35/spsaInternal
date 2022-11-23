@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { apis } from 'src/app/_enum/apiEnum';
 import { ApiService } from 'src/app/_services/api.service';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-users',
@@ -11,11 +12,11 @@ export class UsersComponent implements OnInit {
 users: any = [];
 roles: any = [];
 clonedUser= {};
-  constructor(private service: ApiService) { }
+  constructor(private service: ApiService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getUsers();
-    this.roles = [{id:1, name:'admin'}, {id:2, name:'user'}]
+    this.getRoles();
   }
 
   getUsers(){
@@ -28,7 +29,7 @@ clonedUser= {};
 
   getRoles(){
     this.service.get(apis.roles, '').subscribe(_res=>{
-
+      this.roles = _res;
     });
   }
 
@@ -38,7 +39,11 @@ clonedUser= {};
 }
 
 onRowEditSave(user: any) {
-    
+  console.log(user.rolesId);
+  
+    this.service.post(apis.setUserRole+user.id+'/'+user.rolesId, '').subscribe(_res=>{
+      this.toastMessage('Success', 'User role updated successfully', 'success');
+    })
 }
 
 onRowEditCancel(user: any, index: number) {
@@ -46,5 +51,9 @@ onRowEditCancel(user: any, index: number) {
   this.users[index] = JSON.parse(JSON.stringify(this.clonedUser));
   this.clonedUser = {};
 }
+
+toastMessage(_msg: string, _desc: string, _severity: string = 'success') {
+  this.messageService.add({life: 5000,severity: _severity, summary: _msg, detail: _desc});
+  }
 
 }

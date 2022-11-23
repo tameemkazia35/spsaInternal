@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'primeng/api';
 import { apis } from 'src/app/_enum/apiEnum';
 import { ApiService } from 'src/app/_services/api.service';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   domains: any = [];
 
-  constructor(private formBuilder: UntypedFormBuilder, private router: Router, private service: ApiService, private AuthenticationService: AuthenticationService, private route: ActivatedRoute, private util: UtilService, private spinner: NgxSpinnerService) {
+  constructor(private formBuilder: UntypedFormBuilder, private router: Router, private service: ApiService, private AuthenticationService: AuthenticationService, private route: ActivatedRoute, private util: UtilService, private spinner: NgxSpinnerService, private messageService: MessageService) {
     
     this.loginForm = this.formBuilder.group({
       domain: ['', Validators.required],
@@ -38,6 +39,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    if(localStorage.getItem('currentUser')){
+      return;
+    }
     this.getDomain();
   }
 
@@ -52,14 +56,16 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.submitted = true;
-    var payload = { "email": this.loginForm.value.username, password: window.btoa(this.loginForm.value.password)};
+    var payload = { username: this.loginForm.value.username, password: window.btoa(this.loginForm.value.password)};
     this.spinner.show();
     this.AuthenticationService.login(payload)
       .subscribe(
         data => {
-          if(data){
-            data.email = this.loginForm.value.username;
+          if(data.token){
+            data.username = this.loginForm.value.username;
             this.util.publishlogin(data);
+          }else{
+            this.messageService.add({life: 5000, severity: 'error', summary: 'Invalid', detail: data.message});
           }
         },
         error => {
