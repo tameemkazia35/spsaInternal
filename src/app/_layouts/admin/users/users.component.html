@@ -22,7 +22,7 @@
                         <p-dropdown [options]="roles" optionLabel="name" appendTo="body" [(ngModel)]="user.roles" [style]="{'width':'100%'}"></p-dropdown>
                     </ng-template>
                     <ng-template pTemplate="output">
-                        {{user.roles?.name}}
+                        <span class="badge text-bg-secondary">{{user.roles?.name.toLowerCase()}}</span>
                     </ng-template>
                 </p-cellEditor>
                 </td>

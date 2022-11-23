@@ -4,6 +4,7 @@ import { AdminComponent } from './_layouts/admin/admin.component';
 import { EventComponent } from './_layouts/admin/event/event.component';
 import { EventsComponent } from './_layouts/admin/events/events.component';
 import { MenusComponent } from './_layouts/admin/menus/menus.component';
+import { PagesComponent } from './_layouts/admin/pages/pages.component';
 import { UsersComponent } from './_layouts/admin/users/users.component';
 import { InternalComponent } from './_layouts/internal/internal.component';
 import { HomeComponent } from './_layouts/internal/pages/home/home.component';
@@ -36,10 +37,10 @@ const routes: Routes = [
     //   path: 'sections', 
     //   component: SectionsComponent
     // },
-    // { 
-    //   path: 'pages', 
-    //   component: PagesComponent
-    // },
+    { 
+       path: 'pages', 
+       component: PagesComponent
+    },
     { 
       path: 'events', 
       component: EventsComponent

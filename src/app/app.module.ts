@@ -33,6 +33,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { FilterArrayPipe } from './_pipes/filter-array.pipe';
+import { PagesComponent } from './_layouts/admin/pages/pages.component';
 
 
 
@@ -48,7 +49,8 @@ import { FilterArrayPipe } from './_pipes/filter-array.pipe';
     FilterArrayPipe,
     EventsComponent,
     UsersComponent,
-    EventComponent
+    EventComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
