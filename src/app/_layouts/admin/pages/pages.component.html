@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Pages / <span>الصفحات</span></h2>
+            <div class="row">
+                <div class="col-12 text-end">
+                    <button type="button" class="btn btn-secondary">Create Link Page</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Slug</th>
+                        <th>UpdatedOn</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let page of pages">
+                        <td>
+                            <div>{{page.title}} / <span dir="rtl">{{page.title_ar}}</span></div> 
+                        </td>
+                        <td>
+                            <div>{{page.slug}}</div> 
+                        </td>
+                        <td>
+                            <div>{{  page.updatedOn | date:'medium'}}</div> 
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-light bnt-default me-2" *ngIf="page.pageComponents.componentsId != 'contacts'" [routerLink]="['/page/edit/', page.pageComponents.componentsId]" [queryParams]="{slug: page.slug}"> <span class="material-icons">edit</span></a>
+                            <a class="btn btn-sm btn-light bnt-default me-2" *ngIf="page.pageComponents.componentsId == 'contacts'" [routerLink]="['/admin/directory']"> <span class="material-icons">edit</span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
