@@ -15,11 +15,16 @@
     </div>  
   <nav class="navbar navbar-expand-lg bg-primary">
     <div class="container">
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 me-auto">
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li>
-            <a class="nav-link text-white ps-0" href="#"><span class="material-icons-round me-2">home</span>Home</a>
+            <a class="nav-link text-white ps-0" href="#"><span class="material-icons-round me-2">home</span>{{'home' | translate}}</a>
         </li>
-        <li>
+
+        <li *ngFor="let menu of menuList">
+          <a class="nav-link text-white" href="#"><span class="material-icons-round me-2" *ngIf="menu.iconName">{{menu.iconName}}</span>{{currentLang == 'ar' ? menu.text_ar : menu.text}}</a>
+        </li>
+
+        <!-- <li>
             <a class="nav-link text-white" href="#"><span class="material-icons-round me-2">work_history</span>HR System</a>
         </li>
         <li>
@@ -36,14 +41,23 @@
         </li>    
         <li>
             <a class="nav-link text-white" href="#"><span class="material-icons-round me-2">view_carousel</span>Service Desk</a>
-        </li>    
+        </li>     -->
       </ul>
-      <p-menubar [model]="items">
-    </p-menubar>
+      <div class="d-flex" dir="ltr">
+        <button class="rounded-circle btn btn-small btn-secondary menu-toggle me-2 text-uppercase" (click)="lmenu.toggle($event)">{{currentLang}}</button>
+        <button class="rounded-circle btn btn-small btn-secondary menu-toggle me-2" (click)="amenu.toggle($event)"><span class="material-icons-round">person_rounded</span></button>
+      </div>
     </div>
   </nav>
   </header>
+  
+  <p-menu [model]="items" [popup]="true" #amenu></p-menu>
+  <p-menu class="lang-menu" [model]="langItems" [popup]="true" #lmenu></p-menu>
   <div class="hero-banner">
       <div class="home-banner"></div>
   </div>
   <router-outlet></router-outlet>
+
+  <footer class="text-center p-2 bg-dark">
+    <small class="text-white">&COPY; Copyright 2022. SPSA internal website</small>
+  </footer>

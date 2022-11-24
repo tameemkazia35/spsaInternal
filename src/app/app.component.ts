@@ -3,6 +3,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { UtilService } from './_services/util.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,44 @@ export class AppComponent {
   isMenuOpen = false;
   display = false;
 
-  constructor(private util: UtilService,  private spinner: NgxSpinnerService, private router: Router) { 
+  constructor(private util: UtilService,  private spinner: NgxSpinnerService, private router: Router, private translate: TranslateService) { 
+    this.translate.addLangs(['en', 'ar']);
+    
+    var lang = localStorage.getItem('lang') || 'ar';
+    this.translate.setDefaultLang(lang);
+    
+    var Html = document.querySelector('html') as HTMLElement;
+    
+    if(lang == 'en'){
+      Html.setAttribute('dir', 'ltr');
+      Html.setAttribute('lang', 'en');
+      return;
+    }
+
+    if(lang == 'ar'){
+      Html.setAttribute('dir', 'rtl');
+      Html.setAttribute('lang', 'ar');
+      return;
+    }
+    this.translate.onLangChange.subscribe((event: any) => {
+      console.log('event.lang', event.lang);
+    });
+
+    // this.util.observLang().subscribe(_res=>{
+    //   console.log('_res', _res);
+    //   if(_res == 'en'){
+    //     Html.setAttribute('dir', 'ltr');
+    //     Html.setAttribute('lang', 'en');
+    //     return;
+    //   }
+
+    //   if(_res == 'ar'){
+    //     Html.setAttribute('dir', 'rtl');
+    //     Html.setAttribute('lang', 'ar');
+    //     return;
+    //   }
+    // })
+
     if(localStorage.getItem('currentUser')){
       this.display = false;
     }else{

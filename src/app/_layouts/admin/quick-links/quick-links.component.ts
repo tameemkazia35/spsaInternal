@@ -91,8 +91,8 @@ export class QuickLinksComponent implements OnInit {
     console.log('this.selectedItem', this.selectedItem);
     this.selectedItem.logo = this.selectedItem.logo.iconName;
     this.service.put(apis.MyQuickLinks, this.selectedItem,'/'+this.selectedItem.id).subscribe(_res=>{
-      this.getQuickLinks();
       this.display = false;
+      this.getQuickLinks();
       this.toastMessage('Success', 'Quick link updated successfully');
     })
   }

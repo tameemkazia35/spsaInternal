@@ -11,6 +11,8 @@ import { PagesComponent } from './_layouts/admin/pages/pages.component';
 import { QuickLinksComponent } from './_layouts/admin/quick-links/quick-links.component';
 import { UsersComponent } from './_layouts/admin/users/users.component';
 import { InternalComponent } from './_layouts/internal/internal.component';
+import { EventDetailsComponent } from './_layouts/internal/pages/event-details/event-details.component';
+import { EventListComponent } from './_layouts/internal/pages/event-list/event-list.component';
 import { HomeComponent } from './_layouts/internal/pages/home/home.component';
 
 const routes: Routes = [
@@ -19,12 +21,20 @@ const routes: Routes = [
     component: InternalComponent,
     children: [
     { 
-      path: 'en/home', 
+      path: 'home', 
       component: HomeComponent
+    },
+    { 
+      path: 'event/:slug', 
+      component: EventDetailsComponent
+    },
+    { 
+      path: 'event', 
+      component: EventListComponent
     },
     {
       path: '',
-      redirectTo: 'en/home',
+      redirectTo: 'home',
       pathMatch: 'full',
     }
 ]

@@ -31,14 +31,14 @@
 <p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
     [style]="{width: '500px', padding: '0'}">
     <ng-template pTemplate="header">
-        <h3>Add Link</h3>
+        <h3>{{editLink ? 'Edit Link' : 'Add Link'}}</h3>
     </ng-template>
     <form class="quick-form" name="quick-form" [formGroup]="quickLinkForm">
         <div class="modal-content">
             <img class="img-fluid m-auto" [src]="quickLinkForm.value.icon"/>
             <div class="form-group mb-3">
                 <label>Image</label>
-                <input type="file" name="image" class="form-control" required formControlName="raw" (change)="handleFileSelect($event)"/>
+                <input type="file" name="image" class="form-control" formControlName="raw" (change)="handleFileSelect($event)"/>
                 <div id="emailHelp" class="form-text">Image size(px): 180W x 100H</div>
             </div>
             <div class="form-group mb-3">
@@ -82,7 +82,7 @@
         </div>
 
         <div class="text-end">
-            <button type="submit" class="btn btn-secondary px-5" (click)="Add()">Add</button>
+            <button type="submit" class="btn btn-secondary px-5" (click)="Add()">{{editLink ? 'Update' : 'Add'}}</button>
         </div>
 
     </form>

@@ -95,7 +95,10 @@ export class PageComponent implements OnInit {
     this.bannerLang = type;
     var files = evt.target.files;
     var file = files[0];
-
+    if(file.size > 1024000){
+      this.toastMessage('Image size warning', 'Maximum size allowed is 1MB', 'warn');
+      return;
+    }
   if (files && file) {
       var reader = new FileReader();
       reader.onload =this._handleReaderLoaded.bind(this);

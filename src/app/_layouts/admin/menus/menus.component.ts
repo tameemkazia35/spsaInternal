@@ -103,7 +103,26 @@ export class MenusComponent implements OnInit {
   }
 
   addPages() {
-
+    this.tempList = JSON.parse(JSON.stringify(this.selectedList));
+    this.pageList.forEach((_item: any) => {
+      if (_item.checked) {
+        var payload = {
+          "MenusId": this.selectedId,
+          "IsExternal": false,
+          "Text": _item.title,
+          "Text_ar": _item.title_ar,
+          "Slug": _item.slug,
+          "Target": "_self",
+          "orderNo": this.selectedList.length + 1,
+          "IconName": _item.iconName,
+          "pagesId": _item.id,
+          "id": ""
+        }
+        this.tempList.push(payload);
+        _item.checked = false;
+      }
+    });
+    this.selectedList = JSON.parse(JSON.stringify(this.tempList));
   }
 
   get f() { return this.externalForm.controls; }
@@ -185,6 +204,10 @@ export class MenusComponent implements OnInit {
 
   toastMessage(_msg: string, _desc: string, _severity: string = 'success') {
     this.messageService.add({life: 5000,severity: _severity, summary: _msg, detail: _desc});
+    }
+
+    updateMenuItem(){
+      
     }
   
 

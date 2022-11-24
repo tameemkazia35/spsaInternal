@@ -31,13 +31,11 @@ export class AdminComponent implements OnInit {
                 label:'Logout',
                 icon:'pi pi-fw pi-lock',
                 command:e => this.logout(e)
-
             }
         ]
     },
     ]
   }
-
 
   goToHome(_ev: Event){
     this.router.navigate(['/']);

@@ -20,7 +20,7 @@
 
                 <div class="form-group mb-3">
                     <label>Banner</label>
-                    <input type="file" class="form-control" placeholder="Banner" formControlName="Banner" (change)="handleFileSelect($event, 'en')"/>
+                    <input type="file" class="form-control" placeholder="Banner" (change)="handleFileSelect($event, 'en')"/>
                     <img class="banner-preview mt-3 img-fluid" [src]="pageForm.value.Banner"/>
                 </div>
             </div>
@@ -42,7 +42,7 @@
 
                 <div class="form-group mb-3" dir="rtl">
                     <label>Banner Arabic</label>
-                    <input type="file" class="form-control" placeholder="Banner" formControlName="Banner_ar" (change)="handleFileSelect($event, 'ar')"/>
+                    <input type="file" class="form-control" placeholder="Banner" (change)="handleFileSelect($event, 'ar')"/>
                     <img class="banner-preview mt-3 img-fluid" [src]="pageForm.value.Banner_ar"/>
                 </div>
             </div>

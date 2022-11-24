@@ -164,7 +164,7 @@
             <label>Link Url</label>
             <input type="text" name="LinkUrl" [(ngModel)]="selectedItem.LinkUrl" class="form-control" />
           </div>
-          <div class="form-group  mb-3"  *ngIf="selectedItem.isExternal">
+          <div class="form-group  mb-3" *ngIf="selectedItem.isExternal">
             <label>Target</label>
             <select [(ngModel)]="selectedItem.target" name="target" class="form-control">
               <option value="_blank" selected>_blank</option>
@@ -179,7 +179,7 @@
                 <div class="d-flex align-items-center p-3">
                     <div class="p-inputgroup" (click)="$event.stopPropagation()">
                         <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
-                        <input type="text" pInputText placeholder="Filter" [(ngModel)]="filterValue" (keyup)="options.filter($event)">
+                        <input type="text" pInputText placeholder="Filter" name="filter" [(ngModel)]="filterValue" (keyup)="options.filter($event)">
                     </div>
                     <button pButton icon="pi pi-times" class="ml-3" (click)="resetFunction(options)"></button>
                 </div>
@@ -197,6 +197,9 @@
                 </div>
             </ng-template>
         </p-dropdown>
+        <div class="">
+          <button class="btn btn-secondary" (click)="updateMenuItem()">Update</button>
+        </div>
     </form>
 </div>
 </p-dialog>
