@@ -4,7 +4,7 @@
     </div>
     <div class="card p-4">
         <div class="row mb-4">
-            <div class="col-md-3" *ngFor="let link of quickLinks.schema.links">
+            <div class="col-md-3" *ngFor="let link of quickLinks?.schema?.links">
                
                 <div class="card">
                     <div class="remove-contact">
@@ -57,11 +57,11 @@
             </div>
             <div class="form-group mb-3">
                 <label>Description</label>
-                <textarea type="text" name="desc" class="form-control" required formControlName="desc"></textarea>
+                <textarea type="text" name="desc" class="form-control" formControlName="desc"></textarea>
             </div>
             <div class="form-group mb-3" dir="rtl">
                 <label>Arabic Description</label>
-                <textarea type="text" name="descAr" class="form-control" required formControlName="desc_ar"></textarea>
+                <textarea type="text" name="descAr" class="form-control" formControlName="desc_ar"></textarea>
             </div>
             <div class="form-group mb-3">
                 <label>Link Url</label>

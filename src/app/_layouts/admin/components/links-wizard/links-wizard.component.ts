@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { apis } from 'src/app/_enum/apiEnum';
@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/_services/api.service';
   templateUrl: './links-wizard.component.html',
   styleUrls: ['./links-wizard.component.scss']
 })
-export class LinksWizardComponent implements OnInit {
+export class LinksWizardComponent implements OnInit, AfterViewInit {
   @Input() data: any;
   @Output() otherData = new EventEmitter();
   quickLinkForm = this.formBuilder.group({
@@ -31,11 +31,10 @@ export class LinksWizardComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef | any;
 
   constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService, private messageService: MessageService, private service: ApiService) { }
-
-  ngOnInit(): void {
-    console.log('this.data', this.data);
+  
+  ngAfterViewInit(): void {
     if(this.data){
-      this.quickLinks = JSON.parse(this.data);
+      this.quickLinks = this.data;
     }else{
     this.quickLinks = {
       "code": "links",
@@ -43,7 +42,12 @@ export class LinksWizardComponent implements OnInit {
       {
        'links': [] 
       }};
+    }
   }
+
+  ngOnInit(): void {
+    debugger;
+   
 }
 
 handleFileSelect(evt: any){
@@ -89,7 +93,7 @@ uploadMedia(_base64: string){
     }
     
     if(this.editLink){
-      
+      debugger;
       this.quickLinks.schema.links.splice(this.quickLinks.schema.links.indexOf(this.cloneOject), 1);
       this.quickLinks.schema.links.push(this.quickLinkForm.value);
       this.editLink = false;
