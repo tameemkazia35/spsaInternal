@@ -141,13 +141,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.display = true;
   }
 
-  goToPage(_page: any){
-    debugger;
+  goToPage(_page: any, type: any){
+    if(type == '1'){
     if(_page.target == "_self"){
       this.router.navigate([_page.url])
     }else{
       window.open(_page.url, '_blank');
     }
+  }
+
+  if(type == '2'){
+    if(_page.target == "_self"){
+      this.router.navigate([_page.slugl])
+    }else{
+      window.open(_page.slug, '_blank');
+    }
+  }
+
   }
 
 }
