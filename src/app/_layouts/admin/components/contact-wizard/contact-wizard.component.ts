@@ -16,7 +16,10 @@ export class ContactWizardComponent implements OnInit {
   contactForm!: FormGroup;
   display: boolean = false;
   selectedDepartment: any;
+  editLink: boolean = false;
   @ViewChild('fileInput') fileInput: ElementRef | any;
+  cloneOject: any;
+  submitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService, private messageService: MessageService, private service: ApiService) { 
     this.contactForm= this.formBuilder.group({
@@ -25,7 +28,7 @@ export class ContactWizardComponent implements OnInit {
       position:['', Validators.required],
       position_ar:['', Validators.required],
       mobile:[''],
-      extension:['', Validators.required],
+      extension:[''],
       photo:[''],
     })
   }
@@ -72,8 +75,22 @@ export class ContactWizardComponent implements OnInit {
     this.selectedDepartment = _dept
   }
 
+  get f() { return this.contactForm.controls; }
   saveContact(){
-    this.selectedDepartment.contact.push(this.contactForm.value);
+    this.submitted = true;
+    if (this.contactForm.invalid) {
+      return;
+    }
+    debugger;
+    if (this.editLink) { 
+      this.selectedDepartment.contact[this.cloneOject.id] = this.contactForm.value;
+      this.editLink = false;
+      this.display = false;
+      delete this.cloneOject;
+    } else {
+      this.selectedDepartment.contact.push(this.contactForm.value);
+    }
+    this.submitted = false;
     this.contactForm.reset();
     this.contactForm.markAsPristine();
     this.contactForm.markAsUntouched();
@@ -131,6 +148,21 @@ _handleReaderLoaded(readerEvt: any) {
         department.contact.splice(department.contact.indexOf(contact), 1);
       }
   });
+  }
+
+  edit(_department: any, _contact: any, _ind: any){
+      this.selectedDepartment = _department;
+      this.editLink = true;
+      this.contactForm.controls['name'].setValue(_contact.name);
+      this.contactForm.controls['name_ar'].setValue(_contact.name_ar);
+      this.contactForm.controls['position'].setValue(_contact.position);
+      this.contactForm.controls['position_ar'].setValue(_contact.position_ar);
+      this.contactForm.controls['mobile'].setValue(_contact.mobile);
+      this.contactForm.controls['extension'].setValue(_contact.extension);
+      this.contactForm.controls['photo'].setValue(_contact.photo);
+      this.cloneOject = _contact;
+      this.cloneOject.id = _ind;
+      this.display = true;
   }
   
   toastMessage(_msg: string, _desc: string, _severity: string = 'success') {

@@ -15,6 +15,7 @@ export class ContactComponent implements OnInit {
   pageData: any;
   currentLang: any;
   searchText: any = '';
+
   constructor(private router: Router, private service: ApiService, private util: UtilService) { }
 
   ngOnInit(): void {

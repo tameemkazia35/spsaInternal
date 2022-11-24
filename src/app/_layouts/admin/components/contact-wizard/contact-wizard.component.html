@@ -19,10 +19,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3" *ngFor="let contact of directory.department.contact">
+            <div class="col-md-3" *ngFor="let contact of directory.department.contact; let i =index">
                 <div class="card">
                     <div class="remove-contact">
-                        <button class="rounded-circle btn btn-sm btn-light" (click)="removeConfirm(directory.department, contact)"><span class="material-icons-round">clear_rounded</span></button>
+                        <button class="rounded-circle btn btn-sm btn-warning mx-1" (click)="edit(directory.department, contact, i)"><span
+                            class="material-icons-round">edit_rounded</span></button>
+                    <button class="rounded-circle btn btn-sm btn-danger " (click)="removeConfirm(directory.department, contact)"><span
+                            class="material-icons-round">clear_rounded</span></button>
                     </div>
                     <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="contact.photo" class="card-img-top" [alt]="contact.name">
                     <div class="card-body">
@@ -48,30 +51,43 @@
 
 <p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" [style]="{width: '500px', padding: '0'}">
     <ng-template pTemplate="header">
-        <h3>Add Contact</h3>
+        <h3>{{editLink ? 'Edit Contact' : 'Add Contact'}}</h3>
     </ng-template>
     <div class="modal-content">
     <form [formGroup]="contactForm"  (ngSubmit)="saveContact()" novalidate>
+        <img class="img-fluid m-auto" [src]="contactForm.value.photo" />
         <div class="form-group mb-3">
             <label>Photo</label>
-            <input #fileInput type="file" name="photo" formControlName="photo" class="form-control form-control-sm" (change)="handleFileSelect($event)"/>
+            <input #fileInput type="file" name="photo" class="form-control form-control-sm" (change)="handleFileSelect($event)"/>
             <div id="emailHelp" class="form-text">Image size(px): 140W x 160H</div>
         </div>
         <div class="form-group mb-3">
             <label>Name</label>
-            <input type="text" name="name" formControlName="name" class="form-control form-control-sm" required/>
+            <input type="text" name="name" formControlName="name" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+            <div *ngIf="submitted && f.name.invalid" class="invalid-feedback">
+                <div *ngIf="f.name.errors?.required">This field is required</div>
+            </div>
         </div>
         <div class="form-group mb-3" dir="rtl">
             <label>الاسم</label>
-            <input type="text" name="name_ar" formControlName="name_ar" class="form-control form-control-sm" required/>
+            <input type="text" name="name_ar" formControlName="name_ar" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.name_ar.errors }"/>
+            <div *ngIf="submitted && f.name_ar.invalid" class="invalid-feedback">
+                <div *ngIf="f.name_ar.errors?.required">This field is required</div>
+            </div>
         </div>
         <div class="form-group mb-3">
             <label>Job Title</label>
-            <input type="text" name="position" formControlName="position" class="form-control form-control-sm" required/>
+            <input type="text" name="position" formControlName="position" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.position.errors }"/>
+            <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
+                <div *ngIf="f.position.errors?.required">This field is required</div>
+            </div>
         </div>
         <div class="form-group mb-3" dir="rtl">
             <label>المسمى الوظيفي بالانجليزي</label>
-            <input type="text" name="position_ar" formControlName="position_ar" class="form-control form-control-sm" required/>
+            <input type="text" name="position_ar" formControlName="position_ar" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.position_ar.errors }"/>
+            <div *ngIf="submitted && f.position_ar.invalid" class="invalid-feedback">
+                <div *ngIf="f.position_ar.errors?.required">This field is required</div>
+            </div>
         </div>
         <div class="form-group mb-3">
             <label>Mobile</label>
@@ -79,10 +95,13 @@
         </div>
         <div class="form-group mb-3">
             <label>Extension</label>
-            <input type="text" name="extension" formControlName="extension" class="form-control form-control-sm"/>
+            <input type="text" name="extension" formControlName="extension" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.extension.errors }"/>
+            <div *ngIf="submitted && f.extension.invalid" class="invalid-feedback">
+                <div *ngIf="f.extension.errors?.required">This field is required</div>
+            </div>
         </div>
         <div class="text-end">
-            <button class="btn btn-secondary px-5" type="submit">Save</button>
+            <button class="btn btn-secondary px-5" type="submit">{{editLink ? 'Update' : 'Add'}}</button>
         </div>
     </form>
 </div>
