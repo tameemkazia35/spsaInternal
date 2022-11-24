@@ -1,0 +1,117 @@
+.inner-banner{
+    background: url('/assets/images/hero-bg.svg');
+    height: 60px;
+    width: 100%;
+    background-size: cover;
+    background-position: top ;
+    position: relative;
+    &:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgb(0 0 0 / 50%);
+        z-index: 0;
+    }
+    .breadcrumb{
+        position: relative;
+        z-index: 999;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        margin: 0 16px;
+        .disable{
+            font-weight: 400;
+        }
+        .enable{
+            cursor: pointer;
+            font-weight: bold;
+            &:after{
+                content: '/';
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+.dirctory-list{
+    ul{
+        background: #EAEAE6;
+        border-radius: 6px;
+        li{
+            transition: .3s all ease;
+            padding: 16px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #fff;
+            &:last-child{
+                border-bottom: none !important;
+            }
+            &:hover{
+                background: #851825;
+                color: #fff;
+            }
+            &.selected{
+                background: #851825;
+                color: #fff;
+            }
+        }
+    }
+}
+.search-bar{
+    height: 50px;
+    border-radius: 25px;
+    box-shadow: 0 2px 30px -5px rgb(0 0 0 / 15%);
+    border: none;
+    padding-inline: 30px;
+    transition: .3s all ease;
+    border: .5px solid #BDBBBB;
+    &:focus{
+        box-shadow: 0 2px 30px -10px rgb(133 24 37 / 30%);
+        border-color: rgb(133 24 37 / 50%) !important;
+        border-width: 1px;
+    }
+}
+.sub-section-title{
+    background: #EAEAE6;
+    border-radius: 6px;
+   h6{
+    margin-bottom: 0 !important;
+    -webkit-text-stroke: 0.1px;
+   }
+}
+
+.emp-card{
+    padding: 10px;
+    border: 1px solid #BDBBBB;
+    border-radius: 10px;
+    height: 100%;
+    .emp-img{
+        img{
+            width: 160px;
+            height: 160px;
+            margin: auto;
+            object-fit: cover;
+        }
+    }
+        .emp-content {
+            .d-flex{ 
+                span {
+            width: 24px;
+            font-size: 20px;
+        }
+    }
+    h6{
+        -webkit-text-stroke: 0.1px;
+    }
+    small{
+        font-size: 12px !important;
+        display: block;
+        opacity: .8;
+    }
+   
+    }
+}

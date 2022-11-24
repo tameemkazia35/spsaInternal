@@ -1,4 +1,10 @@
 {
     "home": "Home",
-    "viewAllEvents": "View all events"
+    "viewAllEvents": "View all events",
+    "events": "Events",
+    "announcements": "Announcements",
+    "name": "Name",
+    "jobTitle": "Job title",
+    "mobile": "Mobile",
+    "extension": "Extension"
 }

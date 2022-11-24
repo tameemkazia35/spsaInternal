@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { apis } from 'src/app/_enum/apiEnum';
+import { ApiService } from 'src/app/_services/api.service';
 
 @Component({
   selector: 'app-contact-wizard',
@@ -16,7 +18,7 @@ export class ContactWizardComponent implements OnInit {
   selectedDepartment: any;
   @ViewChild('fileInput') fileInput: ElementRef | any;
 
-  constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService, private messageService: MessageService) { 
+  constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService, private messageService: MessageService, private service: ApiService) { 
     this.contactForm= this.formBuilder.group({
       name:['', Validators.required],
       name_ar:['', Validators.required],
@@ -25,14 +27,29 @@ export class ContactWizardComponent implements OnInit {
       mobile:[''],
       extension:['', Validators.required],
       photo:[''],
-      base64:['']
     })
   }
 
   ngOnInit(): void {
     console.log(this.data);
     if(this.data){
-      this.directories = JSON.parse(this.data);
+      
+      if(JSON.parse(this.data).schema == undefined){
+        this.directories = {
+          "code": "contacts",
+          "schema": 
+          [{
+            "department": {
+              "name": "",
+              "name_ar": "",
+              "contact": [
+              ]
+            }
+          }]
+        };
+      }else{
+        this.directories = JSON.parse(this.data);
+      }
     }else{
       this.directories = {
         "code": "contacts",
@@ -79,8 +96,16 @@ export class ContactWizardComponent implements OnInit {
 
 _handleReaderLoaded(readerEvt: any) {
    var binaryString = readerEvt.target.result;
-   this.contactForm.controls['base64'].setValue('data:image/png;base64, '+btoa(binaryString));
-   console.log(this.contactForm.value.base64);
+   this.uploadMedia('data:image/png;base64, '+btoa(binaryString));
+
+  }
+
+  uploadMedia(_base64: string){
+    var payload = {base64Content: _base64}
+    this.service.post(apis.UploadMedias, payload).subscribe(_res=>{
+      this.contactForm.controls['photo'].setValue(_res.url);
+      console.log(this.contactForm.value);
+    })
   }
 
   emitData(){

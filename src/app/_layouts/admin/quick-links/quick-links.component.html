@@ -23,8 +23,8 @@
                     </div>
                   </div>
                   <div class=" col-sm-12 mb-3">
-                    <div class="form-group">
-                      <input dir="rtl" type="text" name="text_ar" class="form-control" formControlName="text_ar"
+                    <div class="form-group" dir="rtl">
+                      <input type="text" name="text_ar" class="form-control" formControlName="text_ar"
                         [ngClass]="{ 'is-invalid': submitted && f.text_ar.errors }" placeholder="نص الارتباط" />
                       <div *ngIf="submitted && f.text_ar.invalid" class="invalid-feedback">
                         <div *ngIf="f.text_ar.errors?.required">This field is required</div>
@@ -180,7 +180,7 @@
           <small>This field is required</small>
         </div>
       </div>
-      <div class="form-group mb-3 has-validation">
+      <div class="form-group mb-3 has-validation" dir="rtl">
         <label>نص الارتباط</label>
         <input type="text" name="LinkTextAr" [(ngModel)]="selectedItem.text_ar" class="form-control" required
           placeholder="نص الارتباط" #LinkTextAr="ngModel" />

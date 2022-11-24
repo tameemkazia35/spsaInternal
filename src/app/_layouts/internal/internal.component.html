@@ -1,9 +1,11 @@
 <header>
     <div class="top-header">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-6">
-              <img src="./assets/images/logo-black.svg" alt="SPSA" height="64">
+              <a routerLink="/">
+                <img src="./assets/images/logo-black.svg" alt="SPSA" height="64">
+              </a>
             </div>
             <div class="col-6">
               <div class="ms-auto">
@@ -14,14 +16,14 @@
         </div>
     </div>  
   <nav class="navbar navbar-expand-lg bg-primary">
-    <div class="container">
+    <div class="container-fluid">
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li>
-            <a class="nav-link text-white ps-0" href="#"><span class="material-icons-round me-2">home</span>{{'home' | translate}}</a>
+            <a class="nav-link text-white ps-0" routerLink="/"><span class="material-icons-round me-2">home</span>{{'home' | translate}}</a>
         </li>
 
         <li *ngFor="let menu of menuList">
-          <a class="nav-link text-white" href="#"><span class="material-icons-round me-2" *ngIf="menu.iconName">{{menu.iconName}}</span>{{currentLang == 'ar' ? menu.text_ar : menu.text}}</a>
+          <a class="nav-link text-white" (click)="goToPage(menu)"><span class="material-icons-round me-2" *ngIf="menu.iconName">{{menu.iconName}}</span>{{currentLang == 'ar' ? menu.text_ar : menu.text}}</a>
         </li>
 
         <!-- <li>
@@ -53,9 +55,6 @@
   
   <p-menu [model]="items" [popup]="true" #amenu></p-menu>
   <p-menu class="lang-menu" [model]="langItems" [popup]="true" #lmenu></p-menu>
-  <div class="hero-banner">
-      <div class="home-banner"></div>
-  </div>
   <router-outlet></router-outlet>
 
   <footer class="text-center p-2 bg-dark">
