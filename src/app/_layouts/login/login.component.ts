@@ -42,7 +42,9 @@ export class LoginComponent implements OnInit {
     if(localStorage.getItem('currentUser')){
       return;
     }
-    this.getDomain();
+    this.util.observlogOut().subscribe((_res: any) => {
+      this.getDomain();
+    })
   }
 
   getDomain(){
