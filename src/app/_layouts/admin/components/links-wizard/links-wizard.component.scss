@@ -1,0 +1,40 @@
+.remove-contact {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    display: flex;
+    button {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        position: relative;
+        span{
+            width: 24px;
+            margin: auto;
+        }
+    }
+}
+
+.card{
+    height: 100%;
+    img{
+        width: 180px;
+        height: 100px;
+        object-fit: cover;
+        margin: auto;
+        margin-top: 16px;
+    }
+
+    p{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+    }
+
+}

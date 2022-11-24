@@ -6,6 +6,7 @@ import { Subject, BehaviorSubject, Observable } from 'rxjs';
 })
 export class UtilService {
   private loginSubject = new Subject<any>();
+  private logoutSubject = new Subject<any>();
 
   constructor() { }
 
@@ -15,6 +16,14 @@ export class UtilService {
 
   observlogin(): Subject<any> {
     return this.loginSubject;
+  }
+
+  publishlogout(data: any) {
+    this.logoutSubject.next(data);
+  }
+
+  observlogOut(): Subject<any> {
+    return this.logoutSubject;
   }
 
 

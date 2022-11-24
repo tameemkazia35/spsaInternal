@@ -31,11 +31,21 @@ import {CalendarModule} from 'primeng/calendar';
 import {EditorModule} from 'primeng/editor';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import {ToastModule} from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { FilterArrayPipe } from './_pipes/filter-array.pipe';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { AnnouncementsComponent } from './_layouts/admin/announcements/announcements.component';
+import { AnnouncementComponent } from './_layouts/admin/announcement/announcement.component';
+import { QuickLinksComponent } from './_layouts/admin/quick-links/quick-links.component';
+import { DirectoryComponent } from './_layouts/admin/directory/directory.component';
 import { PagesComponent } from './_layouts/admin/pages/pages.component';
-
-
+import {InputTextModule} from 'primeng/inputtext';
+import { PageComponent } from './_layouts/admin/page/page.component';
+import { OthersComponent } from './_layouts/admin/components/others/others.component';
+import { HomeWizardComponent } from './_layouts/admin/components/home-wizard/home-wizard.component';
+import { ContactWizardComponent } from './_layouts/admin/components/contact-wizard/contact-wizard.component';
+import {FieldsetModule} from 'primeng/fieldset';
+import { LinksWizardComponent } from './_layouts/admin/components/links-wizard/links-wizard.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +60,16 @@ import { PagesComponent } from './_layouts/admin/pages/pages.component';
     EventsComponent,
     UsersComponent,
     EventComponent,
-    PagesComponent
+    AnnouncementsComponent,
+    AnnouncementComponent,
+    QuickLinksComponent,
+    DirectoryComponent,
+    PagesComponent,
+    PageComponent,
+    OthersComponent,
+    HomeWizardComponent,
+    ContactWizardComponent,
+    LinksWizardComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +90,9 @@ import { PagesComponent } from './_layouts/admin/pages/pages.component';
     EditorModule,
     NgxFileDropModule,
     ToastModule,
+    ConfirmDialogModule,
+    InputTextModule,
+    FieldsetModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
@@ -81,6 +103,7 @@ import { PagesComponent } from './_layouts/admin/pages/pages.component';
   ],
   providers: [ 
     MessageService,
+    ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]

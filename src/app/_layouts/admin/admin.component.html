@@ -16,28 +16,24 @@
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 me-auto">
-            <li>
+            <li *ngIf="userData.role.toLowerCase() == 'admin'">
                 <a class="nav-link text-white ps-0" routerLink="/admin/menu"><span class="material-icons-round me-2">menu_open</span>Menu</a>
-            </li>
-            <li>
-                <a class="nav-link text-white" routerLink="/admin/sections"><span class="material-icons-round me-2">view_agenda</span>Sections</a>
             </li>    
-            <li>
+            <li *ngIf="userData.role.toLowerCase() == 'admin'">
                 <a class="nav-link text-white" routerLink="/admin/pages"><span class="material-icons-round me-2">description</span>Pages</a>
             </li>
-            <li>
+            <li *ngIf="userData.role.toLowerCase() == 'admin' || userData.role.toLowerCase() == 'event'">
                 <a class="nav-link text-white" routerLink="/admin/events"><span class="material-icons-round me-2">event</span>Events</a>
             </li>
-            <li>
+            <li *ngIf="userData.role.toLowerCase() == 'admin' || userData.role.toLowerCase() == 'news'">
                 <a class="nav-link text-white" routerLink="/admin/announcements"><span class="material-icons-round me-2">campaign</span>Announcements</a>
             </li>
             <li>
-                <a class="nav-link text-white" routerLink="/admin/directory"><span class="material-icons-round me-2">folder_shared</span>Directory</a>
+              <a class="nav-link text-white" routerLink="/admin/quick-links"><span class="material-icons-round me-2">link</span>Quick links</a>
             </li>
-            <li>
+            <li *ngIf="userData.role.toLowerCase() == 'admin'">
                 <a class="nav-link text-white" routerLink="/admin/users"><span class="material-icons-round me-2">groups</span>Users</a>
             </li>
-               
           </ul>
           <p-menubar [model]="items">
         </p-menubar>

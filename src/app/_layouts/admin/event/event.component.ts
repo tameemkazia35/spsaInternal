@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import {MessageService} from 'primeng/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/_services/api.service';
 import { apis } from 'src/app/_enum/apiEnum';
+import { NgxSpinnerService } from 'ngx-spinner';
+import * as moment from 'moment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-event',
@@ -18,8 +21,14 @@ export class EventComponent implements OnInit {
   imageSrc: any;
   editEvent: boolean = false;
   eventForm!: FormGroup;
+  bannerLang: any;
+  pageSlug: any;
+  pageData: any;
+  parsedData: any;
+  mediaPath: string = '';
   
-  constructor(private messageService: MessageService, private route: ActivatedRoute, private formBuilder: FormBuilder, private service: ApiService) {
+  constructor(private messageService: MessageService, private route: ActivatedRoute, private formBuilder: FormBuilder, private service: ApiService, private spinner: NgxSpinnerService, private router: Router) {
+    this.mediaPath = environment.mediaPath;
     this.items = [
       {label: 'Events', routerLink: '/admin/events'},
       {label: 'New', disabled: true}
@@ -39,9 +48,35 @@ export class EventComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(_res => {
+      debugger;
       if(_res?.type == 'edit'){
           this.editEvent = true;
+          this.pageSlug = _res.id;
+          this.getPageBySlug();
       }
+    })
+  }
+
+  getPageBySlug(){
+    this.service.get(apis.pageByUrl, this.pageSlug).subscribe(_res=>{
+      this.pageData = _res;
+      this.parsedData = _res.page;
+      this.eventForm.controls['Title'].setValue(this.parsedData.title);
+      this.eventForm.controls['Title_ar'].setValue(this.parsedData.title_ar);
+      this.eventForm.controls['Content'].setValue(this.parsedData.content);
+      this.eventForm.controls['Content_ar'].setValue(this.parsedData.content_ar);
+      this.eventForm.controls['Location'].setValue(this.parsedData.location);
+      if(this.parsedData.banner.includes('http') > -1){
+        this.parsedData.banner = this.parsedData.banner.replace(this.mediaPath, '');
+      }
+      if(this.parsedData.banner_ar.includes('http') > -1){
+        this.parsedData.banner_ar = this.parsedData.banner_ar.replace(this.mediaPath, '');
+      }
+      this.eventForm.controls['Banner'].setValue(this.mediaPath + this.parsedData.banner);
+      this.eventForm.controls['Banner_ar'].setValue(this.mediaPath + this.parsedData.banner_ar);
+      this.eventForm.controls['startDateTime'].setValue(new Date(this.parsedData.startDateTime));
+      this.eventForm.controls['endDateTime'].setValue(new Date(this.parsedData.endDateTime));
+      console.log('parsed data', moment(this.parsedData.startDateTime));
     })
   }
 
@@ -59,7 +94,7 @@ export class EventComponent implements OnInit {
           if (file.size / 1000 > max_size) {
             // this.genralService.openSnackBar(`Maximum size allowed is 20 MB`);
             // alert('Maximum size allowed is 5 MB');
-            this.toastMessage('Image size warning', 'Maximum size allowed is 5MB', 'warn');
+            this.toastMessage('Image size warning', 'Maximum size allowed is 2MB', 'warn');
             return false;
           }
 
@@ -120,11 +155,94 @@ export class EventComponent implements OnInit {
   }
 
 
-  submit(){
-    
-    this.service.post(apis.createEvent, '').subscribe(_res=>{
+  checkEditOrNew(){
+    if(this.editEvent){
+      this.submitEditEvent();
+    }else{
+      this.submit();
+    }
+  }
 
+  submitEditEvent(){
+    this.parsedData.title = this.eventForm.value.Title;
+    this.parsedData.title_ar = this.eventForm.value.Title_ar;
+    this.parsedData.content = this.eventForm.value.Content;
+    this.parsedData.content_ar = this.eventForm.value.Content_ar;
+    this.parsedData.location = this.eventForm.value.Location;
+    this.parsedData.banner = this.eventForm.value.Banner;
+    if(this.parsedData.banner.includes('http') > -1){
+      this.parsedData.banner = this.parsedData.banner.replace(this.mediaPath, '');
+    }
+    this.parsedData.banner_ar = this.eventForm.value.Banner_ar;
+    if(this.parsedData.banner_ar.includes('http') > -1){
+      this.parsedData.banner_ar = this.parsedData.banner_ar.replace(this.mediaPath, '');
+    }
+    this.parsedData.startDateTime = this.eventForm.value.startDateTime;
+    this.parsedData.endDateTime = this.eventForm.value.endDateTime;
+    this.pageData.page = JSON.parse(JSON.stringify(this.parsedData));
+    this.spinner.show();
+    this.service.put(apis.pageUpdate, this.parsedData, this.pageData.page.id).subscribe(_res=>{
+      this.spinner.hide();
+      this.toastMessage('Success', 'Event updated successfully', 'success');
+      this.router.navigate(['/admin/events']);
+    }, error=>{
+      this.spinner.hide();
     })
   }
 
+  submit(){
+    var payload = {
+      "Title": this.eventForm.value.Title,
+      "Title_ar": this.eventForm.value.Title_ar,
+      "Banner": this.eventForm.value.Banner,
+      "Banner_ar": this.eventForm.value.Banner_ar,
+      "Content": this.eventForm.value.Content,
+      "Content_ar": this.eventForm.value.Content_ar,
+      "Location": this.eventForm.value.Location,
+      "startDateTime": this.eventForm.value.startDateTime,
+      "endDateTime": this.eventForm.value.endDateTime,
+      "Tags": 0,
+      "PageComponents": {
+          "ComponentsId": "event",
+          "Data": ""
+      }
+  }
+    console.log(this.eventForm.value);
+    this.spinner.show();
+    this.service.post(apis.createEvent, payload).subscribe(_res=>{
+      this.spinner.hide();
+      this.toastMessage('Success', 'Event added successfully', 'success');
+      this.router.navigate(['/admin/events']);
+    }, error=>{
+      this.spinner.hide();
+    })
+  }
+
+  handleFileSelect(evt: any, type: string){
+    this.bannerLang = type;
+    var files = evt.target.files;
+    var file = files[0];
+
+  if (files && file) {
+      var reader = new FileReader();
+      reader.onload =this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+  }
+}
+
+
+
+_handleReaderLoaded(readerEvt: any) {
+   var binaryString = readerEvt.target.result;
+   console.log(btoa(binaryString));
+   if(this.bannerLang == 'en'){
+      this.eventForm.controls['Banner'].setValue('data:image/png;base64,'+btoa(binaryString));
+      return;
+   }
+
+    if(this.bannerLang == 'ar'){
+      this.eventForm.controls['Banner_ar'].setValue('data:image/png;base64,'+btoa(binaryString));
+      return;
+    }
+  }    
 }

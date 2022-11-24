@@ -1,40 +1,53 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2>Pages / <span>الصفحات</span></h2>
-            <div class="row">
-                <div class="col-12 text-end">
-                    <button type="button" class="btn btn-secondary">Create Link Page</button>
-                </div>
+<div class="container my-5">
+    <div class="section-title">
+        <h5 class="my-3 text-uppercase">Pages / الصفحات</h5>
+    </div> 
+    <p-table #dt2 [value]="pageList"  styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '100%'}" [rows]="10" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"  [globalFilterFields]="['title', 'title_ar']">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search keyword" />
+                </span>
+                    <button class="btn btn-secondary float-end" (click)="newPage()">New page</button>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Slug</th>
-                        <th>UpdatedOn</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let page of pages">
-                        <td>
-                            <div>{{page.title}} / <span dir="rtl">{{page.title_ar}}</span></div> 
-                        </td>
-                        <td>
-                            <div>{{page.slug}}</div> 
-                        </td>
-                        <td>
-                            <div>{{  page.updatedOn | date:'medium'}}</div> 
-                        </td>
-                        <td>
-                            <a class="btn btn-sm btn-light bnt-default me-2" *ngIf="page.pageComponents.componentsId != 'contacts'" [routerLink]="['/page/edit/', page.pageComponents.componentsId]" [queryParams]="{slug: page.slug}"> <span class="material-icons">edit</span></a>
-                            <a class="btn btn-sm btn-light bnt-default me-2" *ngIf="page.pageComponents.componentsId == 'contacts'" [routerLink]="['/admin/directory']"> <span class="material-icons">edit</span></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            
-        </div>
-    </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>CreatedOn</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-page let-index="rowIndex">
+            <tr>
+                <td>{{index + 1}}</td>
+                <td field>{{page.title}} / {{page.title_ar}}</td>
+                <td>{{page.slug}}</td>
+                <td>{{page.createdOn | date: 'medium'}}</td>
+                <td>{{ (page.status == 'delete') ? 'deleted' : 'active' }}</td>
+                <td>
+                    <div class="flex align-items-center justify-content-center gap-2">
+                        <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-secondary" (click)="goToPage(page)"></button>
+                        <button *ngIf="page.pageComponents.componentsId != 'contacts' && page.pageComponents.componentsId != 'home'" pButton pRipple type="button" icon="pi pi-times" (click)="removePage(page.id)" class="p-button-rounded p-button-text p-button-danger"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
+
+<p-confirmDialog #cd>
+    <ng-template pTemplate="header">
+        <h3>Delete Confirmation</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button class="btn btn-light px-4" type="button" icon="pi pi-times" label="No"
+            (click)="cd.reject()">Cancel</button>
+        <button class="btn btn-danger px-4" type="button" icon="pi pi-check" label="Yes"
+            (click)="cd.accept()">Delete</button>
+    </ng-template>
+</p-confirmDialog>

@@ -30,14 +30,6 @@ width: 100% !important;
     }
   }
 
-::ng-deep .ql-image, ::ng-deep .ql-code-block{
-    display: none !important;
-}
-
-::ng-deep .ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg{
-    right: inherit !important;
-}
-
 .upload-name-style{
     img{
         width: 64px;
