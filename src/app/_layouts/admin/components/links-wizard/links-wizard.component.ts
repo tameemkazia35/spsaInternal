@@ -92,12 +92,8 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    if (this.editLink) {
-      debugger;
-      this.quickLinks.schema.links.splice(this.quickLinks.schema.links.indexOf(this.cloneOject), 1);
-      // splice(position, numberOfItemsToRemove, item)
-      this.quickLinks.schema.links.splice(this.cloneOject.i, 0, this.quickLinkForm.value);
-      // this.quickLinks.schema.links.push(this.quickLinkForm.value);
+    if (this.editLink) { 
+      this.quickLinks.schema.links[this.cloneOject.id] = this.quickLinkForm.value;
       this.editLink = false;
       delete this.cloneOject;
     } else {
@@ -141,18 +137,18 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
     });
   }
 
-    edit(_link: any, _ind: any){
-      this.editLink = true;
-      this.quickLinkForm.controls['text'].setValue(_link.text);
+  edit(_link: any, _ind: any) {
+    this.editLink = true;
+    this.quickLinkForm.controls['text'].setValue(_link.text);
     this.quickLinkForm.controls['text_ar'].setValue(_link.text_ar);
     this.quickLinkForm.controls['desc'].setValue(_link.desc);
     this.quickLinkForm.controls['desc_ar'].setValue(_link.desc_ar);
     this.quickLinkForm.controls['url'].setValue(_link.url);
     this.quickLinkForm.controls['target'].setValue(_link.target);
     this.quickLinkForm.controls['icon'].setValue(_link.icon);
-    this.cloneOject = _link;  
+    this.cloneOject = _link;
     this.cloneOject.id = _ind;
-    this.display= true;
-    }
+    this.display = true;
+  }
 
 }
