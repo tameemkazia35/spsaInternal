@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getDomain();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     if(localStorage.getItem('currentUser')){
       return;
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
     this.util.observlogOut().subscribe((_res: any) => {
       this.getDomain();
     })
+    
   }
 
   getDomain(){

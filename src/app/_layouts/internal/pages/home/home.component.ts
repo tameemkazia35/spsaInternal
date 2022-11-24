@@ -23,8 +23,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   newsList: any;
   display: boolean = false;
   dialogType: string = '';
-
+  userData: any;
   constructor( private service: ApiService, private util: UtilService, private router: Router) { 
+    this.userData = JSON.parse(localStorage.getItem('currentUser') || '{}');
     this.calendarOptions = {
       initialView: 'dayGridMonth',
       themeSystem: 'bootstrap5',
@@ -57,9 +58,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.calendarOptions.locale = _res;
     });
     console.log('this.currentLang', this.currentLang);
-    this.afterLogin();
+    if(this.userData.token){
+      this.afterLogin();
+    }
     this.util.observlogin().subscribe((_res :any)=>{
-     this.afterLogin();
+      this.afterLogin();
     })
 
     this.util.observEvent().subscribe(_res=>{
@@ -107,7 +110,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   errorImg(news: any){
-    news.hide = true;
+    if(news){
+      news.hide = true;
+    }
+    
   }
 
   openEvent(_event: any){
