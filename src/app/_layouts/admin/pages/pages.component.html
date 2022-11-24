@@ -1,6 +1,6 @@
 <div class="container my-5">
-    <div class="section-title text-center mb-5">
-        <h3>Pages</h3>
+    <div class="section-title">
+        <h5 class="my-3 text-uppercase">Pages / الصفحات</h5>
     </div> 
     <p-table #dt2 [value]="pageList"  styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '100%'}" [rows]="10" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"  [globalFilterFields]="['title', 'title_ar']">
         <ng-template pTemplate="caption">
@@ -16,6 +16,7 @@
             <tr>
                 <th>#</th>
                 <th>Name</th>
+                <th>Slug</th>
                 <th>CreatedOn</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -24,9 +25,10 @@
         <ng-template pTemplate="body" let-page let-index="rowIndex">
             <tr>
                 <td>{{index + 1}}</td>
-                <td field>{{page.title}} \ {{page.title_ar}}</td>
-                <td>{{page.createdOn | date: 'dd/MM/YYYY hh:mm a'}}</td>
-                <td>{{page.status}}</td>
+                <td field>{{page.title}} / {{page.title_ar}}</td>
+                <td>{{page.slug}}</td>
+                <td>{{page.createdOn | date: 'medium'}}</td>
+                <td>{{ (page.status == 'delete') ? 'deleted' : 'active' }}</td>
                 <td>
                     <div class="flex align-items-center justify-content-center gap-2">
                         <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-secondary" (click)="goToPage(page)"></button>

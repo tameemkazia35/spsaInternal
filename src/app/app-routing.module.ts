@@ -51,10 +51,10 @@ const routes: Routes = [
     //   path: 'sections', 
     //   component: SectionsComponent
     // },
-    // { 
-    //   path: 'pages', 
-    //   component: PagesComponent
-    // },
+    { 
+       path: 'pages', 
+       component: PagesComponent
+    },
     { 
       path: 'events', 
       component: EventsComponent

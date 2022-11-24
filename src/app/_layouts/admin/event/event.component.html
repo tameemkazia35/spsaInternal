@@ -2,119 +2,125 @@
     <p-breadcrumb [model]="items"></p-breadcrumb>
     <form name="event-form" [formGroup]="eventForm">
         <div class="row">
-        <div class="col-md-10">
-            <div class="row">
-                <div class="col-md-6">
-                    <h4 class="text-center">English</h4>
-                    <div class="card p-2">
-                        <div class="form-group mb-3">
-                            <label>Name</label>
-                            <input class="form-control" placeholder="Name" name="Title" formControlName="Title"/>
-                        </div>
-                        <div class="mb-3">
-                            <label dir="rtl" >Description</label>
-                            <p-editor [style]="{'height':'200px'}" formControlName="Content"></p-editor>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label>Venue</label>
-                            <input class="form-control" placeholder="Venue" formControlName="Location"/>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label>Banner</label>
-                            <input type="file" class="form-control" placeholder="Banner" (change)="handleFileSelect($event, 'en')"/>
-                            <img class="banner-preview mt-3 img-fluid" [src]="eventForm.value.Banner"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <h4 dir="rtl" class="text-center">عربى</h4>
-                    <div class="card p-2">
-                        <div class="form-group mb-3" dir="rtl">
-                            <label class="text-end">الاسم</label>
-                            <input class="form-control" placeholder="الاسم" formControlName="Title_ar"/>
-                        </div>
-                        <div class="mb-3" dir="rtl">
-                            <label class="text-end">وصف</label>
-                            <p-editor class="arabic" [style]="{'height':'200px'}" formControlName="Content_ar"></p-editor>
-                        </div>
-                        <div class="form-group mb-5" dir="rtl">
-                            <!-- <label>مكان</label>
-                            <input class="form-control" placeholder="مكان"/> -->
-                        </div>
-                        <div class="form-group mb-3 mt-4" dir="rtl">
-                            <label>Banner Arabic</label>
-                            <input type="file" class="form-control" placeholder="Banner" (change)="handleFileSelect($event, 'ar')"/>
-                            <img class="banner-preview mt-3 img-fluid" [src]="eventForm.value.Banner_ar"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mt-3">
-                    <div class="mb-3">
-                        <label class="text-end">Start Date and time</label>
-                        <p-calendar formControlName="startDateTime" [selectionMode]="'single'" [stepMinute]="30" [showTime]="true" [hourFormat]="'12'"></p-calendar>
-                    </div>
-                </div>
-                <div class="col-md-6  mt-3">
-                    <div class="mb-3">
-                        <label class="text-end">End Date and time</label>
-                        <p-calendar formControlName="endDateTime" [selectionMode]="'single'" [stepMinute]="30" [showTime]="true" [hourFormat]="'12'"></p-calendar>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4 class="text-center">Action</h4>
-                    <div class="card p-2 action-card">
-                        <div class="additional-images" *ngIf="editEvent">
-                            <label class="text-end">Event images</label>
-                            <div class="center">
-                                <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)" 
-                                (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)" accept="image/*">
-                                    <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-                                        <div class="d-flex flex-column">
-                                        <strong>Drag and Drop your files here.</strong>
-                                        <span>or</span>
-                                        <button type="button" class="btn btn-outline-primary mt-2 mb-3 mx-auto px-5"
-                                          (click)="openFileSelector()">Browse Files</button>
-                                        <p class="fs-12">
-                                          <strong class="text-primary me-1 fs-6"><small>Note:</small></strong>
-                                          <small>Maximum 10 images, having 2 MB each can be uploaded.</small>
-                                        </p>
-                                    </div>
-                                    </ng-template>
-                                </ngx-file-drop>
-                                <div class="upload-table">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>image</th>
-                                                <th>size</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="upload-name-style">
-                                            <tr *ngFor="let item of uploadedImages; let i=index">
-                                                <td valign="middle"><img [src]="item.imageUrl" /></td>
-                                                <td valign="middle">{{item.fileSize}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="text-center">English</h4>
+                        <div class="card p-2">
+                            <div class="form-group mb-3">
+                                <label>Name</label>
+                                <input class="form-control" placeholder="Name" name="Title" formControlName="Title" />
+                            </div>
+                            <div class="mb-3">
+                                <label dir="rtl">Description</label>
+                                <p-editor [style]="{'height':'200px'}" formControlName="Content"></p-editor>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Venue</label>
+                                <input class="form-control" placeholder="Venue" formControlName="Location" />
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Banner</label>
+                                <input type="file" class="form-control" placeholder="Banner"
+                                    (change)="handleFileSelect($event, 'en')" />
+                                <img class="banner-preview mt-3 img-fluid" [src]="eventForm.value.Banner" />
                             </div>
                         </div>
-                        <div class="d-grid">
-                            <button class="btn btn-secondary btn-block" (click)="checkEditOrNew()">{{editEvent ? 'Update' : 'Save'}}</button>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 dir="rtl" class="text-center">عربى</h4>
+                        <div class="card p-2">
+                            <div class="form-group mb-3" dir="rtl">
+                                <label class="text-end">الاسم</label>
+                                <input class="form-control" placeholder="الاسم" formControlName="Title_ar" />
+                            </div>
+                            <div class="mb-3" dir="rtl">
+                                <label class="text-end">وصف</label>
+                                <p-editor class="arabic" [style]="{'height':'200px'}" formControlName="Content_ar">
+                                </p-editor>
+                            </div>
+                            <div class="form-group mb-5" dir="rtl">
+                                <!-- <label>مكان</label>
+                            <input class="form-control" placeholder="مكان"/> -->
+                            </div>
+                            <div class="form-group mb-3 mt-4" dir="rtl">
+                                <label>Banner Arabic</label>
+                                <input type="file" class="form-control" placeholder="Banner"
+                                    (change)="handleFileSelect($event, 'ar')" />
+                                <img class="banner-preview mt-3 img-fluid" [src]="eventForm.value.Banner_ar" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="mb-3">
+                            <label class="text-end">Start Date and time</label>
+                            <p-calendar formControlName="startDateTime" [selectionMode]="'single'" [stepMinute]="30"
+                                [showTime]="true" [hourFormat]="'12'"></p-calendar>
+                        </div>
+                    </div>
+                    <div class="col-md-6  mt-3">
+                        <div class="mb-3">
+                            <label class="text-end">End Date and time</label>
+                            <p-calendar formControlName="endDateTime" [selectionMode]="'single'" [stepMinute]="30"
+                                [showTime]="true" [hourFormat]="'12'"></p-calendar>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-       
-       
+            <div class="col-md-2 bg-light">
+                <div class="row">
+                    <div class="col-md-12">
+                        
+                        <div class="p-2">
+                            <div class="additional-images" *ngIf="editEvent">
+                                <label class="text-end">Event images</label>
+                                <div class="center">
+                                    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+                                        (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"
+                                        accept="image/*">
+                                        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                                            <div class="d-flex flex-column">
+                                                <strong>Drag and Drop your files here.</strong>
+                                                <span>or</span>
+                                                <button type="button"
+                                                    class="btn btn-outline-primary mt-2 mb-3 mx-auto px-5"
+                                                    (click)="openFileSelector()">Browse Files</button>
+                                                <p class="fs-12">
+                                                    <strong class="text-primary me-1 fs-6"><small>Note:</small></strong>
+                                                    <small>Maximum 10 images, having 2 MB each can be uploaded.</small>
+                                                </p>
+                                            </div>
+                                        </ng-template>
+                                    </ngx-file-drop>
+                                    <div class="upload-table">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>image</th>
+                                                    <th>size</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="upload-name-style">
+                                                <tr *ngFor="let item of uploadedImages; let i=index">
+                                                    <td valign="middle"><img [src]="item.imageUrl" /></td>
+                                                    <td valign="middle">{{item.fileSize}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-secondary btn-block" (click)="checkEditOrNew()">{{editEvent ?
+                                    'Update & Publish' : 'Save & Publish'}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </form>
-   
+
 </div>
-
-
