@@ -14,7 +14,7 @@ import {HttpClient, HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/h
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { NgxSpinnerModule } from "ngx-spinner";
-import {MenubarModule} from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
 import { MenusComponent } from './_layouts/admin/menus/menus.component';
 import {AccordionModule} from 'primeng/accordion';
 import { NestableModule } from 'ngx-nestable';
@@ -46,6 +46,18 @@ import { HomeWizardComponent } from './_layouts/admin/components/home-wizard/hom
 import { ContactWizardComponent } from './_layouts/admin/components/contact-wizard/contact-wizard.component';
 import {FieldsetModule} from 'primeng/fieldset';
 import { LinksWizardComponent } from './_layouts/admin/components/links-wizard/links-wizard.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import timeGridPlugin from '@fullcalendar/timegrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { EventListComponent } from './_layouts/internal/pages/event-list/event-list.component';
+import { EventDetailsComponent } from './_layouts/internal/pages/event-details/event-details.component';
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  timeGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -69,7 +81,9 @@ import { LinksWizardComponent } from './_layouts/admin/components/links-wizard/l
     OthersComponent,
     HomeWizardComponent,
     ContactWizardComponent,
-    LinksWizardComponent
+    LinksWizardComponent,
+    EventListComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +94,7 @@ import { LinksWizardComponent } from './_layouts/admin/components/links-wizard/l
     BrowserAnimationsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    MenubarModule,
+    MenuModule,
     AccordionModule,
     NestableModule,
     DropdownModule,
@@ -93,6 +107,7 @@ import { LinksWizardComponent } from './_layouts/admin/components/links-wizard/l
     ConfirmDialogModule,
     InputTextModule,
     FieldsetModule,
+    FullCalendarModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

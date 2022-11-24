@@ -1,6 +1,8 @@
 @import 'material-icons/iconfont/material-icons.scss';
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
+
 $blue:    #0d6efd;
 $indigo:  #6610f2;
 $purple:  #6f42c1;
@@ -92,5 +94,37 @@ $theme-colors: (
 }
 
 .p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:focus{
-    box-shadow: none !important;
+    box-shadow: none !important;    
+}
+
+.fc.fc-theme-standard a {
+    color: #495057;
+    text-decoration: none;
+}
+
+.fc.fc-theme-standard .fc-view-harness .fc-event.fc-daygrid-block-event{
+    background: #00AB54 !important;
+    border-color: #00AB54 !important;
+}
+
+.fc.fc-theme-standard .fc-toolbar .fc-button, .fc.fc-theme-standard .fc-toolbar .fc-button:disabled{
+    background: #851825 !important;
+    border: 1px solid #851825 !important;
+}
+.fc.fc-theme-standard .fc-toolbar .fc-button:focus{
+    box-shadow: none;
+    transform: scale(1.05);
+    transition: .3s all;
+}
+
+//Arabic css
+html[dir="rtl"] {
+    body{
+        font-family: 'Cairo', sans-serif !important;
+    }
+    header{
+        iframe{
+            float: left !important;
+        }
+    }
 }

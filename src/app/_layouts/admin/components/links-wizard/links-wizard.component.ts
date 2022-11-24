@@ -27,6 +27,7 @@ export class LinksWizardComponent implements OnInit {
   display: boolean = false;
   quickLinks: any = [];
   editLink: boolean = false;
+  cloneOject: any;
   @ViewChild('fileInput') fileInput: ElementRef | any;
 
   constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService, private messageService: MessageService, private service: ApiService) { }
@@ -80,13 +81,18 @@ uploadMedia(_base64: string){
 
   get f() { return this.quickLinkForm.controls; }
   Add(){
+    debugger;
     this.submitted = true;
     if (this.quickLinkForm.invalid) {
       return;
     }
     
     if(this.editLink){
-
+      
+      this.quickLinks.schema.links.splice(this.quickLinks.schema.links.indexOf(this.cloneOject), 1);
+      this.quickLinks.schema.links.push(this.quickLinkForm.value);
+      this.editLink = false;
+      delete this.cloneOject;
     }else{
       console.log(this.quickLinkForm.value);
       this.quickLinks.schema.links.push(this.quickLinkForm.value);
@@ -101,7 +107,13 @@ uploadMedia(_base64: string){
   }
 
   Edit(_data: any){
-    this.quickLinkForm.patchValue(_data);
+    // this.quickLinkForm.controls['text'].setValue(_data.text);
+    // this.quickLinkForm.controls['text_ar'].setValue(_data.text_ar);
+    // this.quickLinkForm.controls['desc'].setValue(_data.desc);
+    // this.quickLinkForm.controls['desc_ar'].setValue(_data.desc_ar);
+    // this.quickLinkForm.controls['url'].setValue(_data.url);
+    // this.quickLinkForm.controls['target'].setValue(_data.target);
+    // this.quickLinkForm.controls['icon'].setValue(_data.icon);
     this.display = true;
   }
 
@@ -124,7 +136,14 @@ uploadMedia(_base64: string){
 
     edit(_link: any){
       this.editLink = true;
-      this.quickLinkForm.patchValue(_link);
+      this.quickLinkForm.controls['text'].setValue(_link.text);
+    this.quickLinkForm.controls['text_ar'].setValue(_link.text_ar);
+    this.quickLinkForm.controls['desc'].setValue(_link.desc);
+    this.quickLinkForm.controls['desc_ar'].setValue(_link.desc_ar);
+    this.quickLinkForm.controls['url'].setValue(_link.url);
+    this.quickLinkForm.controls['target'].setValue(_link.target);
+    this.quickLinkForm.controls['icon'].setValue(_link.icon);
+      this.cloneOject = _link;
       this.display= true;
     }
 

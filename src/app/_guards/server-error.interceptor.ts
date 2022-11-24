@@ -19,7 +19,7 @@ export class ServerErrorInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             map(res => {
                 console.log("Passed through the interceptor in response");
-                return res
+                return res;
              }),
             catchError((error: HttpErrorResponse) => {
                 return throwError(error);
