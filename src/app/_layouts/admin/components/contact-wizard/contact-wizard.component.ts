@@ -31,10 +31,11 @@ export class ContactWizardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    debugger;
     console.log(this.data);
     if(this.data){
       
-      if(JSON.parse(this.data).schema == undefined){
+      if(this.data.schema == undefined){
         this.directories = {
           "code": "contacts",
           "schema": 
@@ -48,7 +49,7 @@ export class ContactWizardComponent implements OnInit {
           }]
         };
       }else{
-        this.directories = JSON.parse(this.data);
+        this.directories = this.data;
       }
     }else{
       this.directories = {
