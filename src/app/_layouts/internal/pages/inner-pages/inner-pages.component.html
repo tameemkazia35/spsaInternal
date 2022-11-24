@@ -1,0 +1,21 @@
+<div class="hero-banner">
+    <div class="inner-banner">
+        <div class="breadcrumb container-fluid">
+            <h5 class="enable m-0" routerLink="/">{{'home' | translate}}</h5>
+            <h5 class="disable m-0">{{currentLang == 'ar' ? pageData?.page?.title_ar : pageData?.page?.title}}</h5>
+        </div>
+    </div>
+</div>
+<div class="container my-5 min-80">
+    <div class="row">
+            <div class="col-md-3 col-12 mb-3" *ngFor="let service of services">
+                <div class="service-item px-4 py-5" (click)="goToPage(service)" title="{{service.url}}">
+                    <div class="s-icon">
+                        <img onerror="this.src='./assets/images/noimageavailable.png'" [src]="service.icon" class="img-fluid"/>
+                    </div>
+                    <h4>{{currentLang == 'ar' ? service.text_ar : service.text}}</h4>
+                    <p>{{currentLang == 'ar' ?  service.desc_ar : service.desc}}</p>
+                </div>
+        </div>
+    </div>
+</div>

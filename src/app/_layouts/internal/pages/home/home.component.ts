@@ -5,6 +5,7 @@ import { UtilService } from 'src/app/_services/util.service';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   display: boolean = false;
   dialogType: string = '';
 
-  constructor( private service: ApiService, private util: UtilService) { 
+  constructor( private service: ApiService, private util: UtilService, private router: Router) { 
     this.calendarOptions = {
       initialView: 'dayGridMonth',
       themeSystem: 'bootstrap5',
@@ -132,6 +133,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.dialogType = 'news';
     this.selectedEvent = _news;
     this.display = true;
+  }
+
+  goToPage(_page: any){
+    debugger;
+    if(_page.target == "_self"){
+      this.router.navigate([_page.url])
+    }else{
+      window.open(_page.url, '_blank');
+    }
   }
 
 }

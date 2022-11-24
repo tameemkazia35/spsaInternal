@@ -3,19 +3,17 @@
 </div>
 <section class="services py-5 bg-gray">
     <div class="section-title text-center mb-5">
-        <h3>Services</h3>
+        <h3>{{'services' | translate}}</h3>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-12 mb-3" *ngFor="let service of services">
-                <div class="service-item px-4 py-5">
-                    <a [href]="service.url" [target]="service.target">
+                <div class="service-item px-4 py-5" (click)="goToPage(service)">
                     <div class="s-icon">
                         <img onerror="this.src='./assets/images/noimageavailable.png'" [src]="service.icon" class="img-fluid"/>
                     </div>
-                    <h4>{{currentLang == 'ar' ? service.text_ar : service.text }}</h4>
+                    <h4>{{currentLang == 'ar' ? service.text_ar : service.text}}</h4>
                     <p>{{currentLang == 'ar' ?  service.desc_ar : service.desc}}</p>
-                    </a>
                 </div>
             </div>
         </div>

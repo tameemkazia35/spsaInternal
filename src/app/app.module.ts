@@ -53,6 +53,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { EventListComponent } from './_layouts/internal/pages/event-list/event-list.component';
 import { EventDetailsComponent } from './_layouts/internal/pages/event-details/event-details.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { InnerPagesComponent } from './_layouts/internal/pages/inner-pages/inner-pages.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -84,7 +85,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ContactWizardComponent,
     LinksWizardComponent,
     EventListComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    InnerPagesComponent
   ],
   imports: [
     BrowserModule,

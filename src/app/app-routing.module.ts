@@ -15,6 +15,7 @@ import { ContactComponent } from './_layouts/internal/pages/contact/contact.comp
 import { EventDetailsComponent } from './_layouts/internal/pages/event-details/event-details.component';
 import { EventListComponent } from './_layouts/internal/pages/event-list/event-list.component';
 import { HomeComponent } from './_layouts/internal/pages/home/home.component';
+import { InnerPagesComponent } from './_layouts/internal/pages/inner-pages/inner-pages.component';
 
 const routes: Routes = [
   { 
@@ -32,6 +33,10 @@ const routes: Routes = [
     { 
       path: 'event', 
       component: EventListComponent
+    },
+    { 
+      path: 'page/:url', 
+      component: InnerPagesComponent
     },
     { 
       path: 'contacts', 

@@ -6,5 +6,7 @@
     "name": "Name",
     "jobTitle": "Job title",
     "mobile": "Mobile",
-    "extension": "Extension"
+    "extension": "Extension",
+    "services": "Services",
+    "copyright": "Copyright © Government of Sharjah, Prevention and Safety Authority, All Rights Reserved."
 }

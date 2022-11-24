@@ -15,29 +15,36 @@ section{
  .container{ 
 .service-item{
     background: #fff;
-    box-shadow: 0 10px 30px -20px rgb(0 0 0 / 30%);
+    box-shadow: 0 30px 20px -20px rgb(208 58 43 / 20%);
     text-align: center;
     cursor: pointer;
     transition: .3s all;
     height: 100%;
     margin-bottom: 16px;
-    a{
-        text-decoration: none;
-        color: inherit;
+    border-width: 6px;
+    border-style: solid;
+    border-radius: 10px;
+    border-image: linear-gradient(to right, #00AB54, #D03A2B) 1;
+    h4{
+        background: -webkit-linear-gradient(0deg, #D03A2B, #662428);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bolder;
     }
-    &:hover{
-        background: var(--bs-secondary);
-        transform: scale(1.1);
+    img{
+        transition: .5s all;
+    }
+    &:hover{        
+        background: #EAEAE6;
         z-index: 999;
-        h4{
-            color: #fff;
-        }
-        p{
-            color: #fff;
+        transform: scale(1.05);
+        animation: gradient 2s ease infinite;
+        img{
+            transform: scale(1.2);
         }
     }
     .s-icon{
-        width: 180px;
+        max-width: 180px;
         height: 100px;
         margin: auto;
         display: flex;
@@ -127,4 +134,16 @@ full-calendar{
         align-items: center;
         span{ width: 24px; }
     }
+}
+
+@keyframes gradient {
+	0% {
+		border-image: linear-gradient(0deg, #00AB54, #D03A2B) 1;
+	}
+	50% {
+		border-image: linear-gradient(180deg, #00AB54, #D03A2B) 1;
+	}
+    100% {
+		border-image: linear-gradient(0deg, #00AB54, #D03A2B) 1;
+	}
 }
