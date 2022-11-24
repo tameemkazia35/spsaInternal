@@ -46,9 +46,8 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    debugger;
    
-}
+  }
 
 handleFileSelect(evt: any){
   var files = evt.target.files;
@@ -95,7 +94,9 @@ uploadMedia(_base64: string){
     if(this.editLink){
       debugger;
       this.quickLinks.schema.links.splice(this.quickLinks.schema.links.indexOf(this.cloneOject), 1);
-      this.quickLinks.schema.links.push(this.quickLinkForm.value);
+      // splice(position, numberOfItemsToRemove, item)
+      this.quickLinks.schema.links.splice(this.cloneOject.i, 0, this.quickLinkForm.value);
+      // this.quickLinks.schema.links.push(this.quickLinkForm.value);
       this.editLink = false;
       delete this.cloneOject;
     }else{
@@ -139,7 +140,7 @@ uploadMedia(_base64: string){
     });
     }
 
-    edit(_link: any){
+    edit(_link: any, _ind: any){
       this.editLink = true;
       this.quickLinkForm.controls['text'].setValue(_link.text);
     this.quickLinkForm.controls['text_ar'].setValue(_link.text_ar);
@@ -148,8 +149,9 @@ uploadMedia(_base64: string){
     this.quickLinkForm.controls['url'].setValue(_link.url);
     this.quickLinkForm.controls['target'].setValue(_link.target);
     this.quickLinkForm.controls['icon'].setValue(_link.icon);
-      this.cloneOject = _link;
-      this.display= true;
+    this.cloneOject = _link;  
+    this.cloneOject.id = _ind;
+    this.display= true;
     }
 
 }

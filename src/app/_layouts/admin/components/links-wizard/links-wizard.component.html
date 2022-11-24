@@ -4,11 +4,11 @@
     </div>
     <div class="card p-4">
         <div class="row mb-4">
-            <div class="col-md-3" *ngFor="let link of quickLinks?.schema?.links">
+            <div class="col-md-3" *ngFor="let link of quickLinks?.schema?.links; let i = index;">
                
                 <div class="card">
                     <div class="remove-contact">
-                        <button class="rounded-circle btn btn-sm btn-light mr-2" (click)="edit(link)"><span class="material-icons-round">edit_rounded</span></button>
+                        <button class="rounded-circle btn btn-sm btn-light mr-2" (click)="edit(link, i)"><span class="material-icons-round">edit_rounded</span></button>
                         <button class="rounded-circle btn btn-sm btn-light" (click)="removeConfirm(link)"><span class="material-icons-round">clear_rounded</span></button>
                     </div>
                     <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="link.icon" class="card-img-top img-fluid" [alt]="link.text"/>

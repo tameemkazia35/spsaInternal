@@ -83,9 +83,11 @@ export class PageComponent implements OnInit {
      if(this.parsedData.banner_ar.includes('http') > -1){
        this.parsedData.banner_ar = this.parsedData.banner_ar.replace(this.mediaPath, '');      
      }
-
-     this.pageComponents.components.id = this.pageData.page.pageComponents.components.id;
-     debugger;
+     
+     if(this.pageData.page.pageComponents.components){
+        this.pageComponents.components.id = this.pageData.page.pageComponents.components.id;
+      }
+     
      if(this.pageData.page.pageComponents.components){
        if(this.pageData.page.pageComponents.data)
         this.pageComponents.data = JSON.parse(this.pageData.page.pageComponents.data);

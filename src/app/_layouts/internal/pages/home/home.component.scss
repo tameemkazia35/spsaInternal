@@ -111,6 +111,12 @@ full-calendar{
         }
         .a-content{
             padding: 16px;
+            .a-date{
+                text-align: right;
+                color: #BDBBBB;
+                font-size: 12px;
+                font-weight: bold;
+            }
         }
     }
 }

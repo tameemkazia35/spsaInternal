@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   eventList: any;
   newsList: any;
   display: boolean = false;
-  
+  dialogType: string = '';
 
   constructor( private service: ApiService, private util: UtilService) { 
     this.calendarOptions = {
@@ -41,26 +41,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
         meridiem: false
       }
     };
-    this.services = [
-      {id: 1, icon: "work", name: 'Executive Office', desc:'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-      {id: 2, icon: "account_balance", name: 'Institutional Excellence Dept', desc:'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-      {id: 3, icon: "apartment", name: 'Standard & Confirmity Dept', desc:'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-      {id: 4, icon: "work", name: 'Support Service Dept', desc:'Lorem Ipsum is simply dummy text of the printing and typesetting industry'}
-    ];
-
-    this.services2 = [
-      {id: 1, icon: "military_tech", name:"Compitations"},
-      {id: 2, icon: "badge", name:"Employee Directory"},
-      {id: 3, icon: "feed", name:"Forms"},
-      {id: 4, icon: "local_offer", name:"Offers"},
-      {id: 5, icon: "gavel", name:"Laws & Regulation"},
-      {id: 6, icon: "folder_shared", name:"Share Folder"}
-    ];
   }
+
   ngAfterViewInit(): void {
     var ele1 = document.getElementsByClassName('anouncement-list')[0] as HTMLElement;
     ele1.style.height = document.getElementsByTagName('full-calendar')[0].clientHeight+'px'; 
-    
   }
 
   ngOnInit(): void {
@@ -100,7 +85,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   getAllAnouncements(){
     this.service.get(apis.news, '').subscribe(_res=>{
       this.newsList = _res;
-      this.newsList = this.newsList.splice(0, 5);
+      this.newsList = this.newsList;
     })
   }
 
@@ -122,10 +107,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   errorImg(news: any){
     news.hide = true;
-    console.log('img error');
   }
 
   openEvent(_event: any){
+    this.dialogType = 'event';
     this.selectedEvent = _event;
     console.log(this.selectedEvent);
     var _formatedStartDate = moment(this.selectedEvent.start).format('DD MMM YYYY');
@@ -141,6 +126,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
           this.selectedEvent.eventdatetime = _formatedStartDate + '  | ' + _startTime + ' - ' + _endTime;
         }
         this.display = true;
+  }
+
+  openNews(_news: any){
+    this.dialogType = 'news';
+    this.selectedEvent = _news;
+    this.display = true;
   }
 
 }

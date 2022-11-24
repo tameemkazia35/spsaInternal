@@ -6,7 +6,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid mb-5">
     <div class="row">
         <!-- <div class="col-sm-3">
             <div class="dirctory-list">
@@ -16,8 +16,9 @@
             </div>
         </div> -->
         <div class="col-sm-12">
-            <div class="form-group mt-4">
-                <input type="text" class="form-control mb-4 search-bar" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search"/>
+            <div class="input-group mt-4 search-bar">
+                <span class="input-group-text material-icons-round">search_outlined</span>
+                <input type="text" class="form-control mb-4" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search"/>
             </div>
             <ng-container *ngFor="let dept of contactList; let i = index">
             <div class="sub-section-title text-center py-2 mb-4 directory-{{i + 1}}" *ngIf="searchText.length == 0">
