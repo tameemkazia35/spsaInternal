@@ -42,11 +42,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 bg-light">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="text-center">Action</h4>
-                    <div class="card p-2 action-card">
+                    
+                    <div class="p-2">
                         <div class="additional-images" *ngIf="editNews">
                             <label class="text-end">Announcement images</label>
                             <div class="center">
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-secondary btn-block" (click)="checkEditOrNew()">{{editNews ? 'Update' : 'Save'}}</button>
+                            <button class="btn btn-secondary btn-block" (click)="checkEditOrNew()">{{editNews ? 'Update & Publish' : 'Save & Publish'}}</button>
                         </div>
                     </div>
                 </div>

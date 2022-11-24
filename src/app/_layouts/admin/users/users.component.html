@@ -1,7 +1,7 @@
 <div class="container my-5">
-    <div class="section-title text-center mb-5">
-        <h3>Users</h3>
-    </div> 
+    <div class="section-title">
+        <h5 class="my-3 text-uppercase">Users / الناس</h5>
+    </div>
     <p-table [value]="users" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" dataKey="id" editMode="row">
         <ng-template pTemplate="header">
             <tr>
@@ -26,7 +26,7 @@
                     </ng-template>
                 </p-cellEditor>
                 </td>
-                <td>{{user.createdOn | date: 'dd/MM/YYYY'}}</td>
+                <td>{{user.createdOn | date: 'medium'}}</td>
                 <td>
                     <div class="flex align-items-center justify-content-center gap-2">
                         <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(user)" class="p-button-rounded p-button-text p-button-secondary"></button>

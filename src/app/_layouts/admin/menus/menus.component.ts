@@ -114,7 +114,7 @@ export class MenusComponent implements OnInit {
     }
 
     var payload = {
-      "MenusId": this.selectedId,
+      "menusId": this.selectedId,
       "isExternal": true,
       "text": this.externalForm.value.text,
       "text_ar": this.externalForm.value.text_ar,
@@ -124,42 +124,29 @@ export class MenusComponent implements OnInit {
       "iconName": this.externalForm.value.icon.iconName
     }
     this.tempList = JSON.parse(JSON.stringify(this.selectedList));
-      this.tempList.push(payload);
-      this.selectedList = JSON.parse(JSON.stringify(this.tempList));
+    this.tempList.push(payload);
+    this.selectedList = JSON.parse(JSON.stringify(this.tempList));
+    // Clear the form
+    this.externalForm.reset();
   }
 
   update() {
     var payload: any = [];
     this.selectedList.forEach((_item: any, _ind: number) => {
-      if (_item.IsExternal) {
-        payload.push({
-          "MenusId": this.selectedId,
-          "IsExternal": true,
-          "Text": _item.text,
-          "Text_ar": _item.text_ar,
-          "Slug": _item.slug,
-          "Target": "_self",
-          "orderNo": _ind + 1,
-          "IconName": _item.iconName,
-          "pagesId": _item.pagesId,
-          "id": _item.id
-        })
-      } else {
-        payload.push({
-          "MenusId": this.selectedId,
-          "orderNo": _ind + 1,
-          "pagesId": _item.pagesId,
-          "Target": "",
-          "isExternal": false,
-          "Text": _item.text,
-          "Text_ar": _item.text_ar,
-          "IconName": _item.iconName,
-          "Slug": _item.slug,
-          "id": _item.id
-        });
-      }
+      payload.push({
+        "menusId": this.selectedId,
+        "orderNo": _ind + 1,
+        "pagesId": _item.pagesId,
+        "target": _item.target,
+        "isExternal": false,
+        "text": _item.text,
+        "text_ar": _item.text_ar,
+        "iconName": _item.iconName,
+        "slug": _item.slug,
+        "id": _item.id
+      });
     });
-    console.log(payload);
+    
     this.service.put(apis.updateMenuItems, payload, this.selectedId).subscribe(_res => {
       this.toastMessage('Success', 'Menu list updated successfully');
     })
@@ -167,10 +154,10 @@ export class MenusComponent implements OnInit {
 
   deleteItem(_item: any) {
     this.selectedList.splice(this.selectedList.indexOf(_item), 1);
-      this.selectedList = this.selectedList.filter((_res: { $$id: any; }) => _res.$$id != _item.$$id)
-      this.selectedList.forEach((_res: { children: any[]; }) => {
-        _res.children = _res.children.filter((_res1: { $$id: any; }) => _res1.$$id != _item.$$id)
-      });
+    this.selectedList = this.selectedList.filter((_res: { $$id: any; }) => _res.$$id != _item.$$id)
+    this.selectedList.forEach((_res: { children: any[]; }) => {
+      _res.children = _res.children.filter((_res1: { $$id: any; }) => _res1.$$id != _item.$$id)
+    });
   }
 
   editItem(_item: any) {
@@ -184,8 +171,8 @@ export class MenusComponent implements OnInit {
   }
 
   toastMessage(_msg: string, _desc: string, _severity: string = 'success') {
-    this.messageService.add({life: 5000,severity: _severity, summary: _msg, detail: _desc});
-    }
-  
+    this.messageService.add({ life: 5000, severity: _severity, summary: _msg, detail: _desc });
+  }
+
 
 }
