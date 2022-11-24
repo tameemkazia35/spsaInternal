@@ -24,12 +24,12 @@
                     <div class="remove-contact">
                         <button class="rounded-circle btn btn-sm btn-light" (click)="removeConfirm(directory.department, contact)"><span class="material-icons-round">clear_rounded</span></button>
                     </div>
-                    <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="contact.base64" class="card-img-top" [alt]="contact.name">
+                    <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="contact.photo" class="card-img-top" [alt]="contact.name">
                     <div class="card-body">
                         <h6 class="mb-1">Name: {{contact.name}}</h6>
-                        <h6 class="mb-1">Name Ar: {{contact.name_ar}}</h6>
-                        <p class="mb-1">Position: {{contact.position}}</p>
-                        <p class="mb-1">Position Ar: {{contact.position_ar}}</p>
+                        <h6 class="mb-1" dir="rtl">الاسم: {{contact.name_ar}}</h6>
+                        <p class="mb-1">Job title: {{contact.position}}</p>
+                        <p class="mb-1" dir="rtl">المسمى الوظيفي بالانجليزي: {{contact.position_ar}}</p>
                         <p class="mb-1">Mobile: {{contact.mobile}}</p>
                         <p class="mb-1">Extension: {{contact.extension}}</p>
                     </div>
@@ -66,11 +66,11 @@
             <input type="text" name="name_ar" formControlName="name_ar" class="form-control form-control-sm" required/>
         </div>
         <div class="form-group mb-3">
-            <label>Position</label>
+            <label>Job Title</label>
             <input type="text" name="position" formControlName="position" class="form-control form-control-sm" required/>
         </div>
         <div class="form-group mb-3" dir="rtl">
-            <label>Position Arabic</label>
+            <label>المسمى الوظيفي بالانجليزي</label>
             <input type="text" name="position_ar" formControlName="position_ar" class="form-control form-control-sm" required/>
         </div>
         <div class="form-group mb-3">

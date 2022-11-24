@@ -27,6 +27,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.calendarOptions = {
       initialView: 'dayGridMonth',
       themeSystem: 'bootstrap5',
+      headerToolbar: {
+        left: 'prev',
+        center: 'title',
+        right: 'next'
+      },
       eventClick: function(_event){
         util.publishEvent(_event.event);
       },
@@ -60,9 +65,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.currentLang = this.util.getCurrentLang();
-    // this.util.observLang().subscribe(_res=>{
-    //   this.currentLang = _res;
-    // });
+    this.calendarOptions.locale = this.currentLang;
+    this.util.observLang().subscribe(_res=>{
+      this.currentLang = _res;
+      this.calendarOptions.locale = _res;
+    });
     console.log('this.currentLang', this.currentLang);
     this.afterLogin();
     this.util.observlogin().subscribe((_res :any)=>{

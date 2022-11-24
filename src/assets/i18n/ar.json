@@ -1,4 +1,10 @@
 {
     "home": "الرئيسية",
-    "viewAllEvents": "عرض جميع الفعاليات"
+    "viewAllEvents": "عرض جميع الفعاليات",
+    "events": "الفعاليات",
+    "announcements": "الاعلانات",
+    "name": "الاسم",
+    "jobTitle": "المسمى الوظيفي بالانجليزي",
+    "mobile": "Mobile",
+    "extension": "رقم التحويلة"
 }

@@ -56,22 +56,26 @@ export class InternalComponent implements OnInit {
   afterLoginMenu(){
     this.userData = JSON.parse(localStorage.getItem('currentUser') || '{}');
     if(this.userData.token){
-     this.items = [
+      this.items = [
         {
           label: this.userData.username,
-          disabled: true,
-          styleClass: 'username'
-         },
-          {label:'Settings',
-             icon:'pi pi-fw pi-chart-pie',
-             command:e => this.goToAdmin(e)
-         },
-         {
-          label:'Logout',
-          icon:'pi pi-fw pi-lock',
-          command:e => this.logout(e)
-      }
-     ]
+          
+          items:[
+              {
+                  label:'Settings',
+                  icon:'pi pi-fw pi-chart-pie',
+                  command:e => this.goToAdmin(e)
+  
+              },
+              {
+                  label:'Logout',
+                  icon:'pi pi-fw pi-lock',
+                  command:e => this.logout(e)
+              }
+          ]
+      },
+      ]
+     
     }
   }
 
@@ -115,5 +119,13 @@ export class InternalComponent implements OnInit {
     console.log('lang', _ev);
   }
 
+
+  goToPage(_page: any){
+    if(_page.target == "_self"){
+      this.router.navigate([_page.slug])
+    }else{
+      window.open(_page.slug, '_blank');
+    }
+  }
   
 }

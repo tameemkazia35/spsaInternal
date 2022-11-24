@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
     this.items = [
       {
         label: this.userData.username,
-        icon:'pi pi-fw pi-user',
+        
         items:[
             {
                 label:'Home',

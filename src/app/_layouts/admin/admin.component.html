@@ -35,10 +35,14 @@
                 <a class="nav-link text-white" routerLink="/admin/users"><span class="material-icons-round me-2">groups</span>Users</a>
             </li>
           </ul>
-          <p-menu [model]="items" [popup]="true">
-        </p-menu>
+
+          <div class="d-flex" dir="ltr">
+            <button class="rounded-circle btn btn-small btn-secondary menu-toggle me-2" (click)="admenu.toggle($event)"><span class="material-icons-round">person_rounded</span></button>
+          </div>
         </div>
       </nav>
 </header>
+
+<p-menu #admenu [model]="items" [popup]="true"></p-menu>
  
 <router-outlet></router-outlet>

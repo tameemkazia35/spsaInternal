@@ -33,6 +33,7 @@ export class LinksWizardComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private confirmationService: ConfirmationService, private messageService: MessageService, private service: ApiService) { }
 
   ngOnInit(): void {
+    console.log('this.data', this.data);
     if(this.data){
       this.quickLinks = JSON.parse(this.data);
     }else{

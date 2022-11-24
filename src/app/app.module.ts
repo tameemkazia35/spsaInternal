@@ -52,6 +52,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventListComponent } from './_layouts/internal/pages/event-list/event-list.component';
 import { EventDetailsComponent } from './_layouts/internal/pages/event-details/event-details.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -108,6 +109,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     InputTextModule,
     FieldsetModule,
     FullCalendarModule,
+    Ng2SearchPipeModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

@@ -27,6 +27,7 @@
     "bootstrap": "^5.2.2",
     "material-icons": "^1.12.2",
     "moment": "^2.29.4",
+    "ng2-search-filter": "^0.5.1",
     "ngx-file-drop": "^14.0.1",
     "ngx-nestable": "^0.9.4",
     "ngx-spinner": "^14.0.0",
