@@ -1,70 +1,79 @@
 <div class="container-fluid">
     <p-breadcrumb [model]="items"></p-breadcrumb>
     <form name="event-form" [formGroup]="pageForm">
-    <div class="row my-4">
-        <div class="col-md-5">
-            <h4 class="text-center">English</h4>
-            <div class="card p-2">
-                <div class="form-group mb-3">
-                    <label>Name</label>
-                    <input class="form-control" placeholder="Name" name="Title" formControlName="Title" required [ngClass]="{ 'is-invalid': submitted && f.Title.errors }"/>
-                    <div *ngIf="submitted && f.Title.invalid" class="invalid-feedback">
-                        <div *ngIf="f.Title.errors?.required">This field is required</div>
-                      </div>
-                </div>
+        <div class="row my-4">
+            <div class="col-md-5">
+                <h4 class="text-center">English</h4>
+                <div class="card p-2">
+                    <div class="form-group mb-3">
+                        <label>Name</label>
+                        <input class="form-control" placeholder="Name" name="Title" formControlName="Title" required
+                            [ngClass]="{ 'is-invalid': submitted && f.Title.errors }" />
+                        <div *ngIf="submitted && f.Title.invalid" class="invalid-feedback">
+                            <div *ngIf="f.Title.errors?.required">This field is required</div>
+                        </div>
+                    </div>
 
-                <div class="mb-3" *ngIf="pageComponents?.components?.id != 'contacts' && pageComponents?.components?.id != 'home'">
-                    <label dir="rtl" >Description</label>
-                    <p-editor [style]="{'height':'150px'}" formControlName="Content"></p-editor>
-                </div>
+                    <div class="mb-3"
+                        *ngIf="pageComponents?.components?.id != 'contacts' && pageComponents?.components?.id != 'home'">
+                        <label dir="rtl">Description</label>
+                        <p-editor [style]="{'height':'150px'}" formControlName="Content"></p-editor>
+                    </div>
 
-                <div class="form-group mb-3">
-                    <label>Banner</label>
-                    <input type="file" class="form-control" placeholder="Banner" (change)="handleFileSelect($event, 'en')"/>
-                    <img class="banner-preview mt-3 img-fluid" [src]="pageForm.value.Banner"/>
+                    <div class="form-group mb-3">
+                        <label>Banner</label>
+                        <input type="file" class="form-control" placeholder="Banner"
+                            (change)="handleFileSelect($event, 'en')" />
+                        <img class="banner-preview mt-3 img-fluid" [src]="pageForm.value.Banner" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h4 class="text-center">عربى</h4>
+                <div class="card p-2">
+                    <div class="form-group mb-3" dir="rtl">
+                        <label class="text-end">الاسم</label>
+                        <input class="form-control" placeholder="الاسم" formControlName="Title_ar" required
+                            [ngClass]="{ 'is-invalid': submitted && f.Title_ar.errors }" />
+                        <div *ngIf="submitted && f.Title_ar.invalid" class="invalid-feedback">
+                            <div *ngIf="f.Title_ar.errors?.required">This field is required</div>
+                        </div>
+                    </div>
+                    <div class="mb-3" dir="rtl"
+                        *ngIf="pageComponents?.components?.id != 'contacts' && pageComponents?.components?.id != 'home'">
+                        <label class="text-end">وصف</label>
+                        <p-editor class="arabic" [style]="{'height':'150px'}" formControlName="Content_ar"></p-editor>
+                    </div>
+
+                    <div class="form-group mb-3" dir="rtl">
+                        <label>Banner Arabic</label>
+                        <input type="file" class="form-control" placeholder="Banner"
+                            (change)="handleFileSelect($event, 'ar')" />
+                        <img class="banner-preview mt-3 img-fluid" [src]="pageForm.value.Banner_ar" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <h4 class="text-center">Action</h4>
+                <div class="card p-2 action-card">
+                    <div class="d-grid">
+                        <button class="btn btn-secondary btn-block" (click)="checkEditOrNew()">{{editPage ? 'Update' :
+                            'Save'}}</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
-            <h4 class="text-center">عربى</h4>
-            <div class="card p-2">
-                <div class="form-group mb-3" dir="rtl">
-                    <label class="text-end">الاسم</label>
-                    <input class="form-control" placeholder="الاسم" formControlName="Title_ar" required [ngClass]="{ 'is-invalid': submitted && f.Title_ar.errors }"/>
-                    <div *ngIf="submitted && f.Title_ar.invalid" class="invalid-feedback">
-                        <div *ngIf="f.Title_ar.errors?.required">This field is required</div>
-                      </div>
-                </div>
-                <div class="mb-3" dir="rtl" *ngIf="pageComponents?.components?.id != 'contacts' && pageComponents?.components?.id != 'home'">
-                    <label class="text-end">وصف</label>
-                    <p-editor class="arabic" [style]="{'height':'150px'}" formControlName="Content_ar"></p-editor>
-                </div>
-
-                <div class="form-group mb-3" dir="rtl">
-                    <label>Banner Arabic</label>
-                    <input type="file" class="form-control" placeholder="Banner" (change)="handleFileSelect($event, 'ar')"/>
-                    <img class="banner-preview mt-3 img-fluid" [src]="pageForm.value.Banner_ar"/>
-                </div>
+        <div class="row">
+            <div class="col-12">
+                <ng-container *ngIf="pageComponents?.components?.id == 'contacts'">
+                    <app-contact-wizard (contactData)="recieveData($event)" [data]="pageComponents.data">
+                    </app-contact-wizard>
+                </ng-container>
+                <ng-container
+                    *ngIf="(!editPage || pageComponents?.components?.id == 'links' || pageComponents?.components?.id == 'home') && showLink == true">
+                    <app-links-wizard [data]="pageComponents.data" (otherData)="recieveData($event)"></app-links-wizard>
+                </ng-container>
             </div>
         </div>
-        <div class="col-md-2">
-            <h4 class="text-center">Action</h4>
-            <div class="card p-2 action-card">
-                <div class="d-grid">
-                    <button class="btn btn-secondary btn-block" (click)="checkEditOrNew()">{{editPage ? 'Update' : 'Save'}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <ng-container *ngIf="pageComponents?.components?.id == 'contacts'">
-            <app-contact-wizard (contactData)="recieveData($event)" [data]="pageComponents.data"></app-contact-wizard>
-        </ng-container>
-        <ng-container *ngIf="!editPage || pageComponents?.components?.id == 'links' || pageComponents?.components?.id == 'home'">
-            <app-links-wizard [data]="pageComponents.data" (otherData)="recieveData($event)" ></app-links-wizard>
-        </ng-container>
-        </div>
-    </div>
     </form>
 </div>

@@ -26,8 +26,9 @@ export class PageComponent implements OnInit {
   pageData: any;
   parsedData: any;
   mediaPath: string = '';
-  pageComponents: any = {components: {id: '', json: []}};
+  pageComponents: any = {components: {id: 'links'}, data: null };
   submitted: boolean = false;
+  showLink: boolean = false;
 
   constructor(private messageService: MessageService, private route: ActivatedRoute, private formBuilder: FormBuilder, private service: ApiService, private spinner: NgxSpinnerService, private router: Router) { 
     this.mediaPath = environment.mediaPath;
@@ -53,8 +54,9 @@ export class PageComponent implements OnInit {
       }else{
         this.items = [
           {label: 'Pages', routerLink: '/admin/pages'},
-          {label: 'New Page', disabled: true}
+          {label: 'New Link Page', disabled: true}
       ];
+      this.showLink = true;
       }
     })
   }
@@ -66,7 +68,7 @@ export class PageComponent implements OnInit {
         {label: _res.page.title, disabled: true}
     ];
      
-      console.log(this.items);
+     console.log(this.items);
      this.pageData = _res;
      this.parsedData = _res.page;
      this.pageForm.controls['Title'].setValue(this.parsedData.title);
@@ -83,10 +85,12 @@ export class PageComponent implements OnInit {
      }
 
      this.pageComponents.components.id = this.pageData.page.pageComponents.components.id;
+     debugger;
      if(this.pageData.page.pageComponents.components){
-      this.pageComponents.components.json = this.pageData.page.pageComponents.components.jsonData;
-      this.pageComponents.data = this.pageData.page.pageComponents.data;
+       if(this.pageData.page.pageComponents.data)
+        this.pageComponents.data = JSON.parse(this.pageData.page.pageComponents.data);
      }
+     this.showLink = true;
     })
   }
 
@@ -127,7 +131,7 @@ _handleReaderLoaded(readerEvt: any) {
     }
 
     recieveData(_ev: any){
-      this.pageComponents.components.json = _ev;
+      this.pageComponents.data = _ev;
       console.log(_ev);
     }
   
@@ -155,8 +159,8 @@ _handleReaderLoaded(readerEvt: any) {
       "Content_ar": this.pageForm.value.Content_ar,
       "Tags": 0,
       "PageComponents": {
-          "ComponentsId": this.pageComponents.components.json.code,
-          "Data": JSON.stringify(this.pageComponents.components.json)
+          "ComponentsId": this.pageComponents.components.Id,
+          "Data": JSON.stringify(this.pageComponents.data)
       }
     }
     this.spinner.show();
@@ -186,7 +190,7 @@ _handleReaderLoaded(readerEvt: any) {
     }
 
     this.pageData.page = JSON.parse(JSON.stringify(this.parsedData));
-    this.parsedData.pageComponents.data = JSON.stringify(this.pageComponents.components.json);
+    this.parsedData.pageComponents.data = JSON.stringify(this.pageComponents.data);
     this.spinner.show();
     this.service.put(apis.pageUpdate, this.parsedData, this.pageData.page.id).subscribe(_res=>{
       this.spinner.hide();
