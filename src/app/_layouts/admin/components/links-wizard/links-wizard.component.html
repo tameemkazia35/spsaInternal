@@ -5,13 +5,16 @@
     <div class="card p-4">
         <div class="row mb-4">
             <div class="col-md-3" *ngFor="let link of quickLinks?.schema?.links; let i = index;">
-               
+
                 <div class="card">
                     <div class="remove-contact">
-                        <button class="rounded-circle btn btn-sm btn-light mr-2" (click)="edit(link, i)"><span class="material-icons-round">edit_rounded</span></button>
-                        <button class="rounded-circle btn btn-sm btn-light" (click)="removeConfirm(link)"><span class="material-icons-round">clear_rounded</span></button>
+                        <button class="rounded-circle btn btn-sm btn-warning mx-1" (click)="edit(link, i)"><span
+                                class="material-icons-round">edit_rounded</span></button>
+                        <button class="rounded-circle btn btn-sm btn-danger " (click)="removeConfirm(link)"><span
+                                class="material-icons-round">clear_rounded</span></button>
                     </div>
-                    <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="link.icon" class="card-img-top img-fluid" [alt]="link.text"/>
+                    <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="link.icon"
+                        class="card-img-top img-fluid" [alt]="link.text" />
                     <div class="card-body text-center">
                         <h5 class="mb-3">{{link.text}}</h5>
                         <p>{{link.desc}}</p>
@@ -19,12 +22,12 @@
                 </div>
             </div>
         </div>
-    <div class="row">
-        <div class="col-sm-3 text-center m-auto">
-            <button class="btn btn-primary" (click)="addLinks()">Add Links</button>
+        <div class="row">
+            <div class="col-sm-3 text-center m-auto">
+                <button class="btn btn-primary" (click)="addLinks()">Add Links</button>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 
@@ -35,24 +38,27 @@
     </ng-template>
     <form class="quick-form" name="quick-form" [formGroup]="quickLinkForm">
         <div class="modal-content">
-            <img class="img-fluid m-auto" [src]="quickLinkForm.value.icon"/>
+            <img class="img-fluid m-auto" [src]="quickLinkForm.value.icon" />
             <div class="form-group mb-3">
                 <label>Image</label>
-                <input type="file" name="image" class="form-control" formControlName="raw" (change)="handleFileSelect($event)"/>
+                <input type="file" name="image" class="form-control" formControlName="raw"
+                    (change)="handleFileSelect($event)" />
                 <div id="emailHelp" class="form-text">Image size(px): 180W x 100H</div>
             </div>
             <div class="form-group mb-3">
                 <label>Name</label>
-                <input type="text" name="test" class="form-control" required formControlName="text" required [ngClass]="{ 'is-invalid': submitted && f.text.errors }"/>
+                <input type="text" name="test" class="form-control" required formControlName="text" required
+                    [ngClass]="{ 'is-invalid': submitted && f.text.errors }" />
                 <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
                     <div *ngIf="f.text.errors?.required">This field is required</div>
                 </div>
             </div>
             <div class="form-group mb-3" dir="rtl">
                 <label>Arabic Name</label>
-                <input type="text" name="textAr" class="form-control" required formControlName="text_ar" required [ngClass]="{ 'is-invalid': submitted && f.text_ar.errors }"/>
+                <input type="text" name="textAr" class="form-control" required formControlName="text_ar" required
+                    [ngClass]="{ 'is-invalid': submitted && f.text_ar.errors }" />
                 <div *ngIf="submitted && f.text_ar.invalid" class="invalid-feedback">
-                <div *ngIf="f.text_ar.errors?.required">This field is required</div>
+                    <div *ngIf="f.text_ar.errors?.required">This field is required</div>
                 </div>
             </div>
             <div class="form-group mb-3">
@@ -65,7 +71,8 @@
             </div>
             <div class="form-group mb-3">
                 <label>Link Url</label>
-                <input type="url" name="LinkUrl" class="form-control" required formControlName="url" required [ngClass]="{ 'is-invalid': submitted && f.url.errors }"/>
+                <input type="url" name="LinkUrl" class="form-control" required formControlName="url" required
+                    [ngClass]="{ 'is-invalid': submitted && f.url.errors }" />
                 <div *ngIf="submitted && f.url.invalid" class="invalid-feedback">
                     <div *ngIf="f.url.errors?.required">This field is required</div>
                 </div>
@@ -82,7 +89,8 @@
         </div>
 
         <div class="text-end">
-            <button type="submit" class="btn btn-secondary px-5" (click)="Add()">{{editLink ? 'Update' : 'Add'}}</button>
+            <button type="submit" class="btn btn-secondary px-5" (click)="Add()">{{editLink ? 'Update' :
+                'Add'}}</button>
         </div>
 
     </form>
