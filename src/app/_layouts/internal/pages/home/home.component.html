@@ -11,7 +11,7 @@
                 <div class="service-item px-4 py-5">
                     <a [href]="service.url" [target]="service.target">
                     <div class="s-icon">
-                        <img [src]="service.icon" class="img-fluid"/>
+                        <img onerror="this.src='./assets/images/noimageavailable.png'" [src]="service.icon" class="img-fluid"/>
                     </div>
                     <h4>{{currentLang == 'ar' ? service.text_ar : service.text }}</h4>
                     <p>{{currentLang == 'ar' ?  service.desc_ar : service.desc}}</p>
