@@ -47,7 +47,6 @@ export class AnnouncementComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(_res => {
-      debugger;
       if(_res?.type == 'edit'){
           this.editNews = true;
           this.pageSlug = _res.id;
@@ -125,7 +124,6 @@ export class AnnouncementComponent implements OnInit {
   }
 
   deleteDoc(media:any, index: number){
-    debugger;
     this.service.delete(apis.uploadMedia+'/', media.id, '').subscribe(_res=>{
       this.uploadedImages.splice(index, 1);    
       this.toastMessage('Success', 'Media deleted successfully');
@@ -202,7 +200,7 @@ export class AnnouncementComponent implements OnInit {
     }
     this.pageData.page = JSON.parse(JSON.stringify(this.parsedData));
     this.pageData.page.pageMedias = this.uploadedImages;
-    debugger;
+    
     this.spinner.show();
     this.service.put(apis.pageUpdate, this.parsedData, this.pageData.page.id).subscribe(_res=>{
       this.spinner.hide();

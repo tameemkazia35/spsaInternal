@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
     this.AuthenticationService.login(payload)
       .subscribe(
         data => {
+          this.spinner.hide();
           if(data.token){
             data.username = this.loginForm.value.username;
             this.util.publishlogin(data);

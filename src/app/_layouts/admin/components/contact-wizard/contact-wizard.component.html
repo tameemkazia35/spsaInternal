@@ -65,7 +65,7 @@
 
         <div class="row">
             <div class="col-12">
-                <img class="img-fluid m-auto" [src]="contactForm.value.photo" />
+                <img class="img-fluid img-thumbnail m-auto emp-avatar" [src]="contactForm.value.photo" />
                 <div class="form-group mb-3">
                     <label>Photo</label>
                     <input #fileInput type="file" name="photo" class="form-control form-control-sm" (change)="handleFileSelect($event)"/>

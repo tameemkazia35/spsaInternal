@@ -86,7 +86,7 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
 
   get f() { return this.quickLinkForm.controls; }
   Add() {
-    debugger;
+    
     this.submitted = true;
     if (this.quickLinkForm.invalid) {
       return;

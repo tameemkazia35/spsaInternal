@@ -34,8 +34,7 @@ export class ContactWizardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
-    console.log(this.data);
+    
     if(this.data){
       
       if(this.data.schema == undefined){
@@ -81,7 +80,7 @@ export class ContactWizardComponent implements OnInit {
     if (this.contactForm.invalid) {
       return;
     }
-    debugger;
+    
     if (this.editLink) { 
       this.selectedDepartment.contact[this.cloneOject.id] = this.contactForm.value;
       this.editLink = false;

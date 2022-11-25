@@ -51,7 +51,7 @@ export class QuickLinksComponent implements OnInit {
   }
 
   deleteItem(_item:  any){
-    debugger;
+    
     this.service.delete(apis.MyQuickLinks+'/'+_item.id,'', '').subscribe(_res=>{
       this.quickLinks.splice(this.selectedList.indexOf(_item), 1);
       this.quickLinks = this.quickLinks.filter((_res: { $$id: any; }) => _res.$$id != _item.$$id);

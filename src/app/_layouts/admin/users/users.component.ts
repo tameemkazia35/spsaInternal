@@ -47,7 +47,6 @@ onRowEditSave(user: any) {
 }
 
 onRowEditCancel(user: any, index: number) {
-  debugger;
   this.users[index] = JSON.parse(JSON.stringify(this.clonedUser));
   this.clonedUser = {};
 }

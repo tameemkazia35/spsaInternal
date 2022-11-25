@@ -146,7 +146,7 @@ _handleReaderLoaded(readerEvt: any) {
   }
   get f() { return this.pageForm.controls; }
   submit(){
-    debugger;
+    
     this.submitted = true;
     if (this.pageForm.invalid) {
       return;

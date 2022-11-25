@@ -48,7 +48,7 @@ export class EventComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(_res => {
-      debugger;
+      
       if(_res?.type == 'edit'){
           this.editEvent = true;
           this.pageSlug = _res.id;

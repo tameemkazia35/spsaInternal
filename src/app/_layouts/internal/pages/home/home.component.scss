@@ -159,10 +159,8 @@ full-calendar{
 }
 
 .attachments{ 
-    h5{
-        background: #EAEAE6;
-        border-radius: 6px;
-        font-size: 16px;
+    h6{
+        border-bottom: 1px solid #EAEAE6;
     }
     ul{
          li {
@@ -173,13 +171,11 @@ full-calendar{
     border-bottom: 1px solid #ced4da;
     padding-bottom: 8px;
     margin-bottom: 8px;
-    button{
-        height: 36px;
-    }
+    
     img {
         width: 64px;
         height: 64px;
-        object-fit: cover;
+        object-fit: contain;
     }
 }
 }
