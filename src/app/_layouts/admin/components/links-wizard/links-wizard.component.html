@@ -32,65 +32,98 @@
 
 
 <p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-    [style]="{width: '500px', padding: '0'}">
+    [style]="{width: '700px', padding: '0'}">
     <ng-template pTemplate="header">
         <h3>{{editLink ? 'Edit Link' : 'Add Link'}}</h3>
     </ng-template>
     <form class="quick-form" name="quick-form" [formGroup]="quickLinkForm">
         <div class="modal-content">
-            <img class="img-fluid m-auto" [src]="quickLinkForm.value.icon" />
-            <div class="form-group mb-3">
-                <label>Image</label>
-                <input type="file" name="image" class="form-control" formControlName="raw"
-                    (change)="handleFileSelect($event)" />
-                <div id="emailHelp" class="form-text">Image size(px): 180W x 100H</div>
-            </div>
-            <div class="form-group mb-3">
-                <label>Name</label>
-                <input type="text" name="test" class="form-control" required formControlName="text" required
-                    [ngClass]="{ 'is-invalid': submitted && f.text.errors }" />
-                <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
-                    <div *ngIf="f.text.errors?.required">This field is required</div>
+
+            <div class="row">
+                <div class="col-12">
+                    <img class="img-fluid m-auto" [src]="quickLinkForm.value.icon" />
+                    <div class="form-group mb-3">
+                        <label>Image</label>
+                        <input type="file" name="image" class="form-control" formControlName="raw"
+                            (change)="handleFileSelect($event)" />
+                        <div id="emailHelp" class="form-text">Image size(px): 180W x 100H</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group mb-3">
+                        <label>Name</label>
+                        <input type="text" name="test" class="form-control" required formControlName="text" required
+                            [ngClass]="{ 'is-invalid': submitted && f.text.errors }" />
+                        <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
+                            <div *ngIf="f.text.errors?.required">This field is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Description</label>
+                        <textarea type="text" name="desc" class="form-control" formControlName="desc"></textarea>
+                    </div>
+
+                </div>
+                <div class="col-6" dir="rtl">
+                    <div class="form-group mb-3" dir="rtl">
+                        <label>Arabic Name</label>
+                        <input type="text" name="textAr" class="form-control" required formControlName="text_ar" required
+                            [ngClass]="{ 'is-invalid': submitted && f.text_ar.errors }" />
+                        <div *ngIf="submitted && f.text_ar.invalid" class="invalid-feedback">
+                            <div *ngIf="f.text_ar.errors?.required">This field is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3" dir="rtl">
+                        <label>Arabic Description</label>
+                        <textarea type="text" name="descAr" class="form-control" formControlName="desc_ar"></textarea>
+                    </div>
+
+                </div>
+                <div class="col-9">
+                    <div class="form-group mb-3">
+                        <label>Link Url</label>
+                    <input type="url" name="LinkUrl" class="form-control" required formControlName="url" required
+                        [ngClass]="{ 'is-invalid': submitted && f.url.errors }" />
+                    <div *ngIf="submitted && f.url.invalid" class="invalid-feedback">
+                        <div *ngIf="f.url.errors?.required">This field is required</div>
+                    </div>
+                    </div>
+
+                    
+                </div>
+                <div class="col-3">
+
+                    <div class="form-group mb-3">
+                        <label>Target</label>
+                        <select name="target" class="form-control" formControlName="target">
+                            <option value="_blank" selected>_blank</option>
+                            <option value="_self">_self</option>
+                            <option value="_parent">_parent</option>
+                            <option value="_top">_top</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="col-12 text-end my-3">
+                    <button type="submit" class="btn btn-secondary px-5" (click)="Add()">{{editLink ? 'Update' :
+                        'Add'}}</button>
                 </div>
             </div>
-            <div class="form-group mb-3" dir="rtl">
-                <label>Arabic Name</label>
-                <input type="text" name="textAr" class="form-control" required formControlName="text_ar" required
-                    [ngClass]="{ 'is-invalid': submitted && f.text_ar.errors }" />
-                <div *ngIf="submitted && f.text_ar.invalid" class="invalid-feedback">
-                    <div *ngIf="f.text_ar.errors?.required">This field is required</div>
-                </div>
-            </div>
-            <div class="form-group mb-3">
-                <label>Description</label>
-                <textarea type="text" name="desc" class="form-control" formControlName="desc"></textarea>
-            </div>
-            <div class="form-group mb-3" dir="rtl">
-                <label>Arabic Description</label>
-                <textarea type="text" name="descAr" class="form-control" formControlName="desc_ar"></textarea>
-            </div>
-            <div class="form-group mb-3">
-                <label>Link Url</label>
-                <input type="url" name="LinkUrl" class="form-control" required formControlName="url" required
-                    [ngClass]="{ 'is-invalid': submitted && f.url.errors }" />
-                <div *ngIf="submitted && f.url.invalid" class="invalid-feedback">
-                    <div *ngIf="f.url.errors?.required">This field is required</div>
-                </div>
-            </div>
-            <div class="form-group mb-3">
-                <label>Target</label>
-                <select name="target" class="form-control" formControlName="target">
-                    <option value="_blank" selected>_blank</option>
-                    <option value="_self">_self</option>
-                    <option value="_parent">_parent</option>
-                    <option value="_top">_top</option>
-                </select>
-            </div>
+
+            
+            
+            
+           
+            
+            
+            
         </div>
 
         <div class="text-end">
-            <button type="submit" class="btn btn-secondary px-5" (click)="Add()">{{editLink ? 'Update' :
-                'Add'}}</button>
+            
         </div>
 
     </form>

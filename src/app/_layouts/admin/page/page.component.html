@@ -1,12 +1,27 @@
 <div class="container-fluid">
     <p-breadcrumb [model]="items"></p-breadcrumb>
-    <div class="section-title">
-        <h5 class="my-3 text-uppercase">Page <span *ngIf="editPage">Editing</span></h5>
+    
+
+    <div class="row">
+        <div class="col-10">
+            <div class="section-title">
+                <h5 class="my-3 text-uppercase">Page <span *ngIf="editPage">Editing</span></h5>
+            </div>
+        </div>
+        <div class="col-2 text-end">
+            <button class="btn btn-secondary btn-block" (click)="checkEditOrNew()">
+                <span class="d-flex">
+                    <span class="material-icons">save</span>
+                    <span class="mx-2">{{editPage ? 'Update & Publish' : 'Save & Publish'}}</span>
+                </span>
+            </button>
+        </div>
     </div>
+
     <form name="event-form" [formGroup]="pageForm">
         <div class="row my-4">
 
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-6 mb-2">
                         <div class="card">
@@ -93,19 +108,7 @@
                 </div>
             </div>
             
-            <div class="col-md-2">
-                <div class="card action-card">
-                    <div class="card-header">
-                        Action
-                    </div>
-                    <div class="card-body">
-                        <div class="d-grid">
-                            <button class="btn btn-secondary btn-block" (click)="checkEditOrNew()">{{editPage ? 'Update & Publish' :
-                                'Save & Publish'}}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
         </div>
         
