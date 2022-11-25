@@ -100,8 +100,6 @@ export class QuickLinksComponent implements OnInit {
   toastMessage(_msg: string, _desc: string, _severity: string = 'success') {
     this.messageService.add({life: 5000,severity: _severity, summary: _msg, detail: _desc});
     }
-  
-
 
   get f() { return this.quickLinkForm.controls; }
   submit() {
@@ -128,5 +126,4 @@ export class QuickLinksComponent implements OnInit {
       this.toastMessage('Success', 'Quick link added successfully');
     })
   }
-
 }

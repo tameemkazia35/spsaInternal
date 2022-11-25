@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { apis } from 'src/app/_enum/apiEnum';
 import { ApiService } from 'src/app/_services/api.service';
 import { UtilService } from 'src/app/_services/util.service';
@@ -15,8 +16,41 @@ export class ContactComponent implements OnInit {
   pageData: any;
   currentLang: any;
   searchText: any = '';
+  items: MenuItem[];
+  active: boolean = false;
+  
+  constructor(private router: Router, private service: ApiService, private util: UtilService) {
+    this.items = [
+      {
+          label: 'pencil',
+          command: () => {
+              // this.messageService.add({ severity: 'info', summary: 'Add', detail: 'Data Added' });
+          }
+      },
+      {
+          icon: 'pi pi-refresh',
+          command: () => {
+              // this.messageService.add({ severity: 'success', summary: 'Update', detail: 'Data Updated' });
+          }
+      },
+      {
+          icon: 'pi pi-trash',
+          command: () => {
+              // this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
+          }
+      },
+      {
+          icon: 'pi pi-upload',
+          routerLink: ['/fileupload']
+      },
+      {
+          icon: 'pi pi-external-link',
+          url: 'http://angular.io'
 
-  constructor(private router: Router, private service: ApiService, private util: UtilService) { }
+      }
+  ];
+
+   }
 
   ngOnInit(): void {
     this.getPageBySlug();

@@ -76,7 +76,11 @@ export class EventComponent implements OnInit {
       this.eventForm.controls['Banner_ar'].setValue(this.mediaPath + this.parsedData.banner_ar);
       this.eventForm.controls['startDateTime'].setValue(new Date(this.parsedData.startDateTime));
       this.eventForm.controls['endDateTime'].setValue(new Date(this.parsedData.endDateTime));
-      console.log('parsed data', moment(this.parsedData.startDateTime));
+      if(this.parsedData.pageMedias?.length > 0){
+        this.parsedData.pageMedias.forEach((_item: any) => {
+            this.uploadedImages.push({imageUrl: this.mediaPath + _item.url, id: _item.id});
+        });
+    }
     })
   }
 
@@ -116,18 +120,36 @@ export class EventComponent implements OnInit {
 
   uploadAvatar(_imageSrc: any, _file: File) {
     if(this.uploadedImages.length < 10){
-      this.uploadedImages.push({
-        imageUrl: _imageSrc,
-        fileSize: this.formatBytes(_file.size),
-        fileName: _file.name.replace(/ /g, '_'),
-      });
+      this.uploadMedia(_imageSrc);
     }else{
-      this.toastMessage('Max warning', 'Maximum 10 images can be uploaded', 'warn');
+      this.toastMessage('Max warning', 'Maximum 10 media files can be uploaded', 'warn');
     }
   }
 
-  deleteDoc(index: number){
-    this.uploadedImages.splice(index, 1);    
+  uploadMedia(_base64: string){
+    var payload = {"PagesId": this.pageData.page.id, "URL": _base64};
+    this.service.post(apis.uploadMedia, payload).subscribe(_res=>{
+      if(_res.media){
+        this.uploadedImages.push({
+          imageUrl: _res.media.url,
+          id: _res.media.id,
+          mime: _res.media.mime,
+          pagesId: _res.media.pagesId
+        });
+        this.toastMessage('Success', 'Announcement media uploaded successfully', 'success');
+      }else{
+        this.toastMessage('Error', 'Something went wrong. Please try again later', 'error');  
+      }
+    }, error=>{
+      this.toastMessage('Error', 'Something went wrong. Please try again later', 'error');
+    })
+  }
+
+  deleteDoc(media: any, index: number){
+    this.service.delete(apis.uploadMedia+'/', media.id, '').subscribe(_res=>{
+      this.uploadedImages.splice(index, 1);    
+      this.toastMessage('Success', 'Media deleted successfully');
+    })
   }
 
   public fileOver(event: Event){

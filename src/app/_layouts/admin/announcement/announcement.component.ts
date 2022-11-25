@@ -75,8 +75,8 @@ export class AnnouncementComponent implements OnInit {
       this.newsForm.controls['Banner_ar'].setValue(this.mediaPath + this.parsedData.banner_ar);
 
       if(this.parsedData.pageMedias?.length > 0){
-          this.parsedData.pageMedias.forEach((_item: { url: string; }) => {
-              this.uploadedImages.push({imageUrl: this.mediaPath + _item.url})
+          this.parsedData.pageMedias.forEach((_item: any) => {
+              this.uploadedImages.push({imageUrl: this.mediaPath + _item.url, id: _item.id, mime: _item.mime});
           });
       }
     })
@@ -117,19 +117,21 @@ export class AnnouncementComponent implements OnInit {
 
   uploadAvatar(_imageSrc: any, _file: File) {
     if(this.uploadedImages.length < 10){
-      this.uploadedImages.push({
-        imageUrl: _imageSrc,
-        fileSize: this.formatBytes(_file.size),
-        fileName: _file.name.replace(/ /g, '_'),
-      });
+      
       this.uploadMedia(_imageSrc);
     }else{
-      this.toastMessage('Max warning', 'Maximum 10 images can be uploaded', 'warn');
+      this.toastMessage('Max warning', 'Maximum 10 media files can be uploaded', 'warn');
     }
   }
 
-  deleteDoc(index: number){
-    this.uploadedImages.splice(index, 1);    
+  deleteDoc(media:any, index: number){
+    debugger;
+    this.service.delete(apis.uploadMedia+'/', media.id, '').subscribe(_res=>{
+      this.uploadedImages.splice(index, 1);    
+      this.toastMessage('Success', 'Media deleted successfully');
+    })
+    
+    
   }
 
   public fileOver(event: Event){
@@ -159,7 +161,17 @@ export class AnnouncementComponent implements OnInit {
   uploadMedia(_base64: string){
     var payload = {"PagesId": this.pageData.page.id, "URL": _base64};
     this.service.post(apis.uploadMedia, payload).subscribe(_res=>{
-      this.toastMessage('Success', 'Announcement media uploaded successfully', 'success');
+      if(_res.media){
+        this.uploadedImages.push({
+          imageUrl: _res.media.url,
+          id: _res.media.id,
+          mime: _res.media.mime,
+          pagesId: _res.media.pagesId
+        });
+        this.toastMessage('Success', 'Announcement media uploaded successfully', 'success');
+      }else{
+        this.toastMessage('Error', 'Something went wrong. Please try again later', 'error');  
+      }
     }, error=>{
       this.toastMessage('Error', 'Something went wrong. Please try again later', 'error');
     })
@@ -189,11 +201,13 @@ export class AnnouncementComponent implements OnInit {
       this.parsedData.banner_ar = this.parsedData.banner_ar.replace(this.mediaPath, '');
     }
     this.pageData.page = JSON.parse(JSON.stringify(this.parsedData));
+    this.pageData.page.pageMedias = this.uploadedImages;
+    debugger;
     this.spinner.show();
     this.service.put(apis.pageUpdate, this.parsedData, this.pageData.page.id).subscribe(_res=>{
       this.spinner.hide();
       this.toastMessage('Success', 'News updated successfully', 'success');
-      this.router.navigate(['/admin/events']);
+      this.router.navigate(['/admin/announcements']);
     }, error=>{
       this.spinner.hide();
     })
@@ -252,5 +266,5 @@ _handleReaderLoaded(readerEvt: any) {
       return;
     }
   }    
+  
 }
-

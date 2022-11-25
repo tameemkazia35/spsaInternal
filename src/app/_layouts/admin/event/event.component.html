@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label>Banner</label>
-                                <input type="file" class="form-control" placeholder="Banner"
+                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control" placeholder="Banner"
                                     (change)="handleFileSelect($event, 'en')" />
                                 <img class="banner-preview mt-3 img-fluid" [src]="eventForm.value.Banner" />
                             </div>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group mb-3 mt-4" dir="rtl">
                                 <label>Banner Arabic</label>
-                                <input type="file" class="form-control" placeholder="Banner"
+                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control" placeholder="Banner"
                                     (change)="handleFileSelect($event, 'ar')" />
                                 <img class="banner-preview mt-3 img-fluid" [src]="eventForm.value.Banner_ar" />
                             </div>
@@ -77,7 +77,7 @@
                                 <div class="center">
                                     <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
                                         (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)"
-                                        accept="image/*">
+                                        accept="application/pdf, .png, .jpg, .jpeg">
                                         <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
                                             <div class="d-flex flex-column">
                                                 <strong>Drag and Drop your files here.</strong>
@@ -87,7 +87,7 @@
                                                     (click)="openFileSelector()">Browse Files</button>
                                                 <p class="fs-12">
                                                     <strong class="text-primary me-1 fs-6"><small>Note:</small></strong>
-                                                    <small>Maximum 10 images, having 2 MB each can be uploaded.</small>
+                                                    <small>Maximum 10 media files, having 2 MB each can be uploaded.</small>
                                                 </p>
                                             </div>
                                         </ng-template>
@@ -96,14 +96,16 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>image</th>
-                                                    <th>size</th>
+                                                    <th>Image</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="upload-name-style">
                                                 <tr *ngFor="let item of uploadedImages; let i=index">
                                                     <td valign="middle"><img [src]="item.imageUrl" /></td>
-                                                    <td valign="middle">{{item.fileSize}}</td>
+                                                    <td valign="middle" align="center">
+                                                        <button class="btn btn-sm btn-outline-danger rounded d-flex align-item-center p-1 rounded-circle" (click)="deleteDoc(item, i)"><span class="material-icons-round fs-4">delete_outline</span></button>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
