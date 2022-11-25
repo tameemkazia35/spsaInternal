@@ -66,7 +66,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     })
 
     this.util.observEvent().subscribe(_res=>{
-        this.openEvent(_res);
+      var event = this.eventList.filter((_event: any)=> _event.id == _res.id)[0];
+        this.openEvent(event);
     })
     
   }
@@ -158,6 +159,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   }
 
+  }
+
+  openmedia(_media: any){
+    window.open(this.mediaPath + _media.url, '_blank');
   }
 
 }

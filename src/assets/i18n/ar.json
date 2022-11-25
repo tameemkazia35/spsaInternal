@@ -8,5 +8,8 @@
     "mobile": "Mobile",
     "extension": "رقم التحويلة",
     "services": "خدماتنا",
-    "copyright": "حقوق النشر © حكومة الشارقة ، هيئة الوقاية والسلامة ، جميع الحقوق محفوظة"
+    "copyright": "حقوق النشر © حكومة الشارقة ، هيئة الوقاية والسلامة ، جميع الحقوق محفوظة",
+    "attachments": "View attachments",
+    "eventDateTime": "Event date:",
+    "venue":"Venue"
 }

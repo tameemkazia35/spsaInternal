@@ -54,6 +54,7 @@ import { EventListComponent } from './_layouts/internal/pages/event-list/event-l
 import { EventDetailsComponent } from './_layouts/internal/pages/event-details/event-details.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { InnerPagesComponent } from './_layouts/internal/pages/inner-pages/inner-pages.component';
+import {SpeedDialModule} from 'primeng/speeddial';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -112,6 +113,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FieldsetModule,
     FullCalendarModule,
     Ng2SearchPipeModule,
+    SpeedDialModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

@@ -8,5 +8,8 @@
     "mobile": "Mobile",
     "extension": "Extension",
     "services": "Services",
-    "copyright": "Copyright © Government of Sharjah, Prevention and Safety Authority, All Rights Reserved."
+    "copyright": "Copyright © Government of Sharjah, Prevention and Safety Authority, All Rights Reserved.",
+    "attachments": "View attachments",
+    "eventDateTime": "Event date:",
+    "venue":"Venue"
 }
