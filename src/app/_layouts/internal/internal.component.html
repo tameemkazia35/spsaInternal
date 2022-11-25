@@ -23,7 +23,7 @@
         </li>
 
         <li *ngFor="let menu of menuList">
-          <a class="nav-link text-white" (click)="goToPage(menu)"><span class="material-icons-round me-2" *ngIf="menu.iconName">{{menu.iconName}}</span>{{currentLang == 'ar' ? menu.text_ar : menu.text}}</a>
+          <a class="nav-link text-white" (click)="goToPage(menu)" title="{{menu.slug}}"><span class="material-icons-round me-2" *ngIf="menu.iconName">{{menu.iconName}}</span>{{currentLang == 'ar' ? menu.text_ar : menu.text}}</a>
         </li>
 
         <!-- <li>

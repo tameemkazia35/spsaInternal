@@ -77,7 +77,7 @@
         z-index: 999;
         transform: scale(1.05);
         filter: grayscale(0);
-        
+        cursor: pointer;
         :before{
             // transform: rotate(-8deg) scales(1.2);
             border-radius: 50% !important;
