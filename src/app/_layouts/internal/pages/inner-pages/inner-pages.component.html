@@ -7,13 +7,17 @@
     </div>
 </div>
 <div class="container my-5 min-80">
+    <div class="input-group mt-4 search-bar" *ngIf="services?.length > 4">
+        <span class="input-group-text material-icons-round">search_outlined</span>
+        <input type="text" class="form-control mb-4" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search"/>
+    </div>
     <div class="row">
-            <div class="col-md-3 col-12 mb-3" *ngFor="let service of services">
+            <div class="col-md-3 col-12 mb-3" *ngFor="let service of services | filter:searchText;">
                 <div class="service-item px-4 py-5" (click)="goToPage(service)" title="{{service.url}}">
                     <div class="s-icon">
                         <img onerror="this.src='./assets/images/noimageavailable.png'" [src]="service.icon" class="img-fluid"/>
                     </div>
-                    <h4>{{currentLang == 'ar' ? service.text_ar : service.text}}</h4>
+                    <h5>{{currentLang == 'ar' ? service.text_ar : service.text}}</h5>
                     <p>{{currentLang == 'ar' ?  service.desc_ar : service.desc}}</p>
                 </div>
         </div>

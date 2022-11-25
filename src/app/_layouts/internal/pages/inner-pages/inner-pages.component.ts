@@ -13,6 +13,7 @@ export class InnerPagesComponent implements OnInit {
   services: any;
   currentLang: any;
   pageData: any;
+  searchText: any = '';
 
   constructor(private service: ApiService, private route: ActivatedRoute, private router: Router, private util: UtilService) {
     this.route.params.subscribe((_res: any)=>{
