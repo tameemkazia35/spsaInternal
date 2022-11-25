@@ -185,6 +185,39 @@ body{
     }
 }
 
+.search-bar{
+    // height: 50px;
+    // border-radius: 25px;
+    // box-shadow: 0 2px 30px -5px rgb(0 0 0 / 15%);
+    // border: none;
+    // padding-inline: 30px;
+    // transition: .3s all ease;
+    // border: .5px solid #BDBBBB;
+    span{
+        width: 50px;
+        background: transparent;
+        height: 44px;
+        border-right: 0;
+        border-top-left-radius: 25px !important;
+        border-bottom-left-radius: 25px !important;
+        font-size: 24px;
+        color: #BDBBBB
+    }
+
+    input{
+        height: 44px;
+        border-left: 0;
+        border-top-right-radius: 25px !important;
+        border-bottom-right-radius: 25px !important;
+        box-shadow: none;
+        &:focus{
+            border-color: #ced4da;
+            box-shadow: none;
+        }
+    }
+    
+}
+
 //Arabic css
 html[dir="rtl"] {
     header{
@@ -192,7 +225,7 @@ html[dir="rtl"] {
             float: left !important;
         }
     }
-    .container-fluid{
+    .container{
 
     .search-bar{
         input{

@@ -15,6 +15,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 export class AnnouncementsComponent implements OnInit {
   allnews: any = [];
+  searchText: any = '';
   
   constructor(private service: ApiService, private confirmationService: ConfirmationService, private router: Router, private messageService: MessageService,
     private spinner: NgxSpinnerService) { }
