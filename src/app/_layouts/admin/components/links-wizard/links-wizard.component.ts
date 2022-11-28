@@ -21,6 +21,7 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
     target: ['_blank', Validators.required],
     icon: [''],
     isSection: [false],
+    adTag: [''],
     raw: ['']
   });
 
@@ -140,6 +141,7 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
     this.quickLinkForm.controls['target'].setValue(_link.target);
     this.quickLinkForm.controls['icon'].setValue(_link.icon);
     this.quickLinkForm.controls['isSection'].setValue(_link.isSection);
+    this.quickLinkForm.controls['adTag'].setValue(_link.adTag);
     this.cloneOject = _link;
     this.cloneOject.id = _ind;
     this.display = true;

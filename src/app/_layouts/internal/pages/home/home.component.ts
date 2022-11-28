@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   services: any = [];
+  departments: any = [];
   services2: any = [];
   currentLang: any;
   public selectedEvent: any;
@@ -61,6 +62,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     if(this.userData.token){
       this.afterLogin();
     }
+
     this.util.observlogin().subscribe((_res :any)=>{
       this.afterLogin();
     })
@@ -73,18 +75,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   afterLogin(){
+    this.userData = JSON.parse(localStorage.getItem('currentUser') || '{}');
     this.getPageBySlug();
     this.getAllevents();
     this.getAllAnouncements();
   }
 
+
+
   getPageBySlug(){
+    this.services = [];
     this.service.get(apis.pageByUrl, '/').subscribe(_res=>{
       var parseData = JSON.parse(_res.page.pageComponents.data);
-      this.services = parseData.schema.links;
+      this.services =  parseData.schema.links;
+
+      // Filter by Tag
+      if(this.userData['role'] !== 'Admin') {
+        this.services = this.services.filter( (ser: any) =>  this.userData['path'].includes(ser.adTag) );
+      }
+      
       this.services2 = _res.quickLinks;
-      console.log(this.services);
-    })
+    });
   }
 
   getAllAnouncements(){

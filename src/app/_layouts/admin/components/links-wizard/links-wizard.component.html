@@ -46,7 +46,7 @@
                         <label>Image</label>
                         <input type="file" name="image" class="form-control" formControlName="raw"
                             (change)="handleFileSelect($event)" />
-                        <div id="emailHelp" class="form-text">Image size(px): 180W x 100H</div>
+                        <div class="form-text">Image size(px): 180W x 100H</div>
                     </div>
                 </div>
                 <div class="col-6">
@@ -110,6 +110,16 @@
                     <div class="form-group mb-3">
                         <label>Is Section: </label>
                         <input type="checkbox" formControlName="isSection" />
+                    </div>
+
+                </div>
+
+                <div class="col-12">
+
+                    <div class="form-group mb-3">
+                        <label>Active Directory Tag: (optional) </label>
+                        <input type="text" class="form-control" formControlName="adTag" />
+                        <div class="form-text">Active Directory Department Tag</div>
                     </div>
 
                 </div>
