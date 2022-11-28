@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'http://internal-spsa.eovstg.com/api/',
-  mediaPath: "http://internal-spsa.eovstg.com/uploads/"
+  api: 'http://192.168.5.20/api/',
+  mediaPath: "http://192.168.5.20/uploads/"
 };
 
 /*

@@ -69,7 +69,7 @@
                 <div class="form-group mb-3">
                     <label>Photo</label>
                     <input #fileInput type="file" name="photo" class="form-control form-control-sm" (change)="handleFileSelect($event)"/>
-                    <div id="emailHelp" class="form-text">Image size(px): 140W x 160H</div>
+                    <div id="emailHelp" class="form-text">Image size(px): 256 width x 256 height</div>
                 </div>
             </div>
 
@@ -125,10 +125,7 @@
             <div class="col-6">
                 <div class="form-group mb-3">
                     <label>Extension</label>
-                    <input type="text" name="extension" formControlName="extension" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.extension.errors }"/>
-                    <div *ngIf="submitted && f.extension.invalid" class="invalid-feedback">
-                        <div *ngIf="f.extension.errors?.required">This field is required</div>
-                    </div>
+                    <input type="text" name="extension" formControlName="extension" class="form-control form-control-sm"/>
                 </div>
             </div>
 

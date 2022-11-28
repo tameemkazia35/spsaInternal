@@ -76,11 +76,12 @@ export class ContactWizardComponent implements OnInit {
 
   get f() { return this.contactForm.controls; }
   saveContact(){
+    debugger;
     this.submitted = true;
     if (this.contactForm.invalid) {
       return;
     }
-    
+
     if (this.editLink) { 
       this.selectedDepartment.contact[this.cloneOject.id] = this.contactForm.value;
       this.editLink = false;

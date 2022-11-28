@@ -14,6 +14,7 @@ export class InnerPagesComponent implements OnInit {
   currentLang: any;
   pageData: any;
   searchText: any = '';
+  sections: any;
 
   constructor(private service: ApiService, private route: ActivatedRoute, private router: Router, private util: UtilService) {
     this.route.params.subscribe((_res: any)=>{
@@ -32,7 +33,12 @@ export class InnerPagesComponent implements OnInit {
     this.service.get(apis.pageByUrl, _url).subscribe(_res=>{
       this.pageData = _res;
       var parseData = JSON.parse(_res.page.pageComponents.data);
+      
       this.services = parseData.schema.links;
+      this.services = this.services.filter( (sec:any) => (sec.isSection == false || sec.isSection == undefined) );
+      var pageDataLinks = parseData.schema.links;
+      this.sections = pageDataLinks.filter( (sec:any) => sec.isSection == true );
+
     })
   }
 

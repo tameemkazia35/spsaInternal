@@ -11,7 +11,7 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text material-icons-round">vpn_lock</span>
                                     <select class="form-control form-control-lg" formControlName="domain">
-                                        <option *ngFor="let domain of domains" value="domain">{{domain}}</option>
+                                        <option *ngFor="let domain of domains" value="{{domain}}">{{domain}}</option>
                                     </select>    
                                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                         <div *ngIf="f.password.errors.required">This field is required</div>

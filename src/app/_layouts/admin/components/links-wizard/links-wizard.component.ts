@@ -20,6 +20,7 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
     url: ['', Validators.required],
     target: ['_blank', Validators.required],
     icon: [''],
+    isSection: [false],
     raw: ['']
   });
 
@@ -67,7 +68,6 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
 
   _handleReaderLoaded(readerEvt: any) {
     var binaryString = readerEvt.target.result;
-    //  this.quickLinkForm.controls['base64'].setValue('data:image/png;base64, '+btoa(binaryString));
     console.log(btoa(binaryString));
     this.uploadMedia('data:image/png;base64, ' + btoa(binaryString))
   }
@@ -110,13 +110,6 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
   }
 
   Edit(_data: any) {
-    // this.quickLinkForm.controls['text'].setValue(_data.text);
-    // this.quickLinkForm.controls['text_ar'].setValue(_data.text_ar);
-    // this.quickLinkForm.controls['desc'].setValue(_data.desc);
-    // this.quickLinkForm.controls['desc_ar'].setValue(_data.desc_ar);
-    // this.quickLinkForm.controls['url'].setValue(_data.url);
-    // this.quickLinkForm.controls['target'].setValue(_data.target);
-    // this.quickLinkForm.controls['icon'].setValue(_data.icon);
     this.display = true;
   }
 
@@ -146,6 +139,7 @@ export class LinksWizardComponent implements OnInit, AfterViewInit {
     this.quickLinkForm.controls['url'].setValue(_link.url);
     this.quickLinkForm.controls['target'].setValue(_link.target);
     this.quickLinkForm.controls['icon'].setValue(_link.icon);
+    this.quickLinkForm.controls['isSection'].setValue(_link.isSection);
     this.cloneOject = _link;
     this.cloneOject.id = _ind;
     this.display = true;

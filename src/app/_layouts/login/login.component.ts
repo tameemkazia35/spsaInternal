@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       domain: ['', Validators.required],
       username: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.required
       ])],
       password: ['', Validators.compose([
         Validators.required,
@@ -60,7 +59,13 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.submitted = true;
-    var payload = { username: this.loginForm.value.username, password: window.btoa(this.loginForm.value.password)};
+    debugger;
+    var payload = { 
+      domain: this.loginForm.value.domain, 
+      username: this.loginForm.value.username, 
+      password: window.btoa(this.loginForm.value.password)
+    };
+    debugger;
     this.spinner.show();
     this.AuthenticationService.login(payload)
       .subscribe(

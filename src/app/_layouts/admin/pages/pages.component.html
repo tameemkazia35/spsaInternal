@@ -2,7 +2,7 @@
     <div class="section-title">
         <h5 class="my-3 text-uppercase">Pages / الصفحات</h5>
     </div> 
-    <p-table #dt2 [value]="pageList"  styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '100%'}" [rows]="10" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"  [globalFilterFields]="['title', 'title_ar']">
+    <p-table #dt2 [value]="pageList"  styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '100%'}" [rows]="50" [rowsPerPageOptions]="[50, 100]" [loading]="loading" [paginator]="true"  [globalFilterFields]="['title', 'title_ar']">
         <ng-template pTemplate="caption">
             <div class="flex">
                 <span class="p-input-icon-left ml-auto">

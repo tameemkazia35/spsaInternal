@@ -10,6 +10,10 @@
     border-style: solid;
     border-radius: 10px;
     border-image: linear-gradient(to right, #00AB54, #D03A2B) 1;
+
+    h5 {
+        line-height: 2  !important;
+    }
     img{
         transition: .5s all;
     }
@@ -59,4 +63,10 @@
     100% {
 		border-image: linear-gradient(0deg, #00AB54, #D03A2B) 1;
 	}
+}
+
+.link-sections {
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #BDBBBB;
 }

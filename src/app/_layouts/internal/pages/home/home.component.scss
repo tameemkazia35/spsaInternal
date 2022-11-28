@@ -30,6 +30,7 @@ section{
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: bolder;
+        line-height: 2  !important;
     }
     img{
         transition: .5s all;
