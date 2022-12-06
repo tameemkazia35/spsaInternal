@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { UtilService } from './_services/util.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NavigationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ApiService } from './_services/api.service';
+import { apis } from './_enum/apiEnum';
 
 @Component({
   selector: 'app-root',
@@ -22,12 +24,12 @@ import { TranslateService } from '@ngx-translate/core';
     ])
   ]
 })
-export class AppComponent {
-  
+export class AppComponent implements OnInit{
   isMenuOpen = false;
   display = false;
+  themeData: any = {primary: '', secondary:'', menuText: ''};
 
-  constructor(private util: UtilService, private spinner: NgxSpinnerService, private router: Router, private translate: TranslateService, private Router: Router) {
+  constructor(private util: UtilService, private spinner: NgxSpinnerService, private router: Router, private translate: TranslateService, private Router: Router, private service: ApiService) {
 
     this.translate.addLangs(['en', 'ar']);
 
@@ -92,8 +94,35 @@ export class AppComponent {
     })
   }
 
+  ngOnInit(): void {
+    if(localStorage.themeData){
+      this.themeData = JSON.parse(localStorage.themeData);
+      this.setThemedata();
+    }else{
+      this.getThemeData();
+    }
+  }
+
 
   toggleMenuOpen() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  getThemeData(){
+    this.service.get(apis.themes, '').subscribe(_res=>{
+      var rawdata = JSON.parse(_res.data);
+      this.themeData.primary = rawdata.root[0].value;
+      this.themeData.secondary = rawdata.root[1].value;
+      this.themeData.menuText = rawdata.root[2].value;
+      localStorage.setItem('themeData', JSON.stringify(this.themeData));
+      this.setThemedata();
+    })
+  }
+
+  setThemedata(){
+    var rootSudoElement: any = document.querySelector(':root');
+    rootSudoElement.style.setProperty('--bs-primary', this.themeData.primary);
+    rootSudoElement.style.setProperty('--bs-secondary', this.themeData.secondary);
+    rootSudoElement.style.setProperty('--spsa-menu-text', this.themeData.menuText);
   }
 }

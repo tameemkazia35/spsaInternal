@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h5 class="my-3 text-uppercase">Theme settings</h5>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label>Primary color</label><br>
+            <input class="form-control" [(colorPicker)]="themeData.primary" [cpOutputFormat]="'hex'" [style.background]="themeData.primary"/>
+        </div>
+        <div class="col-md-4">
+            <label>Secondary color</label><br>
+            <input class="form-control" [(colorPicker)]="themeData.secondary" [cpOutputFormat]="'hex'" [style.background]="themeData.secondary"/>
+        </div>
+        <div class="col-md-4">
+            <label>Menu text color</label><br>
+            <input class="form-control" [(colorPicker)]="themeData.menuText" [cpOutputFormat]="'hex'" [style.background]="themeData.menuText"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-end">
+          <button type="submit" class="btn btn-secondary px-5 mt-2" (click)="updateTheme()">Update</button>
+        </div>
+      </div>
+</div>

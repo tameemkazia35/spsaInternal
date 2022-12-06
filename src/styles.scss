@@ -40,11 +40,11 @@ $theme-colors: (
     --bs-primary: #851825;
     --bs-secondary: #357342;
     --spsa-menu-text: #fff;
-    
-    --spsa-bc-1: #00AB54;
-    --spsa-bc-2: #D03A2B;
-    --spsa-hc-1: #D03A2B;
-    --spsa-hc-2: #662428;
+
+    --spsa-bc-1: var(--bs-secondary);
+    --spsa-bc-2: var(--bs-primary);
+    --spsa-hc-1: var(--bs-primary);
+    --spsa-hc-2: var(--bs-secondary);
 
     --spsa-grey-1: #bbbbbb;
     --spsa-grey-2: #d4d4cf;
@@ -285,4 +285,14 @@ html[dir="rtl"] {
             }
         }
     }
+}
+
+
+.p-divider .p-divider-content{
+    background: transparent !important;
+}
+
+.p-tag{
+    background:  var(--bs-secondary) !important;
+    padding-inline: 36px !important;
 }

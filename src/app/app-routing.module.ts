@@ -9,6 +9,7 @@ import { MenusComponent } from './_layouts/admin/menus/menus.component';
 import { PageComponent } from './_layouts/admin/page/page.component';
 import { PagesComponent } from './_layouts/admin/pages/pages.component';
 import { QuickLinksComponent } from './_layouts/admin/quick-links/quick-links.component';
+import { ThemeSettingsComponent } from './_layouts/admin/theme-settings/theme-settings.component';
 import { UsersComponent } from './_layouts/admin/users/users.component';
 import { InternalComponent } from './_layouts/internal/internal.component';
 import { ContactComponent } from './_layouts/internal/pages/contact/contact.component';
@@ -18,28 +19,28 @@ import { HomeComponent } from './_layouts/internal/pages/home/home.component';
 import { InnerPagesComponent } from './_layouts/internal/pages/inner-pages/inner-pages.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
+  {
+    path: '',
     component: InternalComponent,
     children: [
-    { 
-      path: 'home', 
+    {
+      path: 'home',
       component: HomeComponent
     },
-    { 
-      path: 'event/:slug', 
+    {
+      path: 'event/:slug',
       component: EventDetailsComponent
     },
-    { 
-      path: 'event', 
+    {
+      path: 'event',
       component: EventListComponent
     },
-    { 
-      path: 'page/:url', 
+    {
+      path: 'page/:url',
       component: InnerPagesComponent
     },
-    { 
-      path: 'contacts', 
+    {
+      path: 'contacts',
       component: ContactComponent
     },
     {
@@ -53,24 +54,20 @@ const routes: Routes = [
   path: 'admin',
   component: AdminComponent,
   children: [
-    { 
-      path: 'menu', 
+    {
+      path: 'menu',
       component: MenusComponent
     },
-    // { 
-    //   path: 'sections', 
-    //   component: SectionsComponent
-    // },
-    { 
-       path: 'pages', 
+    {
+       path: 'pages',
        component: PagesComponent
     },
-    { 
-      path: 'events', 
+    {
+      path: 'events',
       component: EventsComponent
     },
-    { 
-      path: 'event', 
+    {
+      path: 'event',
       component: EventComponent
     },
     { 
@@ -100,6 +97,10 @@ const routes: Routes = [
     { 
       path: 'users', 
       component: UsersComponent
+    },
+    { 
+      path: 'theme-settings', 
+      component: ThemeSettingsComponent
     }
   ]
 }

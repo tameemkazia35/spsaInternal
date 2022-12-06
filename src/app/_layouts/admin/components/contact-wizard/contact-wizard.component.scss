@@ -13,3 +13,10 @@
 .emp-avatar{
     max-width: 128px;
 }
+
+.s-action-buttons{
+    gap: 20px;
+    button{
+        flex: 1;
+    }
+}

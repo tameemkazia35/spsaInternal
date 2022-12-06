@@ -26,7 +26,9 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    background: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--spsa-menu-text);
     span {
         width: 24px;
     }

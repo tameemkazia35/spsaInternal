@@ -1,9 +1,10 @@
 .dirctory-list {
+    height: max-content;
+    position: sticky;
+    top: 0;
     ul {
         background: var(--bs-primary);
         border-radius: 6px;
-        position: fixed;
-
         li {
             transition: .3s all ease;
             padding: 16px 12px;
@@ -64,9 +65,11 @@
 }
 
 .sub-section-title {
-    background: var(--spsa-grey-3);
+    background: var(--spsa-grey-1);
     border-radius: 6px;
-
+    &.type2{
+        background: var(--spsa-grey-4);
+    }
     h6 {
         margin-bottom: 0 !important;
         -webkit-text-stroke: 0.1px;

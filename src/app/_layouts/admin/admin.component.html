@@ -13,12 +13,12 @@
           </div>
         </div>
     </div>  
-    <nav class="navbar navbar-expand-lg bg-primary">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 me-auto">
             <li *ngIf="userData.role.toLowerCase() == 'admin'">
                 <a class="nav-link text-white ps-0" routerLink="/admin/menu"><span class="material-icons-round me-2">menu_open</span>Menu</a>
-            </li>    
+            </li>
             <li *ngIf="userData.role.toLowerCase() == 'admin'">
                 <a class="nav-link text-white" routerLink="/admin/pages"><span class="material-icons-round me-2">description</span>Pages</a>
             </li>
@@ -34,6 +34,9 @@
             <li *ngIf="userData.role.toLowerCase() == 'admin'">
                 <a class="nav-link text-white" routerLink="/admin/users"><span class="material-icons-round me-2">groups</span>Users</a>
             </li>
+            <li *ngIf="userData.role.toLowerCase() == 'admin'">
+              <a class="nav-link text-white" routerLink="/admin/theme-settings"><span class="material-icons-round me-2">settings</span>Theme</a>
+          </li>
           </ul>
 
           <div class="d-flex" dir="ltr">

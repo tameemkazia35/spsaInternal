@@ -19,7 +19,6 @@ export class AdminComponent implements OnInit {
     this.items = [
       {
         label: this.userData.username,
-        
         items:[
             {
                 label:'Home',

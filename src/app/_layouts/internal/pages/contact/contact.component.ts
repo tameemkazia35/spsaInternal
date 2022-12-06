@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { MenuItem } from 'primeng/api';
 import { apis } from 'src/app/_enum/apiEnum';
 import { ApiService } from 'src/app/_services/api.service';
@@ -18,8 +19,9 @@ export class ContactComponent implements OnInit {
   searchText: any = '';
   items: MenuItem[];
   active: boolean = false;
+  allContacts: any =[];
   
-  constructor(private router: Router, private service: ApiService, private util: UtilService) {
+  constructor(private router: Router, private service: ApiService, private util: UtilService, private spinner: NgxSpinnerService) {
     this.items = [
       {
           label: 'pencil',
@@ -61,11 +63,21 @@ export class ContactComponent implements OnInit {
   }
 
   getPageBySlug(){
+    this.spinner.show();
+    this.allContacts = [];
     this.service.get(apis.pageByUrl, '/contacts').subscribe(_res=>{
       this.pageData = _res;
       var parseData = JSON.parse(_res.page.pageComponents.data);
       this.contactList = parseData.schema;
-      console.log(this.contactList[0])
+      this.contactList.forEach((_dept: any) => {
+          _dept.department.sections.forEach((_contact: any) => {
+              this.allContacts.push(..._contact.contacts);
+          });
+      });
+      console.log('this.allContacts', this.allContacts);
+      this.spinner.hide();
+    }, error=>{
+      this.spinner.hide();
     })
   }
 

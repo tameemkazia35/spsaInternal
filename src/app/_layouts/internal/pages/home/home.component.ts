@@ -71,7 +71,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       var event = this.eventList.filter((_event: any)=> _event.id == _res.id)[0];
         this.openEvent(event);
     })
-    
   }
 
   afterLogin(){
@@ -132,16 +131,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.dialogType = 'event';
     this.selectedEvent = _event;
     console.log(this.selectedEvent);
-    var _formatedStartDate = moment(this.selectedEvent.start).format('DD MMM YYYY');
-    var _formatedEndDate = moment(this.selectedEvent.end).format('DD MMM YYYY');
-    var _startTime = moment(this.selectedEvent.start).format('hh:mm a');
-    var _endTime = moment(this.selectedEvent.end).format('hh:mm a');
-
-    if(moment(this.selectedEvent.end).diff(moment(this.selectedEvent.start), 'days') > 0)
+    var _formatedStartDate = moment(this.selectedEvent.startDateTime).format('DD MMM YYYY');
+    var _formatedEndDate = moment(this.selectedEvent.endDateTime).format('DD MMM YYYY');
+    var _startTime = moment(this.selectedEvent.startDateTime).format('hh:mm a');
+    var _endTime = moment(this.selectedEvent.endDateTime).format('hh:mm a');
+    debugger;
+    if(moment(this.selectedEvent.endDateTime).diff(moment(this.selectedEvent.startDateTime), 'days') > 0)
         {
           this.selectedEvent.eventdatetime = _formatedStartDate + ' ' + _startTime + ' - ' + _formatedEndDate + ' ' + _endTime;
         }
-        if(moment(this.selectedEvent.end).diff(moment(this.selectedEvent.start), 'days') == 0){
+        if(moment(this.selectedEvent.endDateTime).diff(moment(this.selectedEvent.startDateTime), 'days') == 0){
           this.selectedEvent.eventdatetime = _formatedStartDate + '  | ' + _startTime + ' - ' + _endTime;
         }
         this.display = true;

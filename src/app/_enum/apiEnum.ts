@@ -20,5 +20,7 @@ news = "pages/News",
 createNews = "Pages/CreateNews",
 uploadMedia = "pages/Media",
 MyQuickLinks = "Pages/MyQuickLinks",
-UploadMedias = "Medias"
+UploadMedias = "Medias",
+themes = "app/themes",
+updateTheme = "app/theme/"
 }

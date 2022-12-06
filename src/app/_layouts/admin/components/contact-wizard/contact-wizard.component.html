@@ -1,30 +1,47 @@
 <div class="mb-5">
-    <p-fieldset legend="" [toggleable]="true" *ngFor="let directory of directories.schema">
+    <p-fieldset legend="" [toggleable]="true" *ngFor="let directory of directories.schema; let i = index">
         <ng-template pTemplate="header">{{directory.department.name ? directory.department.name : 'Department'}}</ng-template>
         <div class="row mb-3">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Name" [(ngModel)]="directory.department.name" (change)="emitData()"/>
                 </div>
             </div>
-            <div class="col-md-5" dir="rtl">
+            <div class="col-md-6" dir="rtl">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="الاسم" [(ngModel)]="directory.department.name_ar" (change)="emitData()"/>
                 </div>
             </div>
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                 <div class="d-grid">
                 <button class="btn btn-secondary" (click)="addContact(directory.department)">Add contact</button>
             </div>
+            </div> -->
+        </div>
+        <ng-container *ngFor="let section of directory.department.sections; let sindex = index;">
+            <div class="card px-4 pb-4 mb-4">
+            <p-divider align="center">
+                <span class="p-tag">Section</span>
+            </p-divider>
+        <div class="row mb-3" *ngIf="directory.department.sections" >
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Section Name" [(ngModel)]="section.name"/>
+                </div>
+            </div>
+            <div class="col-md-6" dir="rtl">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="الاسم" [(ngModel)]="section.name_ar"/>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3" *ngFor="let contact of directory.department.contact; let i =index">
+            <div class="col-md-3" *ngFor="let contact of section.contacts; let i =index">
                 <div class="card">
                     <div class="remove-contact">
                         <button class="rounded-circle btn btn-sm btn-warning mx-1" (click)="edit(contact, i)"><span
                             class="material-icons-round">edit_rounded</span></button>
-                    <button class="rounded-circle btn btn-sm btn-danger " (click)="removeConfirm(directory.department, contact)"><span
+                    <button class="rounded-circle btn btn-sm btn-danger " (click)="removeConfirm(section, contact)"><span
                             class="material-icons-round">clear_rounded</span></button>
                     </div>
                     <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="contact.photo" class="card-img-top" [alt]="contact.name">
@@ -34,7 +51,6 @@
                             <br />
                             {{contact.name_ar}}
                         </h6>
-                        
                         <p class="mb-1 text-muted">
                             {{contact.position}}
                             <br />
@@ -45,6 +61,17 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-12 mt-4">
+                <div class="d-flex s-action-buttons">
+                    <button class="btn btn-danger d-flex justify-content-center" (click)="deleteSection(directory, sindex)"><span class="material-icons-round me-2">delete_forever</span><span>Delete section</span></button>
+                    <button class="btn btn-secondary d-flex justify-content-center" (click)="addContact(section)"><span class="material-icons-round me-2">people</span><span>Add contact</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </ng-container>
+        <div class="text-end mt-4">
+            <button class="btn btn-primary" (click)="addSection2Depart(i)">Add new section</button>
         </div>
     </p-fieldset>
     <div class="mt-4">

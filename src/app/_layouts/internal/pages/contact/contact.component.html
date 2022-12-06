@@ -5,7 +5,6 @@
                 <h6 class="enable m-0" routerLink="/">{{'home' | translate}}</h6>
                 <h6 class="disable m-0">{{currentLang == 'ar' ? pageData?.page?.title_ar : pageData?.page?.title}}</h6>
             </div>
-           
         </div>
     </div>
 </div>
@@ -23,12 +22,19 @@
                 <span class="input-group-text material-icons-round">search_outlined</span>
                 <input type="text" class="form-control mb-4" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search"/>
             </div>
+            <ng-container>
             <ng-container *ngFor="let dept of contactList; let i = index">
-            <div class="sub-section-title text-center py-2 mb-4 directory-{{i + 1}}" *ngIf="searchText.length == 0">
-                <h6><b>{{currentLang == 'ar' ? dept.department.name_ar : dept.department.name}}</b></h6>
+            <div class="sub-section-title text-center py-2 mb-4 directory-{{i + 1}}" *ngIf="(dept.department.sections | filter:searchText).length > 0">
+                <h4><b>{{currentLang == 'ar' ? dept.department.name_ar : dept.department.name}}</b></h4>
             </div>
+            <ng-container *ngFor="let section of dept.department.sections | filter:searchText; let i = index">
+                <div class="card py-3 px-4 mb-4">
+                        <h5 class="card-title mb-3">{{currentLang == 'ar' ? section.name_ar : section.name}}</h5>
+            <!-- <div class="sub-section-title type2 text-start ps-3 py-2 mb-4 section-{{i + 1}}" *ngIf="searchText.length == 0">
+                <h6><b>{{currentLang == 'ar' ? section.name_ar : section.name}}</b></h6>
+            </div> -->
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3" *ngFor="let emp of dept.department.contact | filter:searchText">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3" *ngFor="let emp of section.contacts">
                             <div class="emp-card pt-5 pb-2">
                                 <div class="dots"><div *ngFor="let item of [].constructor(25); let i = index"></div></div>
                                 <div class="dots dots2"><div *ngFor="let item of [].constructor(17); let i = index"></div></div>
@@ -54,7 +60,39 @@
                             </div>
                     </div>
                 </div>
+            </div>
             </ng-container>
+            </ng-container>
+            </ng-container>
+            <!-- <ng-container  *ngIf="searchText.length > 0">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3" *ngFor="let emp of allContacts | filter:searchText">
+                            <div class="emp-card pt-5 pb-2">
+                                <div class="dots"><div *ngFor="let item of [].constructor(25); let i = index"></div></div>
+                                <div class="dots dots2"><div *ngFor="let item of [].constructor(17); let i = index"></div></div>
+                                <div class="emp-img d-flex align-items-center mb-3">
+                                    <img class="img-fluid" onerror="this.src='/assets/images/noimageavailable.png'" [src]="emp?.photo"/>
+                                </div>
+                                <div class="emp-content py-3">
+                                    <div class="mb-2 mt-4 text-center">
+                                        <h6 class="m-0"><b>{{currentLang == 'ar' ? emp.name_ar : emp.name}}</b></h6>
+                                        <small class="text-capitalize">{{currentLang == 'ar' ? emp.position_ar : emp.position}}</small>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center" title="Mobile">
+                                        <span class="material-icons-round me-2">phone_iphone_rounded</span>
+                                        <p class="m-0">{{emp.mobile ? emp.mobile : '-'}}</p>
+                                    </div>
+                                    <div class="d-flex align-items-center" title="Extension">
+                                        <span class="material-icons-round me-2">fax_rounded</span>
+                                        <p class="m-0">{{emp.extension}}</p>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </ng-container> -->
         </div>
     </div>
 </div>

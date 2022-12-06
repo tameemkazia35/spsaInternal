@@ -10,6 +10,7 @@ export class UtilService {
   private logoutSubject = new Subject<any>();
   private langSubject = new Subject<any>();
   private eventSubject = new Subject<any>();
+  private themeUpdate = new Subject<any>();
 
   constructor(private translate: TranslateService) { }
 

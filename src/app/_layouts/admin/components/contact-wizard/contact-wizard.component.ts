@@ -15,7 +15,7 @@ export class ContactWizardComponent implements OnInit {
   @Output() contactData = new EventEmitter();
   contactForm!: FormGroup;
   display: boolean = false;
-  selectedDepartment: any;
+  selectedSection: any;
   editLink: boolean = false;
   @ViewChild('fileInput') fileInput: ElementRef | any;
   cloneOject: any;
@@ -71,7 +71,7 @@ export class ContactWizardComponent implements OnInit {
 
   addContact(_dept: any){
     this.display= true;
-    this.selectedDepartment = _dept
+    this.selectedSection = _dept
   }
 
   get f() { return this.contactForm.controls; }
@@ -82,13 +82,13 @@ export class ContactWizardComponent implements OnInit {
       return;
     }
 
-    if (this.editLink) { 
-      this.selectedDepartment.contact[this.cloneOject.id] = this.contactForm.value;
+    if (this.editLink) {
+      this.selectedSection.contacts[this.cloneOject.id] = this.contactForm.value;
       this.editLink = false;
       this.display = false;
       delete this.cloneOject;
     } else {
-      this.selectedDepartment.contact.push(this.contactForm.value);
+      this.selectedSection.contacts.push(this.contactForm.value);
     }
     this.submitted = false;
     this.contactForm.reset();
@@ -135,26 +135,39 @@ _handleReaderLoaded(readerEvt: any) {
       "department": {
         "name": "",
         "name_ar": "",
-        "sections": []
+        "sections": [
+          {
+            "name": "",
+            "name_ar": "",
+            "contacts": []
+        }
+        ]
       }
     });
   }
 
   addSection2Depart(deptIndx:number){
-    this.directories.schema[deptIndx]["sections"].push({
-      "sections": {
+    this.directories.schema[deptIndx]["department"]['sections'].push({
         "name": "",
         "name_ar": "",
         "contacts": []
-      }
     });
   }
 
-  removeConfirm(department: any, contact: any){
+  removeConfirm(section: any, contact: any){
     this.confirmationService.confirm({
       message: 'Are you sure that you want to delete the contact?',
       accept: () => {
-        department.contact.splice(department.contact.indexOf(contact), 1);
+        section.contacts.splice(section.contacts.indexOf(contact), 1);
+      }
+  });
+  }
+
+  deleteSection(department: any, index: any){
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete the section?',
+      accept: () => {
+        department['department'].sections.splice(index, 1);
       }
   });
   }

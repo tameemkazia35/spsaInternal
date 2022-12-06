@@ -55,6 +55,10 @@ import { EventDetailsComponent } from './_layouts/internal/pages/event-details/e
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { InnerPagesComponent } from './_layouts/internal/pages/inner-pages/inner-pages.component';
 import {SpeedDialModule} from 'primeng/speeddial';
+import {DividerModule} from 'primeng/divider';
+import { ThemeSettingsComponent } from './_layouts/admin/theme-settings/theme-settings.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import {CardModule} from 'primeng/card';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -87,7 +91,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     LinksWizardComponent,
     EventListComponent,
     EventDetailsComponent,
-    InnerPagesComponent
+    InnerPagesComponent,
+    ThemeSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -114,6 +119,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FullCalendarModule,
     Ng2SearchPipeModule,
     SpeedDialModule,
+    DividerModule,
+    ColorPickerModule,
+    CardModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
@@ -122,7 +130,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
       }
     })
   ],
-  providers: [ 
+  providers: [
     MessageService,
     ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

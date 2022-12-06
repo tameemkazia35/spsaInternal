@@ -168,7 +168,7 @@ export class AnnouncementComponent implements OnInit {
         });
         this.toastMessage('Success', 'Announcement media uploaded successfully', 'success');
       }else{
-        this.toastMessage('Error', 'Something went wrong. Please try again later', 'error');  
+        this.toastMessage('Error', 'Something went wrong. Please try again later', 'error');
       }
     }, error=>{
       this.toastMessage('Error', 'Something went wrong. Please try again later', 'error');

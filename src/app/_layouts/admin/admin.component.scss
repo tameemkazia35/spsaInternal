@@ -34,7 +34,23 @@ color: #fff !important;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: var(--bs-secondary);
+    border-color: var(--bs-secondary);
+    color: var(--spsa-menu-text);
     span{
         width: 24px;
+    }
+}
+
+nav {
+    background-color: var(--bs-primary);
+    li {
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer !important;
+            color: var(--spsa-menu-text);
+        }
     }
 }
