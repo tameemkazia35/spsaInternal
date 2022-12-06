@@ -11,7 +11,7 @@
 </div>
 <div class="container my-5 min-80">
 
-    <div class="row link-sections">
+    <div class="row link-sections justify-content-center">
         <div class="col-md-3 col-12 mb-3" *ngFor="let service of sections">
             <div class="service-item px-4 py-5" (click)="goToPage(service)" title="{{service.url}}">
                 <div class="s-icon">
@@ -29,7 +29,7 @@
         <input type="text" class="form-control mb-4" name="search" [(ngModel)]="searchText" autocomplete="off"
             placeholder="Search" />
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-3 col-12 mb-3" *ngFor="let service of services | filter:searchText;">
             <div class="service-item px-4 py-5" (click)="goToPage(service)" title="{{service.url}}">
                 <div class="s-icon">

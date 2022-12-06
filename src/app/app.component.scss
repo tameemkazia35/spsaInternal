@@ -1,21 +1,22 @@
-::ng-deep .login-modal .p-dialog-header{
+::ng-deep .login-modal .p-dialog-header {
     display: none !important;
 }
 
-::ng-deep .login-modal .p-dialog-content{
+::ng-deep .login-modal .p-dialog-content {
     padding: 0 !important;
     border-radius: 10px !important;
 }
 
-::ng-deep .p-dropdown:not(.p-disabled).p-focus{
+::ng-deep .p-dropdown:not(.p-disabled).p-focus {
     box-shadow: 0 0 0 0.2rem #EAB9B4 !important;
     border-color: #851825 !important;
 }
-::ng-deep .p-dropdown:not(.p-disabled):hover{
+
+::ng-deep .p-dropdown:not(.p-disabled):hover {
     border-color: #851825 !important;
 }
 
-::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight{
+::ng-deep .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
     color: #851825 !important;
     background: #FBEDEC !important;
 }

@@ -18,6 +18,7 @@ export class InternalComponent implements OnInit {
   menuList: any;
   currentLang: any;
   languages: any;
+  prayerModal: boolean = false;
   constructor(private router: Router, private util: UtilService, private service: ApiService, private translateService: TranslateService) { 
     this.getLangs();
   }
@@ -116,7 +117,14 @@ export class InternalComponent implements OnInit {
     this.currentLang = _ev;
     localStorage.setItem('lang', _ev);
     this.translateService.setDefaultLang(_ev);
-    console.log('lang', _ev);
+    // Color changing code
+    /*
+    var rootSudoElement: any = document.querySelector(':root');
+    var rs : any = getComputedStyle(rootSudoElement);
+    console.log("Before The value of --bs-p is: " + rs.getPropertyValue('--bs-p'));
+    rootSudoElement.style.setProperty('--bs-p', 'green');
+    console.log("After the value of --bs-p is: " + rs.getPropertyValue('--bs-p'));
+    */
   }
 
 

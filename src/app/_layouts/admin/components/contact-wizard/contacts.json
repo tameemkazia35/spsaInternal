@@ -1,0 +1,940 @@
+{
+    "code": "contacts",
+    "schema": [
+        {
+            "department": {
+                "name": "Executive Office",
+                "name_ar": "المكتب التنفيذي",
+                "sections": [
+                    {
+                        "name": "Chairman Office",
+                        "name_ar": "Chairman Office",
+                        "contacts": [
+                            {
+                                "name": "Sheik Khaled Bin Saqer Al Qasimi",
+                                "name_ar": "الشيخ خالد بن صقر القاسمي",
+                                "position": "Chairman",
+                                "position_ar": "رئيس الهيئة",
+                                "mobile": "",
+                                "extension": "777",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/3ff6a9e6343344c0a9dfdf53eabd9741.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Director Office",
+                        "name_ar": "Director Office",
+                        "contacts": [
+                            {
+                                "name": "Sheik Saif Mohammed Al Qasimi",
+                                "name_ar": "الشيخ سيف القاسمي",
+                                "position": "Director",
+                                "position_ar": "مدير الهيئة",
+                                "mobile": null,
+                                "extension": "775",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/0cf3792d1c76407ead99f62712a73de1.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Executive Office",
+                        "name_ar": "Executive Office",
+                        "contacts": [
+                            {
+                                "name": "Ahmad Abdullah Mohammad",
+                                "name_ar": "أحمد عبدالله محمد",
+                                "position": "Executive Office Manager",
+                                "position_ar": "مسؤول المكتب التنفيذي ",
+                                "mobile": "0563694747",
+                                "extension": "700",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/ad3be6d89daa417ea61f2259eb527cd7.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Secretarial Section",
+                        "name_ar": "Secretarial Section",
+                        "contacts": [
+                            {
+                                "name": "Abdullah Mansour Al Yasi",
+                                "name_ar": " عبدالله منصور الياسي",
+                                "position": "Administrative Assistant",
+                                "position_ar": "مساعد إداري",
+                                "mobile": "0563692424",
+                                "extension": "705",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/0f26daf6c4e641199380548180ad3102.png"
+                            },
+                            {
+                                "name": "Ahmed Ibrahim Al Jasmi",
+                                "name_ar": "أحمد إبراهيم الجسمي",
+                                "position": "Administrative Assistant",
+                                "position_ar": "مساعد إداري",
+                                "mobile": "508992223",
+                                "extension": "709",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/322bf268dbb94239a882102af5ebe377.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Legal Affairs",
+                        "name_ar": "Legal Affairs",
+                        "contacts": [
+                            {
+                                "name": "Jenan Mohammad Yousef",
+                                "name_ar": "جنان محمد الجوهري",
+                                "position": " Head Of Legal Affairs Section",
+                                "position_ar": "رئيس قسم الشوؤن القانونية",
+                                "mobile": null,
+                                "extension": "702",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/4d3551bd8c834d70be1d2ee286cf4d9b.png"
+                            },
+                            {
+                                "name": "Amina AlMulla",
+                                "name_ar": "أمينة الملا ",
+                                "position": "Legal Researcher",
+                                "position_ar": "باحث قانوني",
+                                "mobile": null,
+                                "extension": "707",
+                                "photo": null,
+                                "id": 7
+                            }
+                        ]
+                    },
+                    {
+                        "name": "General Archive",
+                        "name_ar": "General Archive",
+                        "contacts": [
+                            {
+                                "name": "Hessa Ibrahim Abdelqader",
+                                "name_ar": "حصة إبراهيم بن هندي",
+                                "position": "موظف أرشيف",
+                                "position_ar": "Archive employee",
+                                "mobile": null,
+                                "extension": "706",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/b32e341dd7ee49cf90bd186156c9371e.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Strategic Planning section",
+                        "name_ar": "Strategic Planning section",
+                        "contacts": [
+                            {
+                                "name": "Hessa Salim Alshamsi",
+                                "name_ar": "حصة سالم الشامسي",
+                                "position": "Strategic Planing Engineer",
+                                "position_ar": "مهندس تخطيط استراتيجي",
+                                "mobile": "0566892525",
+                                "extension": "782",
+                                "photo": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Quality section",
+                        "name_ar": "Quality section",
+                        "contacts": [
+                            {
+                                "name": "Maryam Ali Al Yammahi",
+                                "name_ar": "مريم علي اليماحي",
+                                "position": "Services Supervisor",
+                                "position_ar": "مشرف خدمات",
+                                "mobile": null,
+                                "extension": "781",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/1006a069a931403399833373f732dc10.png"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "department": {
+                "name": "Support Services Department",
+                "name_ar": "إدارة الخدمات المساندة",
+                "sections": [
+                    {
+                        "name": "Support Services",
+                        "name_ar": "Support Services",
+                        "contacts": [
+                            {
+                                "name": "Lamya Abdulaziz Al Noman",
+                                "name_ar": "لمياء عبد العزيز النومان",
+                                "position": "Support Services Department Manager",
+                                "position_ar": "مدير إدارة الخدمات المسانده",
+                                "mobile": "563691661",
+                                "extension": "772",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/f09b8198a46b4156bcf794e850621457.png"
+                            },
+                            {
+                                "name": "Huda Malalla  Al Ali",
+                                "name_ar": "هدى مال الله ال علي",
+                                "position": "Support Services Department Deputy Manager",
+                                "position_ar": "نائب مدير إدارة الخدمات المساندة",
+                                "mobile": null,
+                                "extension": "730",
+                                "photo": null,
+                                "base64": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Secretarial Section",
+                        "name_ar": "Secretarial Section",
+                        "contacts": [
+                            {
+                                "name": "Mahra Abdulrahman Alshehhi",
+                                "name_ar": "مهرة عبد الرحمن الشحي",
+                                "position": "Executive Secretary",
+                                "position_ar": "سكرتير تنفيذي",
+                                "mobile": null,
+                                "extension": "733",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/aeef5b5e767a4660a14bbff123011152.png"
+                            },
+                            {
+                                "name": "Hessa Mohammed Al Naqbi",
+                                "name_ar": "حصة محمد النقبي",
+                                "position": "Executive Secretary",
+                                "position_ar": "سكرتير تنفيذي",
+                                "mobile": null,
+                                "extension": "731",
+                                "photo": "http://192.168.5.20/uploads/medias/85f353c479b549109211e18a90263981.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Governmental Communication",
+                        "name_ar": "Governmental Communication",
+                        "contacts": [
+                            {
+                                "name": "Maitha Al Nuaimi",
+                                "name_ar": "ميثاء النعيمي ",
+                                "position": "Technical Support Specialist",
+                                "position_ar": "إخصائي دعم فني",
+                                "mobile": null,
+                                "extension": "632",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/eb91d2dd3f4d462cba038fc185a23743.png"
+                            },
+                            {
+                                "name": "Zubaida Abdelaziz Ahmed",
+                                "name_ar": " زبيدة عبدالعزيز أحمد",
+                                "position": "Head Of Government Communication Section",
+                                "position_ar": "رئيس قسم الاتصال الحكومي",
+                                "mobile": "0563295656",
+                                "extension": "796",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/b9dd138aad814f7c9a45c875d016197f.png"
+                            },
+                            {
+                                "name": "Hamad Abdelrahim Almaazmi",
+                                "name_ar": "حمد عبدالرحيم المازمي",
+                                "position": "Media Coordinator",
+                                "position_ar": "إعلامي",
+                                "mobile": null,
+                                "extension": "791",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/e7ce9857ba5145e5b126d7eba4cc3ed8.png"
+                            },
+                            {
+                                "name": "Fatima Rashid AlMualla",
+                                "name_ar": "فاطمة راشد المعلا",
+                                "position": "Graphic Designer",
+                                "position_ar": "مصمم جرافيك",
+                                "mobile": null,
+                                "extension": "793",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/73b8350161414cca94564da184b9e8bf.png"
+                            },
+                            {
+                                "name": "Nibal Akram Alrozzi",
+                                "name_ar": "نبال اكرم الرزي",
+                                "position": "News Editor",
+                                "position_ar": "محرر صحفي",
+                                "mobile": "0508998788",
+                                "extension": "792",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/b4208069f9c543c5bc2e521050f2afa4.png"
+                            },
+                            {
+                                "name": "Khalid Khalil Almaazmi",
+                                "name_ar": "خالد خليل المازمي",
+                                "position": "General Services Executive",
+                                "position_ar": "تنفيذي خدمات عامة ",
+                                "mobile": "563295995",
+                                "extension": "712",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/89d163063ffe4ce0b827264d41b0209b.png"
+                            },
+                            {
+                                "name": "Bakhtawer Shah",
+                                "name_ar": "بختاور سدوات",
+                                "position": "Transportation Officer",
+                                "position_ar": "موظف مواصلات",
+                                "mobile": "0555338554",
+                                "extension": null,
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/3955b69972c14fe7a014959f893b9e3b.png"
+                            },
+                            {
+                                "name": "Afra Alsuwaidi",
+                                "name_ar": "عفراء السويدي",
+                                "position": "Marketing  Specialist",
+                                "position_ar": "أخصائي تسويق",
+                                "mobile": null,
+                                "extension": "798",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/f8a09e41777d46318c3ff0060419f5bd.png"
+                            },
+                            {
+                                "name": "Hessa Al Zarouni",
+                                "name_ar": "حصة الزرعوني",
+                                "position": "Events Executive",
+                                "position_ar": "تنفيذي فعاليات",
+                                "mobile": "0563295559",
+                                "extension": "794",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/972c4f9a928240e1baf410d46b7606b4.png"
+                            },
+                            {
+                                "name": "Shaikha Al Zarouni",
+                                "name_ar": "شيخة الزرعوني",
+                                "position": "Graphic Designer",
+                                "position_ar": "مصمم جرافيك",
+                                "mobile": null,
+                                "extension": "795",
+                                "photo": null
+                            },
+                            {
+                                "name": "Hajar Al Suweidi",
+                                "name_ar": " هاجر السويدي",
+                                "position": "Trainee",
+                                "position_ar": "متدرب",
+                                "mobile": null,
+                                "extension": null,
+                                "photo": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Human Resources Section",
+                        "name_ar": "Human Resources Section",
+                        "contacts": [
+                            {
+                                "name": "Reem Ali Zamani",
+                                "name_ar": "ريم علي الزماني",
+                                "position": "Head of Human Resources Section",
+                                "position_ar": "رئيس قسم الموارد البشريه",
+                                "mobile": null,
+                                "extension": "727",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/e50faebc4fc24982b66c90f13a5613fd.png"
+                            },
+                            {
+                                "name": "Khadija Saif Alteneiji",
+                                "name_ar": "خديجة سيف الطنيجي",
+                                "position": "Administrative Assistant",
+                                "position_ar": "مساعد إداري",
+                                "mobile": null,
+                                "extension": "716",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/7de41cc0588741a69a89b10b2fb8e9a4.png"
+                            },
+                            {
+                                "name": "Shaima Khalifa Aljenaid",
+                                "name_ar": "شيماء خليفة الشويهي",
+                                "position": "Administrative Assistant",
+                                "position_ar": "مساعد إداري",
+                                "mobile": null,
+                                "extension": "711",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/43a9e1a75cc7488eb3c68dc73fbffe4c.png"
+                            },
+                            {
+                                "name": "Ali Khalid Almaazmi",
+                                "name_ar": "علي خالد المازمي",
+                                "position": "Administrative Assistant",
+                                "position_ar": "مساعد إداري",
+                                "mobile": "561885880",
+                                "extension": "729",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/a23f5ec6700a4805a12d70d5bbcd321b.png"
+                            },
+                            {
+                                "name": "Sheik Sultan Al Qassimi",
+                                "name_ar": "الشيخ سلطان القاسمي",
+                                "position": "Human Resources Executive",
+                                "position_ar": "تنفيذي موارد بشرية ",
+                                "mobile": null,
+                                "extension": "714",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/eb2b01f095314d4285f7b4b04936402b.png"
+                            },
+                            {
+                                "name": "Sumyah Mohammed Ali",
+                                "name_ar": "سمية محمد جذنان",
+                                "position": "Administrative Assistant",
+                                "position_ar": "مساعد إداري",
+                                "mobile": null,
+                                "extension": "724",
+                                "photo": null
+                            },
+                            {
+                                "name": "Alya Al Ali",
+                                "name_ar": " عليا العلي",
+                                "position": "Administrative Assistant",
+                                "position_ar": "مساعد إداري",
+                                "mobile": null,
+                                "extension": "635",
+                                "photo": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Training and Recruitment Section",
+                        "name_ar": "Training and Recruitment Section",
+                        "contacts": [
+                            {
+                                "name": "Azza salim Alshamsi",
+                                "name_ar": "عزة سالم الشامسي",
+                                "position": "Administrative Services Executive",
+                                "position_ar": "تنفيذي خدمات إدارية",
+                                "mobile": null,
+                                "extension": "726",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/398e6ef1d1044ee8a14d0980c4954884.png"
+                            },
+                            {
+                                "name": "Abdulrahman Al Naibari",
+                                "name_ar": "عبدالرحمن النيباري",
+                                "position": "Human Resources Executive",
+                                "position_ar": "تنفيذي موارد بشرية ",
+                                "mobile": null,
+                                "extension": "718",
+                                "photo": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Information Technology Section",
+                        "name_ar": "Information Technology Section",
+                        "contacts": [
+                            {
+                                "name": "Amal Mohamed Abdalla",
+                                "name_ar": "امل محمد عبدالله",
+                                "position": "Head of information technology section",
+                                "position_ar": "رئيس قسم تقنية المعلومات",
+                                "mobile": "501616162",
+                                "extension": "737",
+                                "photo": "http://192.168.5.20/uploads/medias/fc28018247e94002b0d3c87c51d23edb.png"
+                            },
+                            {
+                                "name": "Aisha Omar Alshehhi",
+                                "name_ar": "عائشة عمر الشحي",
+                                "position": "Application Developer",
+                                "position_ar": "مطور تطبيقات",
+                                "mobile": "0501768687",
+                                "extension": "734",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/c547e84975b4414cbb2b965b5b585d92.png"
+                            },
+                            {
+                                "name": "Badr Mohammed Al Hanaee",
+                                "name_ar": "بدر محمد الهنائي",
+                                "position": "Programmer",
+                                "position_ar": "مبرمج",
+                                "mobile": null,
+                                "extension": "738",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/f5bd5d3ef5cb46b4aa15b61171d71e78.png"
+                            },
+                            {
+                                "name": "Ammar Ali",
+                                "name_ar": "عمار علي",
+                                "position": "Information Security Superviser",
+                                "position_ar": "مشرف أمن المعلومات",
+                                "mobile": null,
+                                "extension": "732",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/f47e3c5650104922975c538dd929ceec.png"
+                            },
+                            {
+                                "name": "Obaid Manaa Bawazir",
+                                "name_ar": "عبيد مانع باوزير",
+                                "position": "Information Security Engineer",
+                                "position_ar": "مهندس أمن المعلومات",
+                                "mobile": "0501278702",
+                                "extension": "736",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/17a1cc16cb9148c982ee6c743bccf11c.png"
+                            },
+                            {
+                                "name": "Mohamed Al Dalati",
+                                "name_ar": "محمد الدالاتي",
+                                "position": "Network Superviser",
+                                "position_ar": "مشرف شبكات",
+                                "mobile": null,
+                                "extension": "735",
+                                "photo": null
+                            },
+                            {
+                                "name": "Abdulla Al Bataynah",
+                                "name_ar": "عبدالله البطاينه",
+                                "position": "Network Security Superviser",
+                                "position_ar": "مشرف أمن شبكات",
+                                "mobile": null,
+                                "extension": "735",
+                                "photo": null
+                            },
+                            {
+                                "name": "Hamda Al Zarouni",
+                                "name_ar": "حمدة الزرعوني ",
+                                "position": "Technical Support Asstent",
+                                "position_ar": "مساعد دعم فني",
+                                "mobile": null,
+                                "extension": "631",
+                                "photo": null
+                            },
+                            {
+                                "name": "Khawla Al Mahri",
+                                "name_ar": " خولة المهري",
+                                "position": "Trainee",
+                                "position_ar": "متدرب",
+                                "mobile": null,
+                                "extension": null,
+                                "photo": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Financial and General Services Section",
+                        "name_ar": "Financial and General Services Section",
+                        "contacts": [
+                            {
+                                "name": "Abdalla Mohamed Alhammadi",
+                                "name_ar": "عبدالله محمد الحمادي",
+                                "position": "Procurement Officer",
+                                "position_ar": "ضابط مشتريات",
+                                "mobile": "0563296226",
+                                "extension": "725",
+                                "photo": null
+                            },
+                            {
+                                "name": "Fatima Hassan Al Hammadi",
+                                "name_ar": "فاطمة حسن الحمادي",
+                                "position": "Acounting",
+                                "position_ar": "محاسب",
+                                "mobile": null,
+                                "extension": "720",
+                                "photo": null
+                            },
+                            {
+                                "name": "Abdulrahman Thabet",
+                                "name_ar": "عبدالرحمن ثابت",
+                                "position": "Transportation Officer",
+                                "position_ar": "موظف مواصلات",
+                                "mobile": "0563694545",
+                                "extension": "723",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/fc574342873f41528cba4f8f1a90f3b1.png"
+                            },
+                            {
+                                "name": "Sameer",
+                                "name_ar": "سمير اجهان",
+                                "position": "Services Employee",
+                                "position_ar": "موظف خدمات",
+                                "mobile": null,
+                                "extension": "713",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/b909cc42f41a405d87b32b2f3ec10d40.png"
+                            },
+                            {
+                                "name": "Mohamed Kawthar",
+                                "name_ar": "محمد كوثر",
+                                "position": "Services Employee",
+                                "position_ar": "موظف خدمات",
+                                "mobile": null,
+                                "extension": "713",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/1720e93fefd24666932d20378a561293.png",
+                                "id": 27
+                            },
+                            {
+                                "name": "Mohamed Abdulrab",
+                                "name_ar": "محمد عبد الرب",
+                                "position": "Transportation Officer",
+                                "position_ar": "موظف مواصلات",
+                                "mobile": "0563297997",
+                                "extension": "728",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/c278f90363f345c08267f8d128fde869.png"
+                            },
+                            {
+                                "name": "Nouf Al Alaili",
+                                "name_ar": "نوف العليلي",
+                                "position": "Procurement Officer",
+                                "position_ar": "ضابط مشتريات",
+                                "mobile": null,
+                                "extension": "721",
+                                "photo": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Customer Service Section",
+                        "name_ar": "Customer Service Section",
+                        "contacts": [
+                            {
+                                "name": "Abdelrhhman Abdalla Shuhail",
+                                "name_ar": "عبدالرحمن عبدالله شهيل",
+                                "position": "Head of Customer Service Section",
+                                "position_ar": "رئيس قسم خدمة العملاء",
+                                "mobile": "0563691717",
+                                "extension": "790",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/419a03262625421f8b49b258ccaf6cb4.png"
+                            },
+                            {
+                                "name": "Mohamed Abdullah Alzarooni",
+                                "name_ar": "محمد عبدالله الزرعوني",
+                                "position": "Customer Service Employee",
+                                "position_ar": "موظف خدمة العملاء",
+                                "mobile": null,
+                                "extension": "673",
+                                "photo": null
+                            },
+                            {
+                                "name": "Amira Ali",
+                                "name_ar": "أميرة علي",
+                                "position": "Administrative Assistant",
+                                "position_ar": "مساعد إداري",
+                                "mobile": "0562184884",
+                                "extension": "672",
+                                "photo": null
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "department": {
+                "name": "Standard and Conformty Department  ",
+                "name_ar": "إدارة المعايير و المطابقة",
+                "sections": [
+                    {
+                        "name": "Standards and Conformity",
+                        "name_ar": "Standards and Conformity",
+                        "contacts": [
+                            {
+                                "name": "Musab Elamien Omar",
+                                "name_ar": "مصعب الامين عمر",
+                                "position": "Occupational Safety and Health Adviser",
+                                "position_ar": "مستشار السلامة و الصحة المهنية",
+                                "mobile": "0563694646",
+                                "extension": "767",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/2024d464983b4ba98016870acc2429e7.png"
+                            },
+                            {
+                                "name": "Abdalla Abdulrasoul Almajedi",
+                                "name_ar": " عبدالله عبدالرسول الماجدي",
+                                "position": "Standards and Conformity Department Deputy Manager",
+                                "position_ar": "نائب مدير إدارة المعايير و المطابقة",
+                                "mobile": "0563985558",
+                                "extension": "755",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/2370e2090f804ecc83534f9f50b385a9.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Standards",
+                        "name_ar": "Standards",
+                        "contacts": [
+                            {
+                                "name": "Humaid AlMidfa",
+                                "name_ar": "حميد المدفع",
+                                "position": " Occupational Safety and Health Standards Engineer",
+                                "position_ar": "مهندس معايير السلامة والصحة المهنية ",
+                                "mobile": null,
+                                "extension": "762",
+                                "photo": null
+                            },
+                            {
+                                "name": "Saleh Al Yassi",
+                                "name_ar": "صالح الياسي",
+                                "position": " Occupational Safety and Health Standards Engineer",
+                                "position_ar": "مهندس معايير السلامة والصحة المهنية ",
+                                "mobile": null,
+                                "extension": "762",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/881713f134c54702a7ddf3090ca25cc6.png"
+                            },
+                            {
+                                "name": "Khaled Al Ali",
+                                "name_ar": "خالد ال علي",
+                                "position": "Occupational Safety abd Health Engineer",
+                                "position_ar": "مهندس سلامة وصحة مهنية",
+                                "mobile": "0564105800",
+                                "extension": "751",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/0dd73c4d0b6442eebf7e93c17aca3019.png"
+                            },
+                            {
+                                "name": "Abdul Hameed  Shafi",
+                                "name_ar": "عبدالحميد الشافي ",
+                                "position": "Head Of Occupational Safety and Health Standards",
+                                "position_ar": "مسؤول معايير السلامة و الصحة المهنية",
+                                "mobile": "0563694848",
+                                "extension": "749",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/326b7ee3cb204b4b9bc0d5098e533f52.png"
+                            },
+                            {
+                                "name": "Tariq Mohammad Haneya",
+                                "name_ar": "طارق محمد هنيه",
+                                "position": "Head of Audit And Inspection",
+                                "position_ar": "مسؤول فريق التفتيش و التدقيق",
+                                "mobile": "0563297977",
+                                "extension": "742",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/4023057ac7ea41cba8ffc048c1e411c0.png"
+                            },
+                            {
+                                "name": "Eissa Salah Alali",
+                                "name_ar": "عيسى صلاح آل علي ",
+                                "position": "Occupational Safety and Health Audit Engineer",
+                                "position_ar": "مهندس تدقيق السلامة و الصحة المهنية",
+                                "mobile": null,
+                                "extension": "758",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/60231de1f7fd46aea53efb1b3b8cfc51.png"
+                            },
+                            {
+                                "name": "Yousif Saleh Alhammadi",
+                                "name_ar": "يوسف صالح الحمادي",
+                                "position": "General Supervision Inspector",
+                                "position_ar": "مفتش إشراف عام",
+                                "mobile": "0563691818",
+                                "extension": null,
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/77300ed0957d4e8683832f6c1d5b5afe.png"
+                            },
+                            {
+                                "name": "Saif Ismail Alzarooni",
+                                "name_ar": "سيف إسماعيل الزرعوني",
+                                "position": "Safety Officer",
+                                "position_ar": "ضابط امن وسلامة",
+                                "mobile": "0561885757",
+                                "extension": null,
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/30612dbef34c41a9963757bef7e49461.png"
+                            },
+                            {
+                                "name": "Mohamed Ali Shuhail AlQahtani",
+                                "name_ar": "محمد علي شهيل القحطاني",
+                                "position": "Facilities Prevention Inspector",
+                                "position_ar": "مفتش وقاية منشآت",
+                                "mobile": "0561885882",
+                                "extension": null,
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/fa384557fcc84adaac93997d19d1c044.png"
+                            },
+                            {
+                                "name": "Hassan AlNemer",
+                                "name_ar": "حسن النمر",
+                                "position": "Inspector",
+                                "position_ar": "مفتش",
+                                "mobile": "0569985882",
+                                "extension": null,
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/c402119165f14578b75ac4ecb523b691.png"
+                            },
+                            {
+                                "name": "Obaid Yasir Alshamsi",
+                                "name_ar": "عبيد ياسر بوخاطر",
+                                "position": "Prevention and Safety Inspector",
+                                "position_ar": "مفتش وقاية وسلامة",
+                                "mobile": "0563988998",
+                                "extension": null,
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/d493adf380f7442ea51666c9e2fc5e15.png"
+                            },
+                            {
+                                "name": "Alya Mohamed Al Hammadi",
+                                "name_ar": "علياء محمد الحمادي",
+                                "position": "Prevention and Safety Inspector",
+                                "position_ar": "مفتش وقاية وسلامة",
+                                "mobile": null,
+                                "extension": "748",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/c269ed433c2f4d65aa1cd17a76005c64.png"
+                            },
+                            {
+                                "name": "Ismail Al Jassmi",
+                                "name_ar": "إسماعيل الجسمي ",
+                                "position": "مفتش",
+                                "position_ar": "Inspector",
+                                "mobile": null,
+                                "extension": null,
+                                "photo": null
+                            },
+                            {
+                                "name": "Ali Younis Al Jassmi",
+                                "name_ar": "علي يونس الجسمي",
+                                "position": " Occupational Safety and Health Standards Engineer",
+                                "position_ar": "مهندس معايير السلامة والصحة المهنية ",
+                                "mobile": null,
+                                "extension": "756",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/873c533309e449329e31ee40c11a0204.png"
+                            },
+                            {
+                                "name": "Khalid Al Harthi",
+                                "name_ar": "خالد الحارثي",
+                                "position": "Occupational Safety and Health Audit Engineer",
+                                "position_ar": "مهندس تدقيق السلامة و الصحة المهنية",
+                                "mobile": null,
+                                "extension": "761",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/4b9d382fb9c8436ba366f94a46f27d6e.png"
+                            },
+                            {
+                                "name": "Mohamed Al Ali",
+                                "name_ar": "محمد آل علي",
+                                "position": "Inspector",
+                                "position_ar": "مفتش",
+                                "mobile": "0563691414",
+                                "extension": null,
+                                "photo": null
+                            },
+                            {
+                                "name": "Muna Mohammed Lardhi",
+                                "name_ar": " منى محمد لرضي",
+                                "position": "Training Specialist",
+                                "position_ar": "أخصائي تدريب",
+                                "mobile": "0563988668",
+                                "extension": "764",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/c2197376554f44469af55851a0d12b24.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Projects",
+                        "name_ar": "Projects",
+                        "contacts": [
+                            {
+                                "name": "Mohamed Al Shehhi",
+                                "name_ar": "محمد الشحي",
+                                "position": " Occupational Safety and Health Standards Engineer",
+                                "position_ar": "مهندس معايير السلامة والصحة المهنية ",
+                                "mobile": null,
+                                "extension": "754",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/779113b418b34c96ac485ed8962289b7.png"
+                            },
+                            {
+                                "name": "Mohamed Yousif Alzarooni",
+                                "name_ar": "محمد يوسف الزرعوني",
+                                "position": "Head of Projects Section",
+                                "position_ar": "رئيس قسم المشاريع",
+                                "mobile": "0563986986",
+                                "extension": "747",
+                                "photo": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Training Institutes and Individuals",
+                        "name_ar": "Training Institutes and Individuals",
+                        "contacts": [
+                            {
+                                "name": "Majed Abdelaziz  AlKhamiri",
+                                "name_ar": "مايد عبدالعزيز الخميري",
+                                "position": "Acting Head of Training Institutes and Individuals Section",
+                                "position_ar": "رئيس قسم معاهد التدريب والأفراد",
+                                "mobile": "0563987798",
+                                "extension": "745",
+                                "photo": null
+                            },
+                            {
+                                "name": "Sarah Mohammed Aldakhatar",
+                                "name_ar": "سارة محمد الدختر",
+                                "position": "Training Specialist",
+                                "position_ar": "أخصائي تدريب",
+                                "mobile": null,
+                                "extension": "763",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/824a947fb6104783aded06ceca897dc8.png"
+                            },
+                            {
+                                "name": "Manar Al Mashghouni",
+                                "name_ar": "منار المشغوني",
+                                "position": "Training  Specialist",
+                                "position_ar": "اخصائي تدريب",
+                                "mobile": "0569905554",
+                                "extension": "743",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/367cfae52f2841b6804e064e57e810be.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Reports",
+                        "name_ar": "Reports",
+                        "contacts": [
+                            {
+                                "name": "Noura Hassan Al Hammadi",
+                                "name_ar": "نورة حسن الحمادي",
+                                "position": "Deputy Head of Occupational Safety and Health Reporting Section",
+                                "position_ar": "نائب رئيس قسم تقارير نظام السلامة و الصحة المهنية",
+                                "mobile": null,
+                                "extension": "746",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/9b96dac977c1423cb0c5537441b6cc5a.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Technical Support",
+                        "name_ar": "Technical Support",
+                        "contacts": [
+                            {
+                                "name": "Mohamed Elalim Osman",
+                                "name_ar": "محمد العالم عثمان",
+                                "position": "Occupational Safety And Health System Support Officer",
+                                "position_ar": "مسؤول دعم نظام السلامة و الصحة المهنية",
+                                "mobile": "0563989595",
+                                "extension": "741",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/df6f84a66afc42b6b83704881ea06d6d.png"
+                            },
+                            {
+                                "name": "Mohammed El Awadhi",
+                                "name_ar": "محمد العوضي",
+                                "position": "Technical support Executive",
+                                "position_ar": "تنفيذي دعم فني",
+                                "mobile": "0564105755",
+                                "extension": "752",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/bedab70e279d471b97924a6e7ec1835c.png"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Business Continuity",
+                        "name_ar": "Business Continuity",
+                        "contacts": [
+                            {
+                                "name": "Fatima Mohamed Almarzooqi",
+                                "name_ar": "فاطمة المرزوقي",
+                                "position": "Deputy Head of Business Continuity Section",
+                                "position_ar": "نائب رئيس قسم استمرارية الأعمال",
+                                "mobile": "0543092299",
+                                "extension": "701",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/1bdc6e61641f4b8c9ada6352505ce638.png"
+                            },
+                            {
+                                "name": "Amina Salim Alhammadi",
+                                "name_ar": "أمينة سالم الحمادي",
+                                "position": "Administrative Assistant",
+                                "position_ar": "مساعد إداري",
+                                "mobile": null,
+                                "extension": "703",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/9837e6df32734f45a2a79089c50d1e19.png"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "department": {
+                "name": "Institution Excellence Department",
+                "name_ar": "إدارة التميز المؤسسي",
+                "sections": [
+                    {
+                        "name": "Section 1",
+                        "name_ar": "Section 1",
+                        "contacts": [
+                            {
+                                "name": "Hessa Salim Alshamsi",
+                                "name_ar": "حصة سالم الشامسي",
+                                "position": "Strategic Planing Engineer",
+                                "position_ar": "مهندس تخطيط استراتيجي",
+                                "mobile": "0566892525",
+                                "extension": "782",
+                                "photo": null
+                            },
+                            {
+                                "name": "Maryam Ali Al Yammahi",
+                                "name_ar": "مريم علي اليماحي",
+                                "position": "Services Supervisor",
+                                "position_ar": "مشرف خدمات",
+                                "mobile": null,
+                                "extension": "781",
+                                "photo": "http://internal-spsa.eovstg.com/uploads/medias/1006a069a931403399833373f732dc10.png"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -135,8 +135,17 @@ _handleReaderLoaded(readerEvt: any) {
       "department": {
         "name": "",
         "name_ar": "",
-        "contact": [
-        ]
+        "sections": []
+      }
+    });
+  }
+
+  addSection2Depart(deptIndx:number){
+    this.directories.schema[deptIndx]["sections"].push({
+      "sections": {
+        "name": "",
+        "name_ar": "",
+        "contacts": []
       }
     });
   }
@@ -150,8 +159,7 @@ _handleReaderLoaded(readerEvt: any) {
   });
   }
 
-  edit(_department: any, _contact: any, _ind: any){
-      this.selectedDepartment = _department;
+  edit(_contact: any, _ind: any){
       this.editLink = true;
       this.contactForm.controls['name'].setValue(_contact.name);
       this.contactForm.controls['name_ar'].setValue(_contact.name_ar);

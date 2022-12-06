@@ -6,7 +6,7 @@
         <h3>{{'services' | translate}}</h3>
     </div>
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-3 col-12 mb-3" *ngFor="let service of services">
                 <div class="service-item px-4 py-5" (click)="goToPage(service, '1')">
                     <div class="s-icon">
@@ -26,10 +26,10 @@
             <div class="col-10 offset-1">
                 <div class="row serives2-list">
                     <div class="col-sm-4 mb-2" *ngFor="let service of services2">
-                        <div class="service2-item px-2 py-2" (click)="goToPage(service, '2')">
+                        <a class="service2-item px-2 py-2" href="{{service.slug}}" target="{{service.target}}">
                             <span class="material-icons-round me-2">{{service.logo ? service.logo : 'link'}}</span>
                             <h5>{{currentLang == 'ar' ? service.text_ar : service.text}}</h5>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

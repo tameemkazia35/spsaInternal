@@ -1,62 +1,65 @@
 <header>
-    <div class="top-header">
-        <div class="container">
-          <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-6">
-              <a routerLink="/">
-                <img src="./assets/images/logo-black.svg" alt="SPSA" height="64">
-              </a>
+  <div class="top-header">
+    <div class="container">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-6">
+          <a routerLink="/">
+            <img src="./assets/images/logo-black.svg" alt="SPSA" height="64">
+          </a>
+        </div>
+        <div class="col-6">
+          <div class="ms-auto">
+
+            <div class="timesprayer text-end">
+              <iframe
+                src="https://timesprayer.com/widgets.php?frame=2&amp;lang=en&amp;name=sharijah&amp;avachang=true&amp;time=0&amp;fcolor=357342&amp;tcolor=07B05B&amp;frcolor=22452B"
+                style="border: none; margin-top: 2px; overflow: hidden; height: 86px;width: 280px;"></iframe>
+              <a href="javascript:void(0);" class="prayerTag" (click)="prayerModal=!prayerModal"></a>
             </div>
-            <div class="col-6">
-              <div class="ms-auto">
-              <iframe src="https://timesprayer.com/widgets.php?frame=1&amp;lang=en&amp;sound=false&amp;name=sharijah&amp;avachang=true&amp;time=0&amp;fcolor=357342&amp;tcolor=357342&amp;frcolor=357342" style="border: none; overflow: hidden; height: 80px;max-width: 280px; float: right;"></iframe>
-            </div>
-            </div>
+
+
           </div>
         </div>
-    </div>  
-  <nav class="navbar navbar-expand-lg bg-primary">
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg">
     <div class="container">
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li>
-            <a class="nav-link text-white ps-0" routerLink="/"><span class="material-icons-round me-2">home</span>{{'home' | translate}}</a>
+          <a class="nav-link ps-0" routerLink="/"><span class="material-icons-round me-2">home</span>{{'home'
+            | translate}}</a>
         </li>
 
         <li *ngFor="let menu of menuList">
-          <a class="nav-link text-white" (click)="goToPage(menu)" title="{{menu.slug}}"><span class="material-icons-round me-2" *ngIf="menu.iconName">{{menu.iconName}}</span>{{currentLang == 'ar' ? menu.text_ar : menu.text}}</a>
+          <a class="nav-link" (click)="goToPage(menu)" title="{{menu.slug}}"><span
+              class="material-icons-round me-2" *ngIf="menu.iconName">{{menu.iconName}}</span>{{currentLang == 'ar' ?
+            menu.text_ar : menu.text}}</a>
         </li>
-
-        <!-- <li>
-            <a class="nav-link text-white" href="#"><span class="material-icons-round me-2">work_history</span>HR System</a>
-        </li>
-        <li>
-            <a class="nav-link text-white" href="#"><span class="material-icons-round me-2">markunread</span>Zajel</a>
-        </li>
-        <li>
-            <a class="nav-link text-white" href="#"><span class="material-icons-round me-2">contacts</span>Contact</a>
-        </li>
-        <li>
-            <a class="nav-link text-white" href="#"><span class="material-icons-round me-2">mark_as_unread</span>Outlook</a>
-        </li>
-        <li>
-            <a class="nav-link text-white" href="#"><span class="material-icons-round me-2">browse_gallery</span>Attendance</a>
-        </li>    
-        <li>
-            <a class="nav-link text-white" href="#"><span class="material-icons-round me-2">view_carousel</span>Service Desk</a>
-        </li>     -->
       </ul>
       <div class="d-flex" dir="ltr">
-        <button class="rounded-circle btn btn-small btn-secondary menu-toggle me-2 text-uppercase" (click)="lmenu.toggle($event)">{{currentLang}}</button>
-        <button class="rounded-circle btn btn-small btn-secondary menu-toggle me-2" (click)="amenu.toggle($event)"><span class="material-icons-round">person_rounded</span></button>
+        <button class="rounded-circle btn btn-small btn-secondary menu-toggle me-2 text-uppercase"
+          (click)="lmenu.toggle($event)">{{currentLang}}</button>
+        <button class="rounded-circle btn btn-small btn-secondary menu-toggle me-2" (click)="amenu.toggle($event)"><span
+            class="material-icons-round">person_rounded</span></button>
       </div>
     </div>
   </nav>
-  </header>
-  
-  <p-menu [model]="items" [popup]="true" #amenu></p-menu>
-  <p-menu class="lang-menu" [model]="langItems" [popup]="true" #lmenu></p-menu>
-  <router-outlet></router-outlet>
+</header>
 
-  <footer class="text-center p-2 bg-dark">
-    <small class="text-white">{{'copyright' | translate}}</small>
-  </footer>
+<p-menu [model]="items" [popup]="true" #amenu></p-menu>
+<p-menu class="lang-menu" [model]="langItems" [popup]="true" #lmenu></p-menu>
+<router-outlet></router-outlet>
+
+<footer class="text-center p-2 bg-dark">
+  <small class="text-white"><span class="custom-color">{{'copyright' | translate}}</span></small>
+</footer>
+
+<p-dialog [(visible)]="prayerModal" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+  [style]="{width: '400px', padding: '0'}">
+
+  <iframe
+    src="https://timesprayer.com/widgets.php?frame=2&amp;lang=en&amp;name=sharijah&amp;avachang=true&amp;time=0&amp;fcolor=357342&amp;tcolor=07B05B&amp;frcolor=22452B"
+    style="border: none; height: 300px;  width: 100%;"></iframe>
+
+</p-dialog>

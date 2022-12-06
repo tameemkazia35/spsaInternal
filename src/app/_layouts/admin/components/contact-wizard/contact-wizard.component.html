@@ -22,7 +22,7 @@
             <div class="col-md-3" *ngFor="let contact of directory.department.contact; let i =index">
                 <div class="card">
                     <div class="remove-contact">
-                        <button class="rounded-circle btn btn-sm btn-warning mx-1" (click)="edit(directory.department, contact, i)"><span
+                        <button class="rounded-circle btn btn-sm btn-warning mx-1" (click)="edit(contact, i)"><span
                             class="material-icons-round">edit_rounded</span></button>
                     <button class="rounded-circle btn btn-sm btn-danger " (click)="removeConfirm(directory.department, contact)"><span
                             class="material-icons-round">clear_rounded</span></button>

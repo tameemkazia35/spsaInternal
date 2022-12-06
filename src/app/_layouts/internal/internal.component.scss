@@ -1,51 +1,84 @@
-nav{
-    li{
-        a{
+nav {
+    background-color: var(--bs-primary);
+    li {
+        a {
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer !important;
+            color: var(--spsa-menu-text);
         }
     }
 }
 
-.home-banner{
+.home-banner {
     background: url('./../../../assets/images/hero-bg.svg');
     height: 120px;
     width: 100%;
     background-size: cover;
-    background-position: top ;
+    background-position: top;
 }
 
-.menu-toggle{
+.menu-toggle {
     width: 40px;
     height: 40px;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    span{
+
+    span {
         width: 24px;
     }
 }
 
-::ng-deep .lang-menu{
-    .p-menu{
+::ng-deep .lang-menu {
+    .p-menu {
         width: 120px !important;
     }
 }
 
-::ng-deep .p-menubar{
+::ng-deep .p-menubar {
     padding: 0 !important;
 }
 
-::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover, ::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover, ::ng-deep .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link{
-    background: #336A3E !important;
-}
-::ng-deep .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-icon, .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link .p-submenu-icon, ::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-text, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text, ::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link .p-submenu-icon, .p-menubar .p-menubar-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon, ::ng-deep .p-menubar .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-text{
-color: #fff !important;
+::ng-deep .p-menubar .p-menubar-root-list>.p-menuitem.p-menuitem-active>.p-menuitem-link,
+.p-menubar .p-menubar-root-list>.p-menuitem.p-menuitem-active>.p-menuitem-link:not(.p-disabled):hover,
+::ng-deep .p-menubar .p-menubar-root-list>.p-menuitem.p-menuitem-active>.p-menuitem-link,
+.p-menubar .p-menubar-root-list>.p-menuitem.p-menuitem-active>.p-menuitem-link:not(.p-disabled):hover,
+::ng-deep .p-menubar .p-menuitem.p-menuitem-active>.p-menuitem-link {
+    background: var(--bs-secondary) !important;
 }
 
-::ng-deep .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:focus{
+::ng-deep .p-menubar .p-menuitem.p-menuitem-active>.p-menuitem-link .p-menuitem-icon,
+.p-menubar .p-menuitem.p-menuitem-active>.p-menuitem-link .p-submenu-icon,
+::ng-deep .p-menubar .p-menubar-root-list>.p-menuitem.p-menuitem-active>.p-menuitem-link .p-menuitem-text,
+.p-menubar .p-menubar-root-list>.p-menuitem.p-menuitem-active>.p-menuitem-link:not(.p-disabled):hover .p-menuitem-text,
+::ng-deep .p-menubar .p-menubar-root-list>.p-menuitem.p-menuitem-active>.p-menuitem-link .p-submenu-icon,
+.p-menubar .p-menubar-root-list>.p-menuitem.p-menuitem-active>.p-menuitem-link:not(.p-disabled):hover .p-submenu-icon,
+::ng-deep .p-menubar .p-menuitem.p-menuitem-active>.p-menuitem-link .p-menuitem-text {
+    color: var(--spsa-menu-text) !important;
+}
+
+::ng-deep .p-menubar .p-menubar-root-list>.p-menuitem>.p-menuitem-link:focus {
     box-shadow: none !important;
+}
+
+.timesprayer {
+    position: relative;
+
+    iframe {
+        position: relative;
+        z-index: 99;
+    }
+
+    .prayerTag {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+        height: 80px;
+    }
 }

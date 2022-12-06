@@ -2,102 +2,129 @@
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 
-$blue:    #0d6efd;
-$indigo:  #6610f2;
-$purple:  #6f42c1;
-$pink:    #d63384;
-$red:     #dc3545;
-$orange:  #fd7e14;
-$yellow:  #ffc107;
-$green:   #198754;
-$teal:    #20c997;
-$cyan:    #0dcaf0;
+$blue: #0d6efd;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
 
-$primary: #851825;
+$primary: #662428;
 $secondary: #357342;
-$success:       $green;
-$info:          $cyan;
-$warning:       $yellow;
-$danger:        $red;
-$light:         $gray-100;
-$dark:          $gray-900;
+$success: $green;
+$info: $cyan;
+$warning: $yellow;
+$danger: $red;
+$light: $gray-100;
+$dark: $gray-900;
 
 
-$theme-colors: ( 
-"primary": $primary, 
-"secondary": $secondary,
-"success":    $success,
-"info":       $info,
-"warning":    $warning,
-"danger":     $danger,
-"light":      $light,
-"dark":       $dark );
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark
+);
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
 :root {
-    --bs-primary: #851825 !important;
-    --bs-secondary: #357342 !important;
-    --bs-primary-rgb: 133, 24, 37 !important;
+    --bs-primary: #851825;
+    --bs-secondary: #357342;
+    --spsa-menu-text: #fff;
+    
+    --spsa-bc-1: #00AB54;
+    --spsa-bc-2: #D03A2B;
+    --spsa-hc-1: #D03A2B;
+    --spsa-hc-2: #662428;
+
+    --spsa-grey-1: #bbbbbb;
+    --spsa-grey-2: #d4d4cf;
+    --spsa-grey-3: #DEDED9;
+    --spsa-grey-4: #EAEAE6;
+
+    --spsa-black-1: #222222;
+    --spsa-black-2: #40413e;
+    --spsa-black-3: #4f4f4c;
+    --spsa-black-4: #5c5c5a;
+
+    --spsa-red-1: #e1251b;
+    --spsa-red-2: #af3532;
+    --spsa-red-3: #903030;
+    --spsa-red-4: #662428;
+
+    --spsa-green-1: #00b451;
+    --spsa-green-2: #418e4e;
+    --spsa-green-3: #336a3e;
+    --spsa-green-4: #22452b;
 }
 
-body{
+body {
     overflow-x: hidden;
 }
 
-.bg-gray{
-    background: #EAEAE6;
+.bg-gray {
+    background: var(--spsa-bg-1);
 }
 
-.p-breadcrumb{
+.p-breadcrumb {
     border: none !important;
 }
 
-.action-card{
+.action-card {
     min-height: 240px;
-    .btn-block{
-        
-    }
+
+    .btn-block {}
 }
 
-.arabic{
-    .ql-editor{
+.arabic {
+    .ql-editor {
         text-align: right !important;
     }
 }
 
-.ql-image, .ql-code-block{
+.ql-image,
+.ql-code-block {
     display: none !important;
 }
 
-.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg{
+.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {
     right: inherit !important;
 }
 
 
-.p-fieldset .p-fieldset-legend{
+.p-fieldset .p-fieldset-legend {
     float: inherit !important;
     width: auto !important;
     padding: inherit !important;
     font-size: 16px !important;
 }
 
-.p-fieldset{
+.p-fieldset {
     padding-inline-start: 0.75em !important;
     padding-inline-end: 0.75em !important;
     background: #f1f1f1 !important;
     margin-bottom: 30px;
-    a{
+
+    a {
         text-decoration: none;
     }
 }
 
-.p-fieldset.p-fieldset-toggleable .p-fieldset-legend a{
+.p-fieldset.p-fieldset-toggleable .p-fieldset-legend a {
     padding: 0.75rem !important;
 }
 
-.p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:focus{
-    box-shadow: none !important;    
+.p-fieldset.p-fieldset-toggleable .p-fieldset-legend a:focus {
+    box-shadow: none !important;
 }
 
 .fc.fc-theme-standard a {
@@ -105,34 +132,37 @@ body{
     text-decoration: none;
 }
 
-.fc.fc-theme-standard .fc-view-harness .fc-event.fc-daygrid-block-event{
+.fc.fc-theme-standard .fc-view-harness .fc-event.fc-daygrid-block-event {
     background: #00AB54 !important;
     border-color: #00AB54 !important;
 }
 
-.fc.fc-theme-standard .fc-toolbar .fc-button, .fc.fc-theme-standard .fc-toolbar .fc-button:disabled{
+.fc.fc-theme-standard .fc-toolbar .fc-button,
+.fc.fc-theme-standard .fc-toolbar .fc-button:disabled {
     background: #851825 !important;
     border: 1px solid #851825 !important;
 }
-.fc.fc-theme-standard .fc-toolbar .fc-button:focus{
+
+.fc.fc-theme-standard .fc-toolbar .fc-button:focus {
     box-shadow: none;
     transform: scale(1.05);
     transition: .3s all;
 }
 
-.p-dialog-mask.p-component-overlay{
+.p-dialog-mask.p-component-overlay {
     backdrop-filter: blur(8px);
 }
 
 
-.inner-banner{
+.inner-banner {
     background: url('/assets/images/hero-bg.svg');
     height: 60px;
     width: 100%;
     background-size: cover;
-    background-position: top ;
+    background-position: top;
     position: relative;
-    &:after{
+
+    &:after {
         content: '';
         position: absolute;
         top: 0;
@@ -142,7 +172,8 @@ body{
         background: rgb(0 0 0 / 50%);
         z-index: 0;
     }
-    .breadcrumb{
+
+    .breadcrumb {
         position: relative;
         z-index: 999;
         color: #fff;
@@ -150,13 +181,16 @@ body{
         align-items: center;
         height: 100%;
         padding-bottom: 5px;
-        .disable{
+
+        .disable {
             font-weight: 400;
         }
-        .enable{
+
+        .enable {
             cursor: pointer;
             font-weight: bold;
-            &:after{
+
+            &:after {
                 content: '/';
                 margin-left: 8px;
                 margin-right: 8px;
@@ -170,6 +204,7 @@ body{
     right: 8px;
     top: 8px;
     display: flex;
+
     button {
         width: 36px;
         height: 36px;
@@ -178,14 +213,16 @@ body{
         justify-content: center;
         padding: 0;
         position: relative;
-        span{
+
+        span {
             width: 24px;
             margin: auto;
         }
     }
 }
 
-.search-bar{
+.search-bar {
+
     // height: 50px;
     // border-radius: 25px;
     // box-shadow: 0 2px 30px -5px rgb(0 0 0 / 15%);
@@ -193,7 +230,7 @@ body{
     // padding-inline: 30px;
     // transition: .3s all ease;
     // border: .5px solid #BDBBBB;
-    span{
+    span {
         width: 50px;
         background: transparent;
         height: 44px;
@@ -204,45 +241,48 @@ body{
         color: #BDBBBB
     }
 
-    input{
+    input {
         height: 44px;
         border-left: 0;
         border-top-right-radius: 25px !important;
         border-bottom-right-radius: 25px !important;
         box-shadow: none;
-        &:focus{
+
+        &:focus {
             border-color: #ced4da;
             box-shadow: none;
         }
     }
-    
+
 }
 
 //Arabic css
 html[dir="rtl"] {
-    header{
-        iframe{
+    header {
+        iframe {
             float: left !important;
         }
     }
-    .container{
 
-    .search-bar{
-        input{
-            border-left: 1px solid #ced4da !important;
-            border-right: 0 !important;
-            border-top-left-radius: 25px !important;
-            border-bottom-left-radius: 25px !important;
-            border-top-right-radius: 0px !important;
-            border-bottom-right-radius: 0px !important;
-        }
-        span{
-            border-right: 1px solid #ced4da !important;
-            border-top-left-radius: 0px !important;
-            border-bottom-left-radius: 0px !important;
-            border-top-right-radius: 25px !important;
-            border-bottom-right-radius: 25px !important;
+    .container {
+
+        .search-bar {
+            input {
+                border-left: 1px solid #ced4da !important;
+                border-right: 0 !important;
+                border-top-left-radius: 25px !important;
+                border-bottom-left-radius: 25px !important;
+                border-top-right-radius: 0px !important;
+                border-bottom-right-radius: 0px !important;
+            }
+
+            span {
+                border-right: 1px solid #ced4da !important;
+                border-top-left-radius: 0px !important;
+                border-bottom-left-radius: 0px !important;
+                border-top-right-radius: 25px !important;
+                border-bottom-right-radius: 25px !important;
+            }
         }
     }
-}
 }

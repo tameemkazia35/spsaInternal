@@ -23,14 +23,13 @@ import { TranslateService } from '@ngx-translate/core';
   ]
 })
 export class AppComponent {
-  title = 'spsaInternal';
+  
   isMenuOpen = false;
   display = false;
 
   constructor(private util: UtilService, private spinner: NgxSpinnerService, private router: Router, private translate: TranslateService, private Router: Router) {
+
     this.translate.addLangs(['en', 'ar']);
-
-
 
     this.router.events.subscribe((ev) => {
       var Html = document.querySelector('html') as HTMLElement;
@@ -41,7 +40,7 @@ export class AppComponent {
         } else {
           var lang = localStorage.getItem('lang') || 'ar';
           this.translate.setDefaultLang(lang);
-          
+
           if (lang == 'en') {
             Html.setAttribute('dir', 'ltr');
             Html.setAttribute('lang', 'en');
