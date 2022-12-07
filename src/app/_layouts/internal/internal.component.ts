@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/_services/api.service';
 import { apis } from 'src/app/_enum/apiEnum';
 import { TranslateService } from '@ngx-translate/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-internal',
@@ -19,11 +20,21 @@ export class InternalComponent implements OnInit {
   currentLang: any;
   languages: any;
   prayerModal: boolean = false;
-  constructor(private router: Router, private util: UtilService, private service: ApiService, private translateService: TranslateService) { 
+  prayerTheme: any = {primary: '851825', secondary:'357342', menuText: 'ffffff'};
+  iframURl: any;
+
+  constructor(private router: Router, private util: UtilService, private service: ApiService, private translateService: TranslateService, private sanitize: DomSanitizer) { 
     this.getLangs();
   }
 
   ngOnInit(): void {
+    this.util.observTheme().subscribe(_res=>{
+      this.prayerTheme = JSON.parse(JSON.stringify(_res));
+      this.prayerTheme.primary = this.prayerTheme.primary.replace('#', '');
+      this.prayerTheme.secondary= this.prayerTheme.secondary.replace('#', '');
+      this.prayerTheme.menuText = this.prayerTheme.menuText.replace('#', '');
+      this.iframURl = this.sanitize.bypassSecurityTrustResourceUrl('https://timesprayer.com/widgets.php?frame=2&lang=en&name=sharijah&avachang=true&time=0&fcolor='+this.prayerTheme.secondary+'&tcolor='+this.prayerTheme.menuText+'&frcolor='+this.prayerTheme.secondary);
+    });
     this.currentLang = this.util.getCurrentLang();
     console.log('this.currentLang', this.currentLang);
     this.afterLoginMenu();

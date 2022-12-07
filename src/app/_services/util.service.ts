@@ -50,5 +50,13 @@ export class UtilService {
     return this.eventSubject;
   }
 
+  publishTheme(data: any) {
+    this.themeUpdate.next(data);
+  }
+
+  observTheme(): Subject<any> {
+    return this.themeUpdate;
+  }
+
 
 }

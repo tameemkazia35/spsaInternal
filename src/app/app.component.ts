@@ -95,12 +95,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(localStorage.themeData){
-      this.themeData = JSON.parse(localStorage.themeData);
-      this.setThemedata();
-    }else{
       this.getThemeData();
-    }
   }
 
 
@@ -114,6 +109,7 @@ export class AppComponent implements OnInit{
       this.themeData.primary = rawdata.root[0].value;
       this.themeData.secondary = rawdata.root[1].value;
       this.themeData.menuText = rawdata.root[2].value;
+      this.util.publishTheme(this.themeData);
       localStorage.setItem('themeData', JSON.stringify(this.themeData));
       this.setThemedata();
     })
