@@ -11,5 +11,6 @@
     "copyright": "Copyright © Government of Sharjah, Prevention and Safety Authority, All Rights Reserved.",
     "attachments": "View attachments",
     "eventDateTime": "Event date",
-    "venue":"Venue"
+    "venue":"Venue",
+    "search":"Type your search words here"
 }
