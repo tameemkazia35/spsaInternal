@@ -71,7 +71,7 @@ export class ContactWizardComponent implements OnInit {
 
   addContact(_dept: any){
     this.display= true;
-    this.selectedSection = _dept
+    this.selectedSection = _dept;
   }
 
   get f() { return this.contactForm.controls; }
@@ -172,7 +172,7 @@ _handleReaderLoaded(readerEvt: any) {
   });
   }
 
-  edit(_contact: any, _ind: any){
+  edit(_department: any, _deptIndex: any, _section: any, _secIndex: any,  _contact: any, _ind: any){
       this.editLink = true;
       this.contactForm.controls['name'].setValue(_contact.name);
       this.contactForm.controls['name_ar'].setValue(_contact.name_ar);
@@ -184,6 +184,8 @@ _handleReaderLoaded(readerEvt: any) {
       this.cloneOject = _contact;
       this.cloneOject.id = _ind;
       this.display = true;
+      // select here
+      this.selectedSection = _section;
   }
   
   toastMessage(_msg: string, _desc: string, _severity: string = 'success') {

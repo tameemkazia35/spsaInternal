@@ -1,15 +1,18 @@
 <div class="mb-5">
     <p-fieldset legend="" [toggleable]="true" *ngFor="let directory of directories.schema; let i = index">
-        <ng-template pTemplate="header">{{directory.department.name ? directory.department.name : 'Department'}}</ng-template>
+        <ng-template pTemplate="header">{{directory.department.name ? directory.department.name :
+            'Department'}}</ng-template>
         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="directory.department.name" (change)="emitData()"/>
+                    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="directory.department.name"
+                        (change)="emitData()" />
                 </div>
             </div>
             <div class="col-md-6" dir="rtl">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="الاسم" [(ngModel)]="directory.department.name_ar" (change)="emitData()"/>
+                    <input type="text" class="form-control" placeholder="الاسم"
+                        [(ngModel)]="directory.department.name_ar" (change)="emitData()" />
                 </div>
             </div>
             <!-- <div class="col-md-2">
@@ -20,56 +23,65 @@
         </div>
         <ng-container *ngFor="let section of directory.department.sections; let sindex = index;">
             <div class="card px-4 pb-4 mb-4">
-            <p-divider align="center">
-                <span class="p-tag">Section</span>
-            </p-divider>
-        <div class="row mb-3" *ngIf="directory.department.sections" >
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Section Name" [(ngModel)]="section.name"/>
-                </div>
-            </div>
-            <div class="col-md-6" dir="rtl">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="الاسم" [(ngModel)]="section.name_ar"/>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3" *ngFor="let contact of section.contacts; let i =index">
-                <div class="card">
-                    <div class="remove-contact">
-                        <button class="rounded-circle btn btn-sm btn-warning mx-1" (click)="edit(contact, i)"><span
-                            class="material-icons-round">edit_rounded</span></button>
-                    <button class="rounded-circle btn btn-sm btn-danger " (click)="removeConfirm(section, contact)"><span
-                            class="material-icons-round">clear_rounded</span></button>
+                <p-divider align="center">
+                    <span class="p-tag">Section</span>
+                </p-divider>
+                <div class="row mb-3" *ngIf="directory.department.sections">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Section Name"
+                                [(ngModel)]="section.name" />
+                        </div>
                     </div>
-                    <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="contact.photo" class="card-img-top" [alt]="contact.name">
-                    <div class="card-body text-center">
-                        <h6 class="mb-1">
-                            <strong>{{contact.name}}</strong>
-                            <br />
-                            {{contact.name_ar}}
-                        </h6>
-                        <p class="mb-1 text-muted">
-                            {{contact.position}}
-                            <br />
-                            {{contact.position_ar}}
-                        </p>
-                        <p class="mb-1">Mobile: {{contact.mobile}}</p>
-                        <p class="mb-1">Extension: {{contact.extension}}</p>
+                    <div class="col-md-6" dir="rtl">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="الاسم" [(ngModel)]="section.name_ar" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12 mt-4">
-                <div class="d-flex s-action-buttons">
-                    <button class="btn btn-danger d-flex justify-content-center" (click)="deleteSection(directory, sindex)"><span class="material-icons-round me-2">delete_forever</span><span>Delete section</span></button>
-                    <button class="btn btn-secondary d-flex justify-content-center" (click)="addContact(section)"><span class="material-icons-round me-2">people</span><span>Add contact</span></button>
+                <div class="row">
+                    <div class="col-md-3" *ngFor="let contact of section.contacts; let contactIndex =index">
+                        <div class="card">
+                            <div class="remove-contact">
+                                <button class="rounded-circle btn btn-sm btn-warning mx-1"
+                                    (click)="edit(directory, i, section, sindex, contact, contactIndex)"><span
+                                        class="material-icons-round">edit_rounded</span></button>
+                                <button class="rounded-circle btn btn-sm btn-danger "
+                                    (click)="removeConfirm(section, contact)"><span
+                                        class="material-icons-round">clear_rounded</span></button>
+                            </div>
+                            <img onerror="this.src='/assets/images/noimageavailable.png'" [src]="contact.photo"
+                                class="card-img-top" [alt]="contact.name">
+                            <div class="card-body text-center">
+                                <h6 class="mb-1">
+                                    <strong>{{contact.name}}</strong>
+                                    <br />
+                                    {{contact.name_ar}}
+                                </h6>
+                                <p class="mb-1 text-muted">
+                                    {{contact.position}}
+                                    <br />
+                                    {{contact.position_ar}}
+                                </p>
+                                <p class="mb-1">Mobile: {{contact.mobile}}</p>
+                                <p class="mb-1">Extension: {{contact.extension}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <div class="d-flex s-action-buttons">
+                            <button class="btn btn-danger d-flex justify-content-center"
+                                (click)="deleteSection(directory, sindex)"><span
+                                    class="material-icons-round me-2">delete_forever</span><span>Delete
+                                    section</span></button>
+                            <button class="btn btn-secondary d-flex justify-content-center"
+                                (click)="addContact(section)"><span
+                                    class="material-icons-round me-2">people</span><span>Add contact</span></button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </ng-container>
+        </ng-container>
         <div class="text-end mt-4">
             <button class="btn btn-primary" (click)="addSection2Depart(i)">Add new section</button>
         </div>
@@ -83,85 +95,95 @@
     </div>
 </div>
 
-<p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" [style]="{width: '700px', padding: '0'}">
+<p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [style]="{width: '700px', padding: '0'}">
     <ng-template pTemplate="header">
         <h3>{{editLink ? 'Edit Contact' : 'Add Contact'}}</h3>
     </ng-template>
     <div class="modal-content">
-    <form [formGroup]="contactForm"  (ngSubmit)="saveContact()" novalidate>
+        <form [formGroup]="contactForm" (ngSubmit)="saveContact()" novalidate>
 
-        <div class="row">
-            <div class="col-12">
-                <img class="img-fluid img-thumbnail m-auto emp-avatar" [src]="contactForm.value.photo" />
-                <div class="form-group mb-3">
-                    <label>Photo</label>
-                    <input #fileInput type="file" name="photo" class="form-control form-control-sm" (change)="handleFileSelect($event)"/>
-                    <div id="emailHelp" class="form-text">Image size(px): 256 width x 256 height</div>
-                </div>
-            </div>
-
-            <!--English section-->
-            <div class="col-6">
-
-                <div class="form-group mb-3">
-                    <label>Name</label>
-                    <input type="text" name="name" formControlName="name" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
-                    <div *ngIf="submitted && f.name.invalid" class="invalid-feedback">
-                        <div *ngIf="f.name.errors?.required">This field is required</div>
+            <div class="row">
+                <div class="col-12">
+                    <img class="img-fluid img-thumbnail m-auto emp-avatar" [src]="contactForm.value.photo" />
+                    <div class="form-group mb-3">
+                        <label>Photo</label>
+                        <input #fileInput type="file" name="photo" class="form-control form-control-sm"
+                            (change)="handleFileSelect($event)" />
+                        <div id="emailHelp" class="form-text">Image size(px): 256 width x 256 height</div>
                     </div>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label>Designation</label>
-                    <input type="text" name="position" formControlName="position" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.position.errors }"/>
-                    <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
-                        <div *ngIf="f.position.errors?.required">This field is required</div>
+                <!--English section-->
+                <div class="col-6">
+
+                    <div class="form-group mb-3">
+                        <label>Name</label>
+                        <input type="text" name="name" formControlName="name" class="form-control form-control-sm"
+                            required [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                        <div *ngIf="submitted && f.name.invalid" class="invalid-feedback">
+                            <div *ngIf="f.name.errors?.required">This field is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Designation</label>
+                        <input type="text" name="position" formControlName="position"
+                            class="form-control form-control-sm" required
+                            [ngClass]="{ 'is-invalid': submitted && f.position.errors }" />
+                        <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
+                            <div *ngIf="f.position.errors?.required">This field is required</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Arabic section-->
+                <div class="col-6" dir="rtl">
+
+                    <div class="form-group mb-3" dir="rtl">
+                        <label>الاسم</label>
+                        <input type="text" name="name_ar" formControlName="name_ar" class="form-control form-control-sm"
+                            required [ngClass]="{ 'is-invalid': submitted && f.name_ar.errors }" />
+                        <div *ngIf="submitted && f.name_ar.invalid" class="invalid-feedback">
+                            <div *ngIf="f.name_ar.errors?.required">This field is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3" dir="rtl">
+                        <label>تعيين</label>
+                        <input type="text" name="position_ar" formControlName="position_ar"
+                            class="form-control form-control-sm" required
+                            [ngClass]="{ 'is-invalid': submitted && f.position_ar.errors }" />
+                        <div *ngIf="submitted && f.position_ar.invalid" class="invalid-feedback">
+                            <div *ngIf="f.position_ar.errors?.required">This field is required</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+                    <div class="form-group mb-3">
+                        <label>Mobile</label>
+                        <input type="text" name="mobile" formControlName="mobile"
+                            class="form-control form-control-sm" />
                     </div>
                 </div>
 
-            </div>
-
-             <!--Arabic section-->
-            <div class="col-6" dir="rtl">
-
-                <div class="form-group mb-3" dir="rtl">
-                    <label>الاسم</label>
-                    <input type="text" name="name_ar" formControlName="name_ar" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.name_ar.errors }"/>
-                    <div *ngIf="submitted && f.name_ar.invalid" class="invalid-feedback">
-                        <div *ngIf="f.name_ar.errors?.required">This field is required</div>
-                    </div>
-                </div>
-                
-                <div class="form-group mb-3" dir="rtl">
-                    <label>تعيين</label>
-                    <input type="text" name="position_ar" formControlName="position_ar" class="form-control form-control-sm" required [ngClass]="{ 'is-invalid': submitted && f.position_ar.errors }"/>
-                    <div *ngIf="submitted && f.position_ar.invalid" class="invalid-feedback">
-                        <div *ngIf="f.position_ar.errors?.required">This field is required</div>
+                <div class="col-6">
+                    <div class="form-group mb-3">
+                        <label>Extension</label>
+                        <input type="text" name="extension" formControlName="extension"
+                            class="form-control form-control-sm" />
                     </div>
                 </div>
 
-            </div>
-
-            <div class="col-6">
-                <div class="form-group mb-3">
-                    <label>Mobile</label>
-                    <input type="text" name="mobile" formControlName="mobile" class="form-control form-control-sm"/>
+                <div class="col-12 text-end my-2">
+                    <button class="btn btn-secondary px-5" type="submit">{{editLink ? 'Update' : 'Add'}}</button>
                 </div>
             </div>
-
-            <div class="col-6">
-                <div class="form-group mb-3">
-                    <label>Extension</label>
-                    <input type="text" name="extension" formControlName="extension" class="form-control form-control-sm"/>
-                </div>
-            </div>
-
-            <div class="col-12 text-end my-2">
-                <button class="btn btn-secondary px-5" type="submit">{{editLink ? 'Update' : 'Add'}}</button>
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 </p-dialog>
 
 <p-confirmDialog #cd>
@@ -169,7 +191,9 @@
         <h3>Delete Confirmation</h3>
     </ng-template>
     <ng-template pTemplate="footer">
-        <button class="btn btn-light px-4" type="button" icon="pi pi-times" label="No" (click)="cd.reject()">Cancel</button>
-        <button class="btn btn-danger px-4" type="button" icon="pi pi-check" label="Yes" (click)="cd.accept()">Delete</button>
+        <button class="btn btn-light px-4" type="button" icon="pi pi-times" label="No"
+            (click)="cd.reject()">Cancel</button>
+        <button class="btn btn-danger px-4" type="button" icon="pi pi-check" label="Yes"
+            (click)="cd.accept()">Delete</button>
     </ng-template>
 </p-confirmDialog>
