@@ -56,13 +56,13 @@ export class ContactWizardComponent implements OnInit {
         this.directories.schema = _.sortBy(this.directories.schema, 'sort', 'desc');
         this.directories.schema.forEach((_directory: any, index: any) => {
           _directory.department.sections = _.sortBy(_directory.department.sections, 'sort', 'desc');
-          // _directory.sort = index + 1;
+          _directory.sort = _directory.sort ? _directory.sort : index + 1;
           _directory.department.sections.forEach((_section: any, sindex: any) => {
-            // _section.sort = sindex + 1;
+            _section.sort = _section.sort ? _section.sort : sindex + 1;
             _section.contacts = _.sortBy(_section.contacts, 'sort', 'desc');
-            //_section.contacts.forEach((_contact: any, cindex: any)=> {
-              // _contact.sort = cindex + 1;
-            //});
+            _section.contacts.forEach((_contact: any, cindex: any)=> {
+              _contact.sort = _contact.sort ? _contact.sort : cindex + 1;
+            });
           });
         });
         console.log('this.directories', this.directories);
