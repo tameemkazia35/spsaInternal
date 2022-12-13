@@ -3,7 +3,7 @@
         <ng-template pTemplate="header">{{directory.department.name ? directory.department.name :
             'Department'}}</ng-template>
             <div class="dsort">
-                <input [(ngModel)]="directory.sort" class="form-control"/>
+                <input type="number" [(ngModel)]="directory.sort" class="form-control"/>
             </div>
         <div class="row mb-3">
             <div class="col-md-6">
@@ -22,7 +22,7 @@
         <ng-container *ngFor="let section of directory.department.sections; let sindex = index;">
             <div class="card px-4 pb-4 mb-4">
                 <p-divider align="center">
-                    <span class="p-tag">Section {{directory.sort}} - <input [(ngModel)]="section.sort" class="form-control ssort"/></span>
+                    <span class="p-tag">Section {{directory.sort}} - <input type="number" [(ngModel)]="section.sort" class="form-control ssort"/></span>
                 </p-divider>
                 <div class="row mb-3" *ngIf="directory.department.sections">
                     <div class="col-md-6">
@@ -63,7 +63,7 @@
                                 </p>
                                 <p class="mb-1">Mobile: {{contact.mobile}}</p>
                                 <p class="mb-1">Extension: {{contact.extension}}</p>
-                                <div class="csort"><span>{{directory.sort}} - {{section.sort}}</span> - <input class="form-control" [(ngModel)]="contact.sort"/></div>
+                                <div class="csort"><span>{{directory.sort}} - {{section.sort}}</span> - <input type="number" type="number" class="form-control" [(ngModel)]="contact.sort"/></div>
                             </div>
                         </div>
                     </div>
