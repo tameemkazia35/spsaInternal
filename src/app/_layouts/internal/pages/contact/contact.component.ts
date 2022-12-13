@@ -5,6 +5,7 @@ import { MenuItem } from 'primeng/api';
 import { apis } from 'src/app/_enum/apiEnum';
 import { ApiService } from 'src/app/_services/api.service';
 import { UtilService } from 'src/app/_services/util.service';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-contact',
@@ -69,12 +70,16 @@ export class ContactComponent implements OnInit {
       this.pageData = _res;
       var parseData = JSON.parse(_res.page.pageComponents.data);
       this.contactList = parseData.schema;
+      this.contactList = _.sortBy(this.contactList, 'sort', 'desc');
       this.contactList.forEach((_dept: any) => {
+        // _dept.department = _.sortBy(_dept.department, 'sort', 'asc');
+          _dept.department.sections = _.sortBy(_dept.department.sections, 'sort', 'desc');
           _dept.department.sections.forEach((_contact: any) => {
+            _contact.contacts = _.sortBy(_contact.contacts, 'sort', 'desc');
               this.allContacts.push(..._contact.contacts);
           });
       });
-      console.log('this.allContacts', this.allContacts);
+      console.log('this.contactList', this.contactList);
       this.spinner.hide();
     }, error=>{
       this.spinner.hide();

@@ -295,4 +295,6 @@ html[dir="rtl"] {
 .p-tag{
     background:  var(--bs-secondary) !important;
     padding-inline: 36px !important;
+    display: flex;
+    align-items: center;
 }

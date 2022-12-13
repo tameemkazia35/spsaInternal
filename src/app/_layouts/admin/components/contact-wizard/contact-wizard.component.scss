@@ -20,3 +20,41 @@
         flex: 1;
     }
 }
+
+.dsort{
+    width: 40px;
+    float: right;
+    margin-top: -45px;
+    input{
+        padding: 5px 0;
+        text-align: center;
+    }
+}
+
+.ssort{
+    width: 30px;
+    height: 30px;
+    margin-left: 8px;
+    padding: 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.csort{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    font-weight: bold;
+    margin-top: 10px;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    input{
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        text-align: center;
+        margin-left: 4px;
+    }
+}

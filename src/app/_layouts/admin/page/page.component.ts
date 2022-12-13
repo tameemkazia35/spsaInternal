@@ -67,7 +67,7 @@ export class PageComponent implements OnInit {
         {label: 'Pages', routerLink: '/admin/pages'},
         {label: _res.page.title, disabled: true}
     ];
-     
+
      console.log(this.items);
      this.pageData = _res;
      this.parsedData = _res.page;
@@ -75,19 +75,19 @@ export class PageComponent implements OnInit {
      this.pageForm.controls['Title_ar'].setValue(this.parsedData.title_ar);
      this.pageForm.controls['Content'].setValue(this.parsedData.content);
      this.pageForm.controls['Content_ar'].setValue(this.parsedData.content_ar);
-     
+
      if(this.parsedData.banner.includes('http') > -1){
        this.parsedData.banner = this.parsedData.banner.replace(this.mediaPath, '');
      }
 
      if(this.parsedData.banner_ar.includes('http') > -1){
-       this.parsedData.banner_ar = this.parsedData.banner_ar.replace(this.mediaPath, '');      
+       this.parsedData.banner_ar = this.parsedData.banner_ar.replace(this.mediaPath, '');
      }
-     
+
      if(this.pageData.page.pageComponents.components){
         this.pageComponents.components.id = this.pageData.page.pageComponents.components.id;
       }
-     
+
      if(this.pageData.page.pageComponents.components){
        if(this.pageData.page.pageComponents.data)
         this.pageComponents.data = JSON.parse(this.pageData.page.pageComponents.data);
@@ -126,7 +126,7 @@ _handleReaderLoaded(readerEvt: any) {
       this.pageForm.controls['Banner_ar'].setValue('data:image/png;base64,'+btoa(binaryString));
       return;
     }
-  } 
+  }
 
   toastMessage(_msg: string, _desc: string, _severity: string = 'success') {
     this.messageService.add({life: 5000,severity: _severity, summary: _msg, detail: _desc});
@@ -136,7 +136,7 @@ _handleReaderLoaded(readerEvt: any) {
       this.pageComponents.data = _ev;
       console.log(_ev);
     }
-  
+
   checkEditOrNew(){
     if(this.editPage){
       this.submitEditEvent();
@@ -146,7 +146,6 @@ _handleReaderLoaded(readerEvt: any) {
   }
   get f() { return this.pageForm.controls; }
   submit(){
-    
     this.submitted = true;
     if (this.pageForm.invalid) {
       return;
@@ -175,8 +174,6 @@ _handleReaderLoaded(readerEvt: any) {
     })
   }
 
-  
-
   submitEditEvent(){
     this.parsedData.title = this.pageForm.value.Title;
     this.parsedData.title_ar = this.pageForm.value.Title_ar;
@@ -196,11 +193,10 @@ _handleReaderLoaded(readerEvt: any) {
     this.spinner.show();
     this.service.put(apis.pageUpdate, this.parsedData, this.pageData.page.id).subscribe(_res=>{
       this.spinner.hide();
+      this.router.navigate(['/admin/pages']);
       this.toastMessage('Success', 'Page updated successfully', 'success');
-      // this.router.navigate(['/admin/events']);
     }, error=>{
       this.spinner.hide();
     })
   }
-
 }

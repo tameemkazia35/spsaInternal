@@ -2,6 +2,9 @@
     <p-fieldset legend="" [toggleable]="true" *ngFor="let directory of directories.schema; let i = index">
         <ng-template pTemplate="header">{{directory.department.name ? directory.department.name :
             'Department'}}</ng-template>
+            <div class="dsort">
+                <input [(ngModel)]="directory.sort" class="form-control"/>
+            </div>
         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="form-group">
@@ -15,16 +18,11 @@
                         [(ngModel)]="directory.department.name_ar" (change)="emitData()" />
                 </div>
             </div>
-            <!-- <div class="col-md-2">
-                <div class="d-grid">
-                <button class="btn btn-secondary" (click)="addContact(directory.department)">Add contact</button>
-            </div>
-            </div> -->
         </div>
         <ng-container *ngFor="let section of directory.department.sections; let sindex = index;">
             <div class="card px-4 pb-4 mb-4">
                 <p-divider align="center">
-                    <span class="p-tag">Section</span>
+                    <span class="p-tag">Section {{directory.sort}} - <input [(ngModel)]="section.sort" class="form-control ssort"/></span>
                 </p-divider>
                 <div class="row mb-3" *ngIf="directory.department.sections">
                     <div class="col-md-6">
@@ -41,7 +39,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3" *ngFor="let contact of section.contacts; let contactIndex =index">
-                        <div class="card">
+                        <div class="card pt-4">
                             <div class="remove-contact">
                                 <button class="rounded-circle btn btn-sm btn-warning mx-1"
                                     (click)="edit(directory, i, section, sindex, contact, contactIndex)"><span
@@ -65,6 +63,7 @@
                                 </p>
                                 <p class="mb-1">Mobile: {{contact.mobile}}</p>
                                 <p class="mb-1">Extension: {{contact.extension}}</p>
+                                <div class="csort"><span>{{directory.sort}} - {{section.sort}}</span> - <input class="form-control" [(ngModel)]="contact.sort"/></div>
                             </div>
                         </div>
                     </div>
@@ -72,8 +71,7 @@
                         <div class="d-flex s-action-buttons">
                             <button class="btn btn-danger d-flex justify-content-center"
                                 (click)="deleteSection(directory, sindex)"><span
-                                    class="material-icons-round me-2">delete_forever</span><span>Delete
-                                    section</span></button>
+                                    class="material-icons-round me-2">delete_forever</span><span>Delete section</span></button>
                             <button class="btn btn-secondary d-flex justify-content-center"
                                 (click)="addContact(section)"><span
                                     class="material-icons-round me-2">people</span><span>Add contact</span></button>
@@ -116,7 +114,6 @@
 
                 <!--English section-->
                 <div class="col-6">
-
                     <div class="form-group mb-3">
                         <label>Name</label>
                         <input type="text" name="name" formControlName="name" class="form-control form-control-sm"

@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  api: 'http://spsa-portal/api/',
-  mediaPath: "http://spsa-portal/uploads/"
+  // api: 'http://internal-spsa.eovstg.com/api/',
+  api: "http://internal-spsa.eovstg.com/api/",
+  mediaPath: "http://internal-spsa.eovstg.com/uploads/"
 };
 
 /*

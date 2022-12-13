@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { apis } from 'src/app/_enum/apiEnum';
 import { ApiService } from 'src/app/_services/api.service';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-contact-wizard',
@@ -30,19 +31,19 @@ export class ContactWizardComponent implements OnInit {
       mobile:[''],
       extension:[''],
       photo:[''],
+      sort: [1]
     })
   }
 
   ngOnInit(): void {
-    
     if(this.data){
-      
       if(this.data.schema == undefined){
         this.directories = {
           "code": "contacts",
-          "schema": 
+          "schema":
           [{
             "department": {
+              "sort": 1,
               "name": "",
               "name_ar": "",
               "contact": [
@@ -52,13 +53,27 @@ export class ContactWizardComponent implements OnInit {
         };
       }else{
         this.directories = this.data;
+        this.directories.schema = _.sortBy(this.directories.schema, 'sort', 'desc');
+        this.directories.schema.forEach((_directory: any, index: any) => {
+          _directory.department.sections = _.sortBy(_directory.department.sections, 'sort', 'desc');
+          // _directory.sort = index + 1;
+          _directory.department.sections.forEach((_section: any, sindex: any) => {
+            // _section.sort = sindex + 1;
+            _section.contacts = _.sortBy(_section.contacts, 'sort', 'desc');
+            //_section.contacts.forEach((_contact: any, cindex: any)=> {
+              // _contact.sort = cindex + 1;
+            //});
+          });
+        });
+        console.log('this.directories', this.directories);
       }
     }else{
       this.directories = {
         "code": "contacts",
-        "schema": 
+        "schema":
         [{
           "department": {
+            "sort": 1,
             "name": "",
             "name_ar": "",
             "contact": [
@@ -72,6 +87,8 @@ export class ContactWizardComponent implements OnInit {
   addContact(_dept: any){
     this.display= true;
     this.selectedSection = _dept;
+    debugger;
+    this.contactForm.controls['sort'].setValue(this.selectedSection.contacts.length + 1);
   }
 
   get f() { return this.contactForm.controls; }
@@ -105,14 +122,14 @@ export class ContactWizardComponent implements OnInit {
       this.fileInput.nativeElement.value = "";
       return;
     }
-  if (files && file) {
+    if (files && file) {
       var reader = new FileReader();
       reader.onload =this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
+    }
   }
-}
 
-_handleReaderLoaded(readerEvt: any) {
+  _handleReaderLoaded(readerEvt: any) {
    var binaryString = readerEvt.target.result;
    this.uploadMedia('data:image/png;base64, '+btoa(binaryString));
 
@@ -133,10 +150,12 @@ _handleReaderLoaded(readerEvt: any) {
   addNewDept(){
     this.directories.schema.push({
       "department": {
+        "sort": this.directories.schema.length + 1,
         "name": "",
         "name_ar": "",
         "sections": [
           {
+            "sort": 1,
             "name": "",
             "name_ar": "",
             "contacts": []
@@ -147,7 +166,9 @@ _handleReaderLoaded(readerEvt: any) {
   }
 
   addSection2Depart(deptIndx:number){
+    debugger;
     this.directories.schema[deptIndx]["department"]['sections'].push({
+        "sort": this.directories.schema[deptIndx]["department"]['sections'].length + 1,
         "name": "",
         "name_ar": "",
         "contacts": []
@@ -187,9 +208,9 @@ _handleReaderLoaded(readerEvt: any) {
       // select here
       this.selectedSection = _section;
   }
-  
+
   toastMessage(_msg: string, _desc: string, _severity: string = 'success') {
     this.messageService.add({life: 5000,severity: _severity, summary: _msg, detail: _desc});
-    }
+  }
 
 }
