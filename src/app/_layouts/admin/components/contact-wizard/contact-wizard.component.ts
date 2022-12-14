@@ -61,7 +61,7 @@ export class ContactWizardComponent implements OnInit {
             _section.sort = _section.sort ? parseInt(_section.sort) : sindex + 1;
             _section.contacts = _.sortBy(_section.contacts, 'sort', 'desc');
             _section.contacts.forEach((_contact: any, cindex: any)=> {
-              _contact.sort = parseInt(_contact.sort) ? _contact.sort : cindex + 1;
+              _contact.sort = _contact.sort ? parseInt(_contact.sort) : (cindex + 1);
             });
           });
         });
@@ -149,11 +149,10 @@ export class ContactWizardComponent implements OnInit {
       _dept.department.sections.forEach((_section: any) => {
         _section.sort = parseInt(_section.sort);
         _section.contacts.forEach((_contact: any) => {
-          _contact.sort = JSON.parse(_contact.sort);
+          _contact.sort = parseInt(_contact.sort);
         });
       });
     });
-    debugger;
     this.contactData.emit(this.directories);
   }
 
