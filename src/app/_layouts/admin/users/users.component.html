@@ -2,19 +2,29 @@
     <div class="section-title">
         <h5 class="my-3 text-uppercase">Users / الناس</h5>
     </div>
+    <div class="text-end mb-2">
+        <button type="button" class="btn btn-primary" (click)="userPopup = !userPopup">
+            <span class="d-flex">
+                <span class="material-icons-round">add</span>
+                <span>Add User</span>
+            </span>
+        </button>
+    </div>
     <p-table [value]="users" styleClass="p-datatable-striped" [tableStyle]="{'min-width': '50rem'}" dataKey="id" editMode="row">
         <ng-template pTemplate="header">
             <tr>
                 <th>#</th>
+                <th>Name</th>
                 <th>Username</th>
                 <th>Role</th>
-                <th>createdOn</th>
+                <th>Created On</th>
                 <th>Action</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-user let-editing="editing"  let-index="rowIndex">
             <tr [pEditableRow]="user">
                 <td>{{index + 1}}</td>
+                <td>{{user.name}}</td>
                 <td>{{user.username}}</td>
                 <td>
                 <p-cellEditor>
@@ -29,12 +39,81 @@
                 <td>{{user.createdOn | date: 'medium'}}</td>
                 <td>
                     <div class="flex align-items-center justify-content-center gap-2">
-                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(user)" class="p-button-rounded p-button-text p-button-secondary"></button>
-                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(user)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
-                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(user, index)" class="p-button-rounded p-button-text p-button-danger"></button>
+                        <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-eye" (click)="onSetUser(user)" class="p-button-rounded p-button-text p-button-primary"></button>
+                        <!--
+                            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(user)" class="p-button-rounded p-button-text p-button-secondary"></button>
+                            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(user)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(user, index)" class="p-button-rounded p-button-text p-button-danger"></button>
+                        -->
                     </div>
                 </td>
             </tr>
         </ng-template>
     </p-table>     
 </div>
+
+<p-dialog [(visible)]="userPopup" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [style]="{width: '700px', padding: '0'}">
+    <ng-template pTemplate="header">
+        <h3>User Information</h3>
+    </ng-template>
+    <div class="modal-content">
+        <form [formGroup]="userForm" (ngSubmit)="submitUser()" novalidate>
+
+            <div>
+               
+
+                <div class="form-group mb-3">
+                    <label>Fullname</label>
+                    <input type="text" name="name" formControlName="name" class="form-control"
+                        required [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                    <div *ngIf="submitted && f.name.invalid" class="invalid-feedback">
+                        <div *ngIf="f.name.errors?.required">This field is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Username</label>
+                    <input type="text" name="username" formControlName="username"
+                        class="form-control" required
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <div *ngIf="submitted && f.username.invalid" class="invalid-feedback">
+                        <div *ngIf="f.username.errors?.required">This field is required</div>
+                    </div>
+                </div>
+
+               
+                <div class="form-group mb-3">
+                    <label>Password</label>
+                    <div class="input-group">
+                        <input type="text" name="password" formControlName="password"
+                        class="form-control rounded" required
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <button class="btn btn-outline-secondary rounded" type="button" id="button-addon2" (click)="fnSetGeneratePassword()">Generate Password</button>
+                    </div>
+                    
+                    <div *ngIf="submitted && f.password.invalid" class="invalid-feedback">
+                        <div *ngIf="f.password.errors?.required">This field is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="d-block">Select user's role</label>
+                    <div class="form-check form-check-inline border border-2 rounded-pill" *ngFor="let role of roles">
+                        <input class="form-check-input mx-1" type="radio" name="rolesId" formControlName="rolesId" value="{{role.id}}" required
+                        [ngClass]="{ 'is-invalid': submitted && f.rolesId.errors }" />
+                        <label class="form-check-label" for="rolesId">{{role.name}}</label>
+                    </div>
+                    <div *ngIf="submitted && f.rolesId.invalid" class="invalid-feedback">
+                        <div *ngIf="f.rolesId.errors?.required">This field is required</div>
+                    </div>
+                </div>
+
+
+                <div class="text-end my-2">
+                    <button class="btn btn-secondary px-5" type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</p-dialog>
