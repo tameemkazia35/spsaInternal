@@ -95,13 +95,17 @@
                     <!-- Links Building -->
                     <div class="col-md-12 mb-2">
 
-                        <ng-container *ngIf="pageComponents?.components?.id == 'contacts'">
-                            <app-contact-wizard (contactData)="recieveData($event)" [data]="pageComponents.data">
+                        <ng-container *ngIf="pageComponents?.components?.id == 'contacts' && pageType != 'documents'">
+                            <app-contact-wizard (contactData)="recieveData($event, 'contacts')" [data]="pageComponents.data">
                             </app-contact-wizard>
+                        </ng-container>
+                        <ng-container *ngIf="pageComponents?.components?.id == 'documents' || pageType == 'documents'">
+                            <app-doc-wizard (otherData)="recieveData($event, 'documents')" [data]="pageComponents.data">
+                            </app-doc-wizard>
                         </ng-container>
                         <ng-container
                             *ngIf="(!editPage || pageComponents?.components?.id == 'links' || pageComponents?.components?.id == 'home') && showLink == true">
-                            <app-links-wizard [data]="pageComponents.data" (otherData)="recieveData($event)"></app-links-wizard>
+                            <app-links-wizard [data]="pageComponents.data" (otherData)="recieveData($event, 'links')"></app-links-wizard>
                         </ng-container>
 
                     </div>

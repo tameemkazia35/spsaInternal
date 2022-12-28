@@ -36,8 +36,8 @@ export class PagesComponent implements OnInit {
     this.router.navigate(['admin/page'], {queryParams: { slug: _page.slug, type: 'edit'}})
   }
 
-  newPage(){
-    this.router.navigate(['admin/page']);
+  newPage(ptype: any = 'link'){
+    this.router.navigate(['admin/page'],{queryParams:{ptype}});
   }
 
   removePage(_id: any){

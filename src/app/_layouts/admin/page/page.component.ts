@@ -29,10 +29,10 @@ export class PageComponent implements OnInit {
   pageComponents: any = {components: {id: 'links'}, data: null };
   submitted: boolean = false;
   showLink: boolean = false;
+  pageType: any;
 
   constructor(private messageService: MessageService, private route: ActivatedRoute, private formBuilder: FormBuilder, private service: ApiService, private spinner: NgxSpinnerService, private router: Router) { 
     this.mediaPath = environment.mediaPath;
-    
 
   this.pageForm= this.formBuilder.group({
     "Title": ['', Validators.required],
@@ -47,6 +47,11 @@ export class PageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(_res => {
+      if(_res.ptype){
+        this.pageType = _res.ptype;
+        this.pageComponents.components.id = this.pageType;
+      }
+
       if(_res?.type == 'edit'){
           this.editPage = true;
           this.pageSlug = _res.slug;
@@ -56,7 +61,11 @@ export class PageComponent implements OnInit {
           {label: 'Pages', routerLink: '/admin/pages'},
           {label: 'New Link Page', disabled: true}
       ];
-      this.showLink = true;
+      if(this.pageType == 'documents'){
+        this.showLink = false;
+      }else{
+        this.showLink = true;
+      }
       }
     })
   }
@@ -130,12 +139,14 @@ _handleReaderLoaded(readerEvt: any) {
 
   toastMessage(_msg: string, _desc: string, _severity: string = 'success') {
     this.messageService.add({life: 5000,severity: _severity, summary: _msg, detail: _desc});
-    }
+  }
 
-    recieveData(_ev: any){
-      this.pageComponents.data = _ev;
-      console.log(_ev);
-    }
+  recieveData(_ev: any, _type: any){
+    debugger;
+    this.pageComponents.components.id = _type;
+    this.pageComponents.data = _ev;
+    console.log(_ev);
+  }
 
   checkEditOrNew(){
     if(this.editPage){
@@ -160,10 +171,11 @@ _handleReaderLoaded(readerEvt: any) {
       "Content_ar": this.pageForm.value.Content_ar,
       "Tags": 0,
       "PageComponents": {
-          "ComponentsId": this.pageComponents.components.Id,
+          "ComponentsId": this.pageComponents.components.id,
           "Data": JSON.stringify(this.pageComponents.data)
       }
     }
+    debugger;
     this.spinner.show();
     this.service.post(apis.createPage, payload).subscribe(_res=>{
       this.spinner.hide();

@@ -1,0 +1,131 @@
+<div class="mb-5">
+    <div class="row">
+        <div class="col-md-3"></div>
+    </div>
+    <div class="card p-4">
+        <div class="row mb-4">
+            <div class="col-md-3" *ngFor="let link of docLinks?.schema?.documents; let i = index;">
+
+                <div class="card">
+                    <div class="remove-contact">
+                        <button class="rounded-circle btn btn-sm btn-warning mx-1" (click)="edit(link, i)"><span
+                                class="material-icons-round">edit_rounded</span></button>
+                        <button class="rounded-circle btn btn-sm btn-danger " (click)="removeConfirm(link)"><span
+                                class="material-icons-round">clear_rounded</span></button>
+                    </div>
+                    <img (error)="imgError($event, link)" [src]="link.banner"
+                        class="card-img-top img-fluid" [alt]="link.text" />
+                    <div class="card-body text-center">
+                        <h5 class="mb-3">{{link.text}}</h5>
+                        <p>{{link.desc}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 text-center m-auto">
+                <button class="btn btn-primary" (click)="addDoc()">Add Document</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog [(visible)]="display" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [style]="{width: '700px', padding: '0'}">
+    <ng-template pTemplate="header">
+        <h3>{{editDoc ? 'Edit Document' : 'Add Document'}}</h3>
+    </ng-template>
+    <form class="quick-form" name="quick-form" [formGroup]="docForm">
+        <div class="modal-content">
+
+            <div class="row">
+               
+                <div class="col-6">
+                    <div class="form-group mb-3">
+                        <label>Name</label>
+                        <input type="text" name="test" class="form-control" required formControlName="text" required
+                            [ngClass]="{ 'is-invalid': submitted && f.text.errors }" />
+                        <div *ngIf="submitted && f.text.invalid" class="invalid-feedback">
+                            <div *ngIf="f.text.errors?.required">This field is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label>Description</label>
+                        <textarea type="text" name="desc" class="form-control" formControlName="desc"></textarea>
+                    </div>
+
+                </div>
+                <div class="col-6" dir="rtl">
+                    <div class="form-group mb-3" dir="rtl">
+                        <label>Arabic Name</label>
+                        <input type="text" name="textAr" class="form-control" required formControlName="text_ar" required
+                            [ngClass]="{ 'is-invalid': submitted && f.text_ar.errors }" />
+                        <div *ngIf="submitted && f.text_ar.invalid" class="invalid-feedback">
+                            <div *ngIf="f.text_ar.errors?.required">This field is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3" dir="rtl">
+                        <label>Arabic Description</label>
+                        <textarea type="text" name="descAr" class="form-control" formControlName="desc_ar"></textarea>
+                    </div>
+
+                </div>
+                <div class="col-12">
+                    <div class="form-group mb-3">
+                        <label>Banner</label>
+                        <input type="file" class="form-control" accept=".png, .jpg, .jpeg" placeholder="Banner" (change)="handleFileSelect($event, 'en')"/>
+                        <div class="form-text">Image size(px): 180W x 100H</div>
+                        <img class="banner-preview mt-3 img-fluid" [src]="docForm.value.banner"/>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group mb-3">
+                        <label>Link Url</label>
+                    <input type="url" name="LinkUrl" class="form-control" required formControlName="url" required
+                        [ngClass]="{ 'is-invalid': submitted && f.url.errors }" />
+                    <div *ngIf="submitted && f.url.invalid" class="invalid-feedback">
+                        <div *ngIf="f.url.errors?.required">This field is required</div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label>Upload Document <b>(.pdf / .doc)</b></label>
+                    <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+                    (onFileOver)="fileOver($event)" accept="application/pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" (onFileLeave)="fileLeave($event)">
+                        <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                            <div class="d-flex flex-column">
+                            <strong>Drag and Drop your document here.</strong>
+                            <span>or</span>
+                            <button type="button" class="btn btn-outline-primary mt-2 mb-3 mx-auto px-5"
+                              (click)="openFileSelector()">Browse Document</button>
+                            <p class="fs-12">
+                              <strong class="text-primary me-1 fs-6"><small>Note:</small></strong>
+                              <small>Maximum 2 MB file can be uploaded.</small>
+                            </p>
+                        </div>
+                        </ng-template>
+                    </ngx-file-drop>
+                </div>
+                <div class="col-12 text-end my-3">
+                    <button type="submit" class="btn btn-secondary px-5" (click)="add()">{{editDoc ? 'Update' :
+                        'Add'}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+
+<p-confirmDialog #cd>
+    <ng-template pTemplate="header">
+        <h3>Delete Confirmation</h3>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button class="btn btn-light px-4" type="button" icon="pi pi-times" label="No"
+            (click)="cd.reject()">Cancel</button>
+        <button class="btn btn-danger px-4" type="button" icon="pi pi-check" label="Yes"
+            (click)="cd.accept()">Delete</button>
+    </ng-template>
+</p-confirmDialog>

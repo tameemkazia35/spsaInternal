@@ -33,12 +33,17 @@ export class InnerPagesComponent implements OnInit {
     this.service.get(apis.pageByUrl, _url).subscribe(_res=>{
       this.pageData = _res;
       var parseData = JSON.parse(_res.page.pageComponents.data);
-      
-      this.services = parseData.schema.links;
-      this.services = this.services.filter( (sec:any) => (sec.isSection == false || sec.isSection == undefined) );
+      if(parseData.code == "documents"){
+        this.services = parseData.schema.documents;
+        this.services.forEach((_item: any) => {
+          _item.icon = _item.banner;
+        });
+      }else{
+        this.services = parseData.schema.links;
+        this.services = this.services.filter( (sec:any) => (sec.isSection == false || sec.isSection == undefined) );
       var pageDataLinks = parseData.schema.links;
       this.sections = pageDataLinks.filter( (sec:any) => sec.isSection == true );
-
+      }
     })
   }
 
@@ -47,6 +52,26 @@ export class InnerPagesComponent implements OnInit {
       this.router.navigate([_page.url])
     }else{
       window.open(_page.url, '_blank');
+    }
+  }
+
+  async imgError(_ev: any, _service: any){
+    console.log('error', _ev);
+    if(this.pageData.page.pageComponents.componentsId == 'documents'){
+      _ev.target.src = await this.getFileExtension(_service);
+    }else{
+      _ev.target.src = "./assets/images/noimageavailable.png";
+    }
+  }
+
+  getFileExtension(_service: any){
+    if(_service.url){
+      var file = _service.url.split('.')[_service.url.split('.').length - 1];
+      if(file.toLowerCase() == 'pdf'){
+        return './assets/images/' + file +'.png';
+      }else{
+        return './assets/images/doc.png';
+      }
     }
   }
 }
