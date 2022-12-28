@@ -40,13 +40,18 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-3 col-12 mb-3" *ngFor="let service of services | filter:searchText;">
-            <div class="service-item px-4 py-5" (click)="goToPage(service)" title="{{service.url}}">
+            <div class="service-item px-4 py-5 {{pageData?.page?.pageComponents?.componentsId}}" (click)="goToPage(service)" title="{{service.url}}">
                 <div class="s-icon">
-                    <img (error)="imgError($event, service)" [src]="service.icon"
+                    <img onerror="this.src='./assets/images/noimageavailable.png'" [src]="service.icon"
                         class="img-fluid" />
                 </div>
-                <h5>{{currentLang == 'ar' ? service.text_ar : service.text}}</h5>
-                <p>{{currentLang == 'ar' ? service.desc_ar : service.desc}}</p>
+                <div class="card-content">
+                    <h5><img *ngIf="pageData?.page?.pageComponents?.componentsId == 'documents'"  onerror="this.src='./assets/images/doc.svg'" [src]="service.picon" />{{currentLang == 'ar' ? service.text_ar : service.text}}</h5>
+                    <p>{{currentLang == 'ar' ? service.desc_ar : service.desc}}</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-secondary btn-block"><i class="pi pi-download m-2"></i>{{'download' | translate}}</button>
+                </div>
             </div>
         </div>
     </div>

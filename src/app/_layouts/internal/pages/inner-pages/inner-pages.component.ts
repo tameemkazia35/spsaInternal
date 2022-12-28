@@ -37,6 +37,7 @@ export class InnerPagesComponent implements OnInit {
         this.services = parseData.schema.documents;
         this.services.forEach((_item: any) => {
           _item.icon = _item.banner;
+          _item.picon = this.getFileExtension(_item.url);
         });
       }else{
         this.services = parseData.schema.links;
@@ -64,13 +65,13 @@ export class InnerPagesComponent implements OnInit {
     }
   }
 
-  getFileExtension(_service: any){
-    if(_service.url){
-      var file = _service.url.split('.')[_service.url.split('.').length - 1];
+  getFileExtension(_url: any){
+    if(_url){
+      var file = _url.split('.')[_url.split('.').length - 1];
       if(file.toLowerCase() == 'pdf'){
-        return './assets/images/' + file +'.png';
+        return './assets/images/pdf.svg';
       }else{
-        return './assets/images/doc.png';
+        return './assets/images/doc.svg';
       }
     }
   }

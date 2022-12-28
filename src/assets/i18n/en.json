@@ -12,5 +12,6 @@
     "attachments": "View attachments",
     "eventDateTime": "Event date",
     "venue":"Venue",
-    "search":"Type your search words here"
+    "search":"Type your search words here",
+    "download": "Download"
 }
