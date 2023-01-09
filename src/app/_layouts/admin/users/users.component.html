@@ -3,7 +3,7 @@
         <h5 class="my-3 text-uppercase">Users / الناس</h5>
     </div>
     <div class="text-end mb-2">
-        <button type="button" class="btn btn-primary" (click)="userPopup = !userPopup">
+        <button type="button" class="btn btn-primary" (click)="fnAddUserPopup()">
             <span class="d-flex">
                 <span class="material-icons-round">add</span>
                 <span>Add User</span>
@@ -101,7 +101,7 @@
                     <label class="d-block">Select user's role</label>
                     <div class="form-check form-check-inline border border-2 rounded-pill" *ngFor="let role of roles">
                         <input class="form-check-input mx-1" type="radio" name="rolesId" formControlName="rolesId" value="{{role.id}}" required
-                        [ngClass]="{ 'is-invalid': submitted && f.rolesId.errors }" />
+                        [ngClass]="{ 'is-invalid': submitted && f.rolesId.errors }" [checked]="role.id == userInfo.rolesId" />
                         <label class="form-check-label" for="rolesId">{{role.name}}</label>
                     </div>
                     <div *ngIf="submitted && f.rolesId.invalid" class="invalid-feedback">

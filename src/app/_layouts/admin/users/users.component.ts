@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   clonedUser = {};
   userPopup: boolean = false;
   userForm!: FormGroup;
-  userInfo = { id: null };
+  userInfo = { id: null, name: '', username: '', password: '', rolesId: '' };
   submitted: boolean = false;
 
   fnGeneratePassword() {
@@ -124,9 +124,15 @@ export class UsersComponent implements OnInit {
     this.userForm.controls['password'].setValue( this.fnGeneratePassword() );
   }
 
+  fnAddUserPopup() {
+    this.userInfo = { id: null, name: '', username: '', password: '', rolesId: '' };
+    this.userPopup = !this.userPopup
+  }
+
   onSetUser(user: any) {
     this.userPopup = true;
-    this.userInfo.id = user.id;
+    this.userInfo = user;
+    //this.userInfo.id = user.id;
     // load all the 
     this.userForm.controls['name'].setValue(user.name);
     this.userForm.controls['username'].setValue(user.username);
