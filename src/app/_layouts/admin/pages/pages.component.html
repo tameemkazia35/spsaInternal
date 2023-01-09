@@ -9,7 +9,8 @@
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="applyFilterGlobal($event, 'contains')" placeholder="Search keyword" />
                 </span>
-                    <button class="btn btn-secondary float-end" (click)="newPage()">New Links Page</button>
+                    <button class="btn btn-secondary float-end me-3" (click)="newPage()">New Links Page</button>
+                    <button class="btn btn-secondary float-end" (click)="newPage('documents')">New Documents Page</button>
             </div>
         </ng-template>
         <ng-template pTemplate="header">

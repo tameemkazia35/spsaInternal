@@ -1,0 +1,39 @@
+::ng-deep {
+    .ngx-file-drop__drop-zone {
+      border: 2px dashed #dadce1 !important;
+      height: auto !important;
+      padding: 2px !important;
+      border-radius: 0px !important;
+    }
+  
+    .ngx-file-drop__content {
+      background: #eff1f6;
+      color: #717074 !important;
+      height: auto !important;
+  
+      div {
+        margin: 2rem 1rem 0rem 1rem;
+        text-align: center;
+  
+        img {
+          margin-bottom: 1.5rem;
+        }
+      }
+    }
+  }
+
+.upload-name-style{
+    img{
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+    };
+}
+
+.card-img-top{
+    max-width: 180px;
+    height: 100px;
+    margin: auto;
+    object-fit: contain;
+    margin-top: 30px;
+}

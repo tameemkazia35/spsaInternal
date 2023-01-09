@@ -131,7 +131,7 @@ export class EventComponent implements OnInit {
     this.service.post(apis.uploadMedia, payload).subscribe(_res=>{
       if(_res.media){
         this.uploadedImages.push({
-          imageUrl: _res.media.url,
+          imageUrl: this.mediaPath + _res.media.url,
           id: _res.media.id,
           mime: _res.media.mime,
           pagesId: _res.media.pagesId

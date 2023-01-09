@@ -59,6 +59,7 @@ import {DividerModule} from 'primeng/divider';
 import { ThemeSettingsComponent } from './_layouts/admin/theme-settings/theme-settings.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import {CardModule} from 'primeng/card';
+import { DocWizardComponent } from './_layouts/admin/components/doc-wizard/doc-wizard.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -92,7 +93,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     EventListComponent,
     EventDetailsComponent,
     InnerPagesComponent,
-    ThemeSettingsComponent
+    ThemeSettingsComponent,
+    DocWizardComponent
   ],
   imports: [
     BrowserModule,

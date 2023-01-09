@@ -10,9 +10,17 @@
     </div>
 </div>
 <div class="container my-5 min-80">
-
-    <div class="row link-sections justify-content-center">
-        <div class="col-md-3 col-12 mb-3" *ngFor="let service of sections">
+    <div class="row">
+        <div class="col-12 mb-5" *ngIf="pageData?.page?.pageComponents?.componentsId == 'documents'">
+            <div class="section-title text-center mb-3">
+                <h3>{{currentLang == 'ar' ? pageData?.page?.title_ar : pageData?.page?.title}}</h3>
+            </div>
+            <div class="text-center" [innerHtml]="currentLang == 'ar' ? pageData?.page?.content_ar : pageData?.page?.content"></div>
+        </div>
+    </div>
+    <div class="row link-sections justify-content-center" *ngIf="sections?.length > 0">
+        <ng-container *ngFor="let service of sections">
+        <div class="col-md-3 col-12 mb-3">
             <div class="service-item px-4 py-5" (click)="goToPage(service)" title="{{service.url}}">
                 <div class="s-icon">
                     <img onerror="this.src='./assets/images/noimageavailable.png'" [src]="service.icon"
@@ -22,6 +30,7 @@
                 <p>{{currentLang == 'ar' ? service.desc_ar : service.desc}}</p>
             </div>
         </div>
+    </ng-container>
     </div>
 
     <div class="input-group mt-4 search-bar" *ngIf="services?.length > 4">
@@ -33,7 +42,7 @@
         <div class="col-md-3 col-12 mb-3" *ngFor="let service of services | filter:searchText;">
             <div class="service-item px-4 py-5" (click)="goToPage(service)" title="{{service.url}}">
                 <div class="s-icon">
-                    <img onerror="this.src='./assets/images/noimageavailable.png'" [src]="service.icon"
+                    <img (error)="imgError($event, service)" [src]="service.icon"
                         class="img-fluid" />
                 </div>
                 <h5>{{currentLang == 'ar' ? service.text_ar : service.text}}</h5>
