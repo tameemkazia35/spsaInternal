@@ -163,7 +163,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   if(type == '2'){
     if(_page.target == "_self"){
-      this.router.navigate([_page.slugl])
+      this.router.navigate([_page.slug])
     }else{
       window.open(_page.slug, '_blank');
     }

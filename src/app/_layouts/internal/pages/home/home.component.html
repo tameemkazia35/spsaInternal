@@ -26,7 +26,7 @@
             <div class="col-10 offset-1">
                 <div class="row serives2-list">
                     <div class="col-sm-4 mb-2" *ngFor="let service of services2">
-                        <a class="service2-item px-2 py-2" href="{{service.slug}}" target="{{service.target}}">
+                        <a class="service2-item px-2 py-2" (click)="goToPage(service, 2)">
                             <span class="material-icons-round me-2">{{service.logo ? service.logo : 'link'}}</span>
                             <h5>{{currentLang == 'ar' ? service.text_ar : service.text}}</h5>
                         </a>
