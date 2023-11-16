@@ -95,12 +95,12 @@ export class DocWizardComponent implements OnInit {
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
-          const max_size = 2000;
+          const max_size = 60000;
           console.log('file.size', file.size);
           if (file.size / 1000 > max_size) {
             // this.genralService.openSnackBar(`Maximum size allowed is 20 MB`);
             // alert('Maximum size allowed is 5 MB');
-            this.toastMessage('Image size warning', 'Maximum size allowed is 2MB', 'warn');
+            this.toastMessage('Image size warning', 'Maximum size allowed is 60MB', 'warn');
             return false;
           }
 
