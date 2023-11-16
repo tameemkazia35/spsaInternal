@@ -214,9 +214,9 @@ export class DocWizardComponent implements OnInit {
     if(_item.url){
       var file = _item.url.split('.')[_item.url.split('.').length - 1];
       if(file.toLowerCase() == 'pdf'){
-        return './assets/images/' + file +'.png';
+        return './assets/images/' + file +'.svg';
       }else{
-        return './assets/images/doc.png';
+        return './assets/images/doc.svg';
       }
     }
   }

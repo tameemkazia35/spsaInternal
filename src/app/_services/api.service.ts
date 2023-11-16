@@ -87,7 +87,6 @@ export class ApiService {
           catchError(this.handleError)
         )
     }
-  
     //General Delete
     delete(_endpoint: any, _term: any, _extra: any){
       return this.http.delete<any>(this.base_path + _endpoint + _term, _extra)
@@ -95,7 +94,6 @@ export class ApiService {
         catchError(this.handleError)
       )
     }
-  
     //General Patch
     patch(_endpoint: any, _id: any, _payload: any ){
       return this.http.patch<any>(this.base_path + _endpoint + _id, _payload)
