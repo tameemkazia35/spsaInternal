@@ -1,0 +1,361 @@
+<div class="container my-5">
+  <div class="d-flex align-item-center justify-content-between">
+    <div class="section-title">
+      <h5 class="my-3 text-uppercase">Visitor Log / سجل الزوار</h5>
+    </div>
+    <div class="text-end mb-2"></div>
+  </div>
+  <!-- {{ visitors | json }} -->
+
+  <p-table
+    *ngIf="loaded"
+    #dt1
+    [columns]="cols"
+    [value]="visitors"
+    styleClass="p-datatable-striped"
+    class="pb-5"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [paginator]="true"
+    [rowsPerPageOptions]="[10, 30, 50]"
+    [rows]="10"
+    [selectionPageOnly]="true"
+    [globalFilterFields]="['name', 'email', 'contactNo', 'company']"
+  >
+    <ng-template pTemplate="caption">
+      <div class="d-flex justify-content-between gap-3">
+        <p-calendar
+          #mycal
+          styleClass="table-cal"
+          placeholder="Select Date"
+          [(ngModel)]="rangeDates"
+          selectionMode="range"
+          [readonlyInput]="true"
+          (ngModelChange)="modalChange()"
+          inputId="range"
+        >
+          <ng-template pTemplate="footer">
+            <div class="custom-range">
+              <button class="btn btn-sm btn-outline-dark" (click)="close()">
+                Close
+              </button>
+              <ul class="list-unstyled">
+                <li
+                  [class.active]="selectedType === 1"
+                  (click)="customRangeClick('Today')"
+                >
+                  Today
+                </li>
+                <li
+                  [class.active]="selectedType === 2"
+                  (click)="customRangeClick('Yesterday')"
+                >
+                  Yesterday
+                </li>
+                <li
+                  [class.active]="selectedType === 3"
+                  (click)="customRangeClick('Last 7 days')"
+                >
+                  Last 7 days
+                </li>
+                <li
+                  [class.active]="selectedType === 4"
+                  (click)="customRangeClick('Last 30 days')"
+                >
+                  Last 30 days
+                </li>
+                <li
+                  [class.active]="selectedType === 5"
+                  (click)="customRangeClick('This month')"
+                >
+                  This month
+                </li>
+                <li
+                  [class.active]="selectedType === 6"
+                  (click)="customRangeClick('Last 3 months')"
+                >
+                  Last 3 months
+                </li>
+              </ul>
+            </div>
+          </ng-template>
+        </p-calendar>
+        <div class="d-flex align-items-center gap-3">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="applyFilterGlobal($event, 'contains')"
+              placeholder="Search keyword"
+            />
+          </span>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file"
+            (click)="dt1.exportCSV()"
+            class="mr-2"
+            pTooltip="CSV"
+            tooltipPosition="bottom"
+          ></button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Company</th>
+        <th>Department</th>
+        <th>Reason</th>
+        <th>logIn</th>
+        <th class="text-center">Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-visitor let-index="rowIndex">
+      <tr *ngIf="!visitor.isDeleted">
+        <td>{{ index + 1 }}</td>
+        <td>{{ visitor.name }}</td>
+        <td>{{ visitor.email }}</td>
+        <td>{{ visitor.contactNo }}</td>
+        <td>{{ visitor.company }}</td>
+        <td>{{ visitor.department }}</td>
+        <td>{{ visitor.reason }}</td>
+        <td>{{ visitor.logIn | date : "dd/MM/yyyy hh:mm a" }}</td>
+        <td>
+          <div
+            class="flex align-items-center justify-content-center gap-2 text-center"
+          >
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-eye"
+              class="p-button-rounded p-button-text p-button-primary"
+              (click)="onSetVisitor(visitor)"
+            ></button>
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-times"
+              (click)="deleteVisitor(visitor)"
+              class="p-button-rounded p-button-text p-button-danger"
+            ></button>
+            <!--
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(user)" class="p-button-rounded p-button-text p-button-secondary"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(user)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                        
+                    -->
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody" let-columns="columns">
+      <tr style="height: 46px">
+        <td *ngFor="let col of columns; let even = even">
+          <p-skeleton
+            [ngStyle]="{
+              width: even ? (col.field === 'year' ? '30%' : '40%') : '60%'
+            }"
+          ></p-skeleton>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  [(visible)]="visitorPopup"
+  [modal]="true"
+  [breakpoints]="{ '960px': '75vw', '640px': '90vw' }"
+  [style]="{ width: '700px', padding: '0' }"
+>
+  <ng-template pTemplate="header">
+    <h3>User Information</h3>
+  </ng-template>
+  <div class="modal-content">
+    <form
+      class="needs-validation"
+      name="event-form"
+      [formGroup]="visitorForm"
+      (ngSubmit)="submit()"
+      novalidate
+    >
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label class="form-label">Contact No</label>
+            <input
+              class="form-control"
+              placeholder="Contact"
+              name="contact"
+              formControlName="contactNo"
+              required
+            />
+            <div *ngIf="submitted && f.contact.invalid" class="text-danger">
+              <div *ngIf="f.contact.errors?.required">
+                This field is required
+              </div>
+            </div>
+            <div
+              *ngIf="
+                submitted &&
+                !visitorForm.value.contact?.isNumberValid &&
+                !f.contact.errors?.required
+              "
+              class="text-danger"
+            >
+              {{ "invalidPhone" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label class="form-label">Name</label>
+            <input
+              class="form-control"
+              placeholder="Name"
+              name="Name"
+              formControlName="name"
+              required
+            />
+            <div *ngIf="submitted && f.name.invalid" class="text-danger">
+              <div *ngIf="f.name.errors?.required">This field is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label class="form-label">Company</label>
+            <input
+              class="form-control"
+              placeholder="Company"
+              name="Name"
+              formControlName="company"
+            />
+            <div *ngIf="submitted && f.company.invalid" class="text-danger">
+              <div *ngIf="f.company.errors?.required">
+                This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label class="form-label">Email</label>
+            <input
+              class="form-control"
+              placeholder="example@company.com"
+              name="Name"
+              formControlName="email"
+            />
+            <div *ngIf="submitted && f.email.invalid" class="text-danger">
+              <div *ngIf="f.email.errors?.required">This field is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label class="form-label">Department</label>
+            <p-dropdown
+              class="w-100 d-block"
+              [options]="departments"
+              placeholder="Department"
+              formControlName="department"
+            ></p-dropdown>
+            <div *ngIf="submitted && f.department.invalid" class="text-danger">
+              <div *ngIf="f.department.errors?.required">
+                This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label class="form-label">Reason</label><br />
+            <p-dropdown
+              class="w-100 d-block"
+              [options]="reasons"
+              placeholder="Reason"
+              formControlName="reason"
+            ></p-dropdown>
+            <div *ngIf="submitted && f.reason.invalid" class="text-danger">
+              <div *ngIf="f.reason.errors?.required">
+                This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label class="form-label">LogIn</label>
+            <input
+              class="form-control"
+              formControlName="logInFormat"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group mb-3">
+            <label class="form-label">LogOut</label>
+            <p-calendar
+              formControlName="logOut"
+              [timeOnly]="true"
+              hourFormat="12"
+              placeholder="hh:mm am/pm"
+            >
+            </p-calendar>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group mb-3">
+            <label class="form-label">Comments</label>
+            <textarea
+              rows="3"
+              class="form-control"
+              placeholder="Comments"
+              name="comment"
+              formControlName="comments"
+            ></textarea>
+          </div>
+        </div>
+        <div class="col-12 text-end mt-5">
+          <button class="btn btn-secondary px-5 w-100 btn-lg" type="submit">
+            Update
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</p-dialog>
+<p-confirmDialog #cd>
+  <ng-template pTemplate="header">
+    <h3>Delete Confirmation</h3>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      class="btn btn-light px-4"
+      type="button"
+      icon="pi pi-times"
+      label="No"
+      (click)="cd.reject()"
+    >
+      Cancel
+    </button>
+    <button
+      class="btn btn-danger px-4"
+      type="button"
+      icon="pi pi-check"
+      label="Yes"
+      (click)="cd.accept()"
+    >
+      Delete
+    </button>
+  </ng-template>
+</p-confirmDialog>

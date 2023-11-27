@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { UtilService } from './_services/util.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from './_services/api.service';
 import { apis } from './_enum/apiEnum';
@@ -15,22 +15,32 @@ import { apis } from './_enum/apiEnum';
     trigger('opacityScale', [
       transition(':enter', [
         style({ opacity: 0, transform: 'scale(.95)' }),
-        animate('150ms ease-out', style({ opacity: 1, transform: 'scale(1)' }))
+        animate('150ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
       ]),
       transition(':leave', [
         style({ opacity: 1, transform: 'scale(1)' }),
-        animate('100ms ease-in', style({ opacity: 0, transform: 'scale(.95)' }))
-      ])
-    ])
-  ]
+        animate(
+          '100ms ease-in',
+          style({ opacity: 0, transform: 'scale(.95)' })
+        ),
+      ]),
+    ]),
+  ],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   isMenuOpen = false;
   display = false;
-  themeData: any = {primary: '', secondary:'', menuText: ''};
+  themeData: any = { primary: '', secondary: '', menuText: '' };
 
-  constructor(private util: UtilService, private spinner: NgxSpinnerService, private router: Router, private translate: TranslateService, private Router: Router, private service: ApiService) {
-
+  constructor(
+    private util: UtilService,
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private translate: TranslateService,
+    private Router: Router,
+    private service: ApiService
+  ) {
     this.translate.addLangs(['en', 'ar']);
 
     this.router.events.subscribe((ev) => {
@@ -56,7 +66,7 @@ export class AppComponent implements OnInit{
           }
         }
       }
-    })
+    });
 
     this.translate.onLangChange.subscribe((event: any) => {
       console.log('event.lang', event.lang);
@@ -77,7 +87,10 @@ export class AppComponent implements OnInit{
     //   }
     // })
 
-    if (localStorage.getItem('currentUser')) {
+    if (
+      localStorage.getItem('currentUser') ||
+      window.location.pathname === '/visitor'
+    ) {
       this.display = false;
     } else {
       this.display = true;
@@ -87,24 +100,23 @@ export class AppComponent implements OnInit{
       console.log('login _res', _res);
       this.spinner.hide();
       this.display = false;
-    })
+    });
 
     this.util.observlogOut().subscribe((_res: any) => {
       this.display = true;
-    })
+    });
   }
 
   ngOnInit(): void {
-      this.getThemeData();
+    this.getThemeData();
   }
-
 
   toggleMenuOpen() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  getThemeData(){
-    this.service.get(apis.themes, '').subscribe(_res=>{
+  getThemeData() {
+    this.service.get(apis.themes, '').subscribe((_res) => {
       var rawdata = JSON.parse(_res.data);
       this.themeData.primary = rawdata.root[0].value;
       this.themeData.secondary = rawdata.root[1].value;
@@ -112,13 +124,19 @@ export class AppComponent implements OnInit{
       this.util.publishTheme(this.themeData);
       localStorage.setItem('themeData', JSON.stringify(this.themeData));
       this.setThemedata();
-    })
+    });
   }
 
-  setThemedata(){
+  setThemedata() {
     var rootSudoElement: any = document.querySelector(':root');
     rootSudoElement.style.setProperty('--bs-primary', this.themeData.primary);
-    rootSudoElement.style.setProperty('--bs-secondary', this.themeData.secondary);
-    rootSudoElement.style.setProperty('--spsa-menu-text', this.themeData.menuText);
+    rootSudoElement.style.setProperty(
+      '--bs-secondary',
+      this.themeData.secondary
+    );
+    rootSudoElement.style.setProperty(
+      '--spsa-menu-text',
+      this.themeData.menuText
+    );
   }
 }

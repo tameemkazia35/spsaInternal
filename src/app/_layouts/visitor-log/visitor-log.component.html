@@ -1,0 +1,211 @@
+<ngx-spinner
+  name="visitor"
+  bdColor="rgba(129, 188, 140, .9)"
+  color="#fff"
+  type=""
+>
+  <img
+    class="loading-icon"
+    alt="Image placeholder"
+    src="/assets/images/visit.svg"
+    style="height: 120px"
+  />
+</ngx-spinner>
+<header class="py-2" *ngIf="!thankYou">
+  <div class="top-header">
+    <div class="container">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-6">
+          <a routerLink="/">
+            <img src="./assets/images/logo-black.svg" alt="SPSA" height="55" />
+          </a>
+        </div>
+        <div class="col-6">
+          <div class="flex-fill text-end w-full" dir="ltr">
+            <img width="94" src="./assets/images/visit.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- <div class="hero-banner">
+  <div class="content">
+    <img width="100" src="./assets/images/visit.svg" />
+    <h4 class="text-center">{{ "visitorLog" | translate }}</h4>
+  </div>
+ 
+</div> -->
+
+<div class="container py-3 mb-5 pb-5" *ngIf="!thankYou">
+  <div
+    class="home-banner d-flex align-items-center justify-content-center gap-3"
+  ></div>
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="digital-clock">
+        <div class="d-clock d-flex">
+          <div class="d-date px-3 py-2">
+            <span class="d-week-day">{{ currentWeekDay }}</span>
+            <span class="d-day">
+              {{ currentDay }}
+            </span>
+            <span class="d-month"> {{ currentMonth }}, {{ currentYear }} </span>
+          </div>
+          <div class="d-time">
+            <div class="only-time">
+              {{ currentTime }}
+            </div>
+            <div class="sec-wrap">
+              <span class="sec">
+                {{ currentSec }}
+              </span>
+              <span class="time-12">{{ currentPeriod }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form
+    autocomplete="nope"
+    class="needs-validation"
+    name="event-form"
+    [formGroup]="visitorForm"
+    (ngSubmit)="submit()"
+    novalidate
+  >
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group mb-3">
+          <intl-telephone-input
+            class="form-control"
+            [enablePlaceholder]="true"
+            [searchCountryFlag]="true"
+            [separateDialCode]="false"
+            [enableAutoCountrySelect]="true"
+            [searchCountryField]="SearchCountryField.All"
+            [phoneValidation]="false"
+            autocomplete="nope"
+            [selectedCountryISO]="CountryISO.UnitedArabEmirates"
+            [numberFormat]="PhoneNumberFormat.International"
+            [inputId]="'phone'"
+            (onChange)="onInputChange($event)"
+          >
+          </intl-telephone-input>
+          <div *ngIf="submitted && f.contact.invalid" class="text-danger">
+            <div *ngIf="f.contact.errors?.required">This field is required</div>
+          </div>
+          <div
+            *ngIf="
+              submitted &&
+              !visitorForm.value.contact?.isNumberValid &&
+              !f.contact.errors?.required
+            "
+            class="text-danger"
+          >
+            {{ "invalidPhone" | translate }}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group mb-3">
+          <!-- <label class="form-label">Name</label> -->
+          <input
+            class="form-control"
+            placeholder="Name"
+            name="Name"
+            autocomplete="nope"
+            formControlName="name"
+            required
+          />
+          <div *ngIf="submitted && f.name.invalid" class="text-danger">
+            <div *ngIf="f.name.errors?.required">This field is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group mb-3">
+          <!-- <label class="form-label">Company</label> -->
+          <input
+            class="form-control"
+            placeholder="Company"
+            name="Name"
+            autocomplete="off"
+            formControlName="company"
+          />
+          <div *ngIf="submitted && f.company.invalid" class="text-danger">
+            <div *ngIf="f.company.errors?.required">This field is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="form-group mb-3">
+          <!-- <label class="form-label">Email</label> -->
+          <input
+            class="form-control"
+            placeholder="example@company.com"
+            name="Name"
+            autocomplete="off"
+            formControlName="email"
+          />
+          <div *ngIf="submitted && f.email.invalid" class="text-danger">
+            <div *ngIf="f.email.errors?.required">This field is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group mb-3">
+          <!-- <label class="form-label">Department</label> -->
+          <p-dropdown
+            class="w-100 d-block"
+            [options]="departments"
+            placeholder="Department"
+            formControlName="department"
+          ></p-dropdown>
+          <div *ngIf="submitted && f.department.invalid" class="text-danger">
+            <div *ngIf="f.department.errors?.required">
+              This field is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group mb-3">
+          <!-- <label class="form-label">Reason</label><br /> -->
+          <p-dropdown
+            class="w-100 d-block"
+            [options]="reasons"
+            placeholder="Reason"
+            formControlName="reason"
+          ></p-dropdown>
+          <div *ngIf="submitted && f.reason.invalid" class="text-danger">
+            <div *ngIf="f.reason.errors?.required">This field is required</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fixed-bottom footer">
+      <button class="btn btn-secondary px-5 btn-lg" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+<div class="thank-you-wrapper" *ngIf="thankYou">
+  <div class="thank-you">
+    <img
+      class="loading-icon"
+      alt="Image placeholder"
+      src="/assets/images/visit.svg"
+      style="height: 120px"
+    />
+    <h2 class="mt-3">Visitor entry submitted successfully!</h2>
+    <h6>Thank you. We look forward to your visit!</h6>
+    <p class="mt-5">Page redirecting in {{ countdown }} seconds.</p>
+  </div>
+</div>
+
+<p-menu class="lang-menu" [model]="langItems" [popup]="true" #lmenu></p-menu>
+<p-toast key="visitorKey" position="bottom-center"></p-toast>

@@ -17,97 +17,103 @@ import { EventDetailsComponent } from './_layouts/internal/pages/event-details/e
 import { EventListComponent } from './_layouts/internal/pages/event-list/event-list.component';
 import { HomeComponent } from './_layouts/internal/pages/home/home.component';
 import { InnerPagesComponent } from './_layouts/internal/pages/inner-pages/inner-pages.component';
+import { VisitorLogComponent } from './_layouts/visitor-log/visitor-log.component';
+import { VisitorsComponent } from './_layouts/admin/visitors/visitors.component';
 
 const routes: Routes = [
   {
     path: '',
     component: InternalComponent,
     children: [
-    {
-      path: 'home',
-      component: HomeComponent
-    },
-    {
-      path: 'event/:slug',
-      component: EventDetailsComponent
-    },
-    {
-      path: 'event',
-      component: EventListComponent
-    },
-    {
-      path: 'page/:url',
-      component: InnerPagesComponent
-    },
-    {
-      path: 'contacts',
-      component: ContactComponent
-    },
-    {
-      path: '',
-      redirectTo: 'home',
-      pathMatch: 'full',
-    }
-]
-},
-{
-  path: 'admin',
-  component: AdminComponent,
-  children: [
-    {
-      path: 'menu',
-      component: MenusComponent
-    },
-    {
-       path: 'pages',
-       component: PagesComponent
-    },
-    {
-      path: 'events',
-      component: EventsComponent
-    },
-    {
-      path: 'event',
-      component: EventComponent
-    },
-    { 
-      path: 'announcements', 
-      component: AnnouncementsComponent
-    },
-    { 
-      path: 'announcement', 
-      component: AnnouncementComponent
-    },
-    { 
-      path: 'quick-links', 
-      component: QuickLinksComponent
-    },
-    { 
-      path: 'pages', 
-      component: PagesComponent
-    },
-    { 
-      path: 'page', 
-      component: PageComponent
-    },
-    // { 
-    //   path: 'directory', 
-    //   component: DirectoryComponent
-    // },
-    { 
-      path: 'users', 
-      component: UsersComponent
-    },
-    { 
-      path: 'theme-settings', 
-      component: ThemeSettingsComponent
-    }
-  ]
-}
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+      {
+        path: 'event/:slug',
+        component: EventDetailsComponent,
+      },
+      {
+        path: 'event',
+        component: EventListComponent,
+      },
+      {
+        path: 'page/:url',
+        component: InnerPagesComponent,
+      },
+      {
+        path: 'contacts',
+        component: ContactComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'menu',
+        component: MenusComponent,
+      },
+      {
+        path: 'pages',
+        component: PagesComponent,
+      },
+      {
+        path: 'events',
+        component: EventsComponent,
+      },
+      {
+        path: 'event',
+        component: EventComponent,
+      },
+      {
+        path: 'announcements',
+        component: AnnouncementsComponent,
+      },
+      {
+        path: 'announcement',
+        component: AnnouncementComponent,
+      },
+      {
+        path: 'quick-links',
+        component: QuickLinksComponent,
+      },
+      {
+        path: 'pages',
+        component: PagesComponent,
+      },
+      {
+        path: 'page',
+        component: PageComponent,
+      },
+      {
+        path: 'visitors',
+        component: VisitorsComponent,
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+      },
+      {
+        path: 'theme-settings',
+        component: ThemeSettingsComponent,
+      },
+    ],
+  },
+  {
+    path: 'visitor',
+    component: VisitorLogComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
