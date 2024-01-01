@@ -15,5 +15,13 @@
   "search": "Type your search words here",
   "download": "Download",
   "visitorLog": "Visitor Registration",
-  "invalidPhone": "Invalid phone number"
+  "invalidPhone": "Invalid phone number",
+  "company": "Company",
+  "department": "Department",
+  "reason": "Reason",
+  "submit": "Submit",
+  "fieldRequired": "Field is required",
+  "visitorEntrySubmittedSuccessfully": "Visitor entry submitted successfully!",
+  "thankYouWeLookForwardToYourVisit": "Thank you. We look forward to your visit!",
+  "pageRedirectingIn10Seconds": "Page redirecting in 5 seconds"
 }

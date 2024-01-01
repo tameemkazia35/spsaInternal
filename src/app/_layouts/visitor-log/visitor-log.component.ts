@@ -12,6 +12,7 @@ import { ApiService } from 'src/app/_services/api.service';
 import { UtilService } from 'src/app/_services/util.service';
 import { MessageService } from 'primeng/api';
 import * as moment from 'moment-timezone';
+import { TranslateService } from '@ngx-translate/core';
 // import * as moment from 'moment';
 
 @Component({
@@ -20,6 +21,7 @@ import * as moment from 'moment-timezone';
   styleUrls: ['./visitor-log.component.scss'],
 })
 export class VisitorLogComponent implements OnInit {
+  selectedLang: string = 'en';
   currentTime: string = '';
   currentSec: string = '';
   currentPeriod: string = '';
@@ -48,7 +50,7 @@ export class VisitorLogComponent implements OnInit {
     private util: UtilService,
     private service: ApiService,
     private spinner: NgxSpinnerService,
-    private messageService: MessageService
+    private translateService: TranslateService
   ) {
     this.updateClock();
     this.spinner.show('visitor');
@@ -70,10 +72,34 @@ export class VisitorLogComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentLang = this.util.getCurrentLang();
+    this.selectedLang = this.currentLang;
     this.langItems = [{ label: 'En' }, { label: 'Ar' }];
     setTimeout(() => {
       this.spinner.hide('visitor');
     }, 1000);
+
+    var Html = document.querySelector('html') as HTMLElement;
+    this.util.observLang().subscribe((_res) => {
+      console.log('_res', _res);
+      if (_res == 'en') {
+        Html.setAttribute('dir', 'ltr');
+        Html.setAttribute('lang', 'en');
+        return;
+      }
+
+      if (_res == 'ar') {
+        Html.setAttribute('dir', 'rtl');
+        Html.setAttribute('lang', 'ar');
+        return;
+      }
+    });
+  }
+
+  setLang() {
+    this.util.setLang(this.selectedLang);
+    this.currentLang = this.selectedLang;
+    localStorage.setItem('lang', this.selectedLang);
+    this.translateService.setDefaultLang(this.selectedLang);
   }
 
   updateClock() {

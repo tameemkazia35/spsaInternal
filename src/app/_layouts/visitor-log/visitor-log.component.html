@@ -29,6 +29,38 @@
     </div>
   </div>
 </header>
+<div class="text-center">
+  <div
+    dir="ltr"
+    class="btn-group lang-group mt-2"
+    role="group"
+    aria-label="Vertical radio toggle button group"
+  >
+    <input
+      type="radio"
+      class="btn-check"
+      name="vbtn-radio"
+      id="vbtn-radio1"
+      autocomplete="off"
+      [(ngModel)]="selectedLang"
+      (ngModelChange)="setLang()"
+      value="en"
+      checked
+    />
+    <label class="btn btn-outline-secondary" for="vbtn-radio1">English</label>
+    <input
+      type="radio"
+      class="btn-check"
+      name="vbtn-radio"
+      id="vbtn-radio2"
+      value="ar"
+      [(ngModel)]="selectedLang"
+      (ngModelChange)="setLang()"
+      autocomplete="off"
+    />
+    <label class="btn btn-outline-secondary" for="vbtn-radio2">العربية</label>
+  </div>
+</div>
 <!-- <div class="hero-banner">
   <div class="content">
     <img width="100" src="./assets/images/visit.svg" />
@@ -43,7 +75,7 @@
   ></div>
   <div class="row mb-3">
     <div class="col-12">
-      <div class="digital-clock">
+      <div class="digital-clock" dir="ltr">
         <div class="d-clock d-flex">
           <div class="d-date px-3 py-2">
             <span class="d-week-day">{{ currentWeekDay }}</span>
@@ -94,7 +126,9 @@
           >
           </intl-telephone-input>
           <div *ngIf="submitted && f.contact.invalid" class="text-danger">
-            <div *ngIf="f.contact.errors?.required">This field is required</div>
+            <div *ngIf="f.contact.errors?.required">
+              {{ "fieldRequired" | translate }}
+            </div>
           </div>
           <div
             *ngIf="
@@ -113,14 +147,16 @@
           <!-- <label class="form-label">Name</label> -->
           <input
             class="form-control"
-            placeholder="Name"
+            placeholder="{{ 'name' | translate }}"
             name="Name"
             autocomplete="nope"
             formControlName="name"
             required
           />
           <div *ngIf="submitted && f.name.invalid" class="text-danger">
-            <div *ngIf="f.name.errors?.required">This field is required</div>
+            <div *ngIf="f.name.errors?.required">
+              {{ "fieldRequired" | translate }}
+            </div>
           </div>
         </div>
       </div>
@@ -129,13 +165,15 @@
           <!-- <label class="form-label">Company</label> -->
           <input
             class="form-control"
-            placeholder="Company"
+            placeholder="{{ 'company' | translate }}"
             name="Name"
             autocomplete="off"
             formControlName="company"
           />
           <div *ngIf="submitted && f.company.invalid" class="text-danger">
-            <div *ngIf="f.company.errors?.required">This field is required</div>
+            <div *ngIf="f.company.errors?.required">
+              {{ "fieldRequired" | translate }}
+            </div>
           </div>
         </div>
       </div>
@@ -151,7 +189,9 @@
             formControlName="email"
           />
           <div *ngIf="submitted && f.email.invalid" class="text-danger">
-            <div *ngIf="f.email.errors?.required">This field is required</div>
+            <div *ngIf="f.email.errors?.required">
+              {{ "fieldRequired" | translate }}
+            </div>
           </div>
         </div>
       </div>
@@ -161,12 +201,14 @@
           <p-dropdown
             class="w-100 d-block"
             [options]="departments"
-            placeholder="Department"
+            placeholder="{{ 'department' | translate }}"
             formControlName="department"
+            optionLabel="{{ selectedLang == 'en' ? 'label' : 'label_ar' }}"
+            optionValue="{{ selectedLang == 'en' ? 'label' : 'label_ar' }}"
           ></p-dropdown>
           <div *ngIf="submitted && f.department.invalid" class="text-danger">
             <div *ngIf="f.department.errors?.required">
-              This field is required
+              {{ "fieldRequired" | translate }}
             </div>
           </div>
         </div>
@@ -177,18 +219,22 @@
           <p-dropdown
             class="w-100 d-block"
             [options]="reasons"
-            placeholder="Reason"
+            placeholder="{{ 'reason' | translate }}"
+            optionLabel="{{ selectedLang == 'en' ? 'label' : 'label_ar' }}"
+            optionValue="{{ selectedLang == 'en' ? 'label' : 'label_ar' }}"
             formControlName="reason"
           ></p-dropdown>
           <div *ngIf="submitted && f.reason.invalid" class="text-danger">
-            <div *ngIf="f.reason.errors?.required">This field is required</div>
+            <div *ngIf="f.reason.errors?.required">
+              {{ "fieldRequired" | translate }}
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="fixed-bottom footer">
       <button class="btn btn-secondary px-5 btn-lg" type="submit">
-        Submit
+        {{ "submit" | translate }}
       </button>
     </div>
   </form>
@@ -201,9 +247,9 @@
       src="/assets/images/visit.svg"
       style="height: 120px"
     />
-    <h2 class="mt-3">Visitor entry submitted successfully!</h2>
-    <h6>Thank you. We look forward to your visit!</h6>
-    <p class="mt-5">Page redirecting in {{ countdown }} seconds.</p>
+    <h2 class="mt-3">{{ "visitorEntrySubmittedSuccessfully" | translate }}</h2>
+    <h6>{{ "thankYouWeLookForwardToYourVisit" | translate }}</h6>
+    <p class="mt-5">{{ "pageRedirectingIn10Seconds" | translate }}</p>
   </div>
 </div>
 

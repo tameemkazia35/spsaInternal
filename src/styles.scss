@@ -180,7 +180,10 @@ body {
   transform: scale(1.05);
   transition: 0.3s all;
 }
-
+.p-component,
+.p-inputtext {
+  font-family: inherit !important;
+}
 .p-dialog-mask.p-component-overlay {
   backdrop-filter: blur(8px);
 }
@@ -312,6 +315,9 @@ html[dir="rtl"] {
         border-bottom-right-radius: 25px !important;
       }
     }
+  }
+  .text-end {
+    text-align: left !important;
   }
 }
 
